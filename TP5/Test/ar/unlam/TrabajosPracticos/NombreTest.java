@@ -2,6 +2,8 @@ package ar.unlam.TrabajosPracticos;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.junit.Test;
 
@@ -14,7 +16,7 @@ public class NombreTest {
 		Nombre n2 = new Nombre("montoto",23);
 		Nombre n3 = new Nombre("chipereli",24);
 		
-		LinkedList<Nombre> lista = new LinkedList<Nombre>();
+		TreeSet<Nombre> lista = new TreeSet<Nombre>();
 		
 		lista.add(n1);
 		lista.add(n2);
@@ -33,14 +35,14 @@ public class NombreTest {
 		Nombre n2 = new Nombre("anabel",49);
 		Nombre n3 = new Nombre("carlos",24);
 		
-		LinkedList<Nombre> lista = new LinkedList<Nombre>();
+		SortedSet<Nombre> lista = new TreeSet<Nombre>();
 		
 		lista.add(n1);
 		lista.add(n2);
 		lista.add(n3);
 		
 		Bar bar = new Bar(lista);
-		Collections.sort(lista, new Bar(lista));
+		//Collections.sort(lista, new Bar(lista));
 		System.out.println(Bar.getLista());
 		
 	}

@@ -2,18 +2,20 @@ package ar.unlam.TrabajosPracticos;
 
 import java.util.Comparator;
 import java.util.LinkedList;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 public class Bar implements Comparator <Nombre> {
 	
-	private static LinkedList<Nombre> lista;
+	private static TreeSet<Nombre> lista;
 	
-	public  Bar(LinkedList<Nombre> otraLista){//Abrir bar
+	public  Bar(SortedSet<Nombre> lista2){//Abrir bar
 		
-		lista = otraLista;
+		lista = (TreeSet<Nombre>) lista2;
 	}
 	
 	
-	public static LinkedList<Nombre> getLista(){
+	public static TreeSet<Nombre> getLista(){
 		
 		return lista;
 	}
