@@ -1,31 +1,35 @@
 package ar.unlam.TrabajosPracticos;
 
-import java.util.Comparator;
-import java.util.LinkedList;
-import java.util.SortedSet;
+
+
 import java.util.TreeSet;
 
-public class Bar implements Comparator <Nombre> {
+public class Bar  {
 	
-	private static TreeSet<Nombre> lista;
+	private TreeSet<Nombre> lista;
+
 	
-	public  Bar(SortedSet<Nombre> lista2){//Abrir bar
+	public  Bar(){//Abrir bar
 		
-		lista = (TreeSet<Nombre>) lista2;
+		this.lista = new TreeSet<Nombre>();
 	}
 	
-	
-	public static TreeSet<Nombre> getLista(){
+	public TreeSet<Nombre> getLista(){
 		
 		return lista;
 	}
+
 	
-	@Override
-	public int compare(Nombre unNombre, Nombre otroNombre) {/*Orden por edad*/
-		// TODO Auto-generated method stub
-		return unNombre.getEdad().compareTo(otroNombre.getEdad());
+	public void setLista(Nombre nombre){
+		
+		lista.add(nombre);
 	}
 
+
+	public void setListaEntera(TreeSet<Nombre> listaentera){
+		
+		this.lista=listaentera;
+	}
 
 
 

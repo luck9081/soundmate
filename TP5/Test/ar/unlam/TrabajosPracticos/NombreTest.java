@@ -1,11 +1,12 @@
 package ar.unlam.TrabajosPracticos;
 
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.SortedSet;
+import static org.junit.Assert.assertEquals;
+
 import java.util.TreeSet;
 
+import org.junit.Assert;
 import org.junit.Test;
+
 
 public class NombreTest {
 
@@ -15,54 +16,71 @@ public class NombreTest {
 		Nombre n1 = new Nombre("pepe",30);
 		Nombre n2 = new Nombre("montoto",23);
 		Nombre n3 = new Nombre("chipereli",24);
+
+		Bar bar = new Bar();
 		
-		TreeSet<Nombre> lista = new TreeSet<Nombre>();
+		bar.setLista(n1);
+		bar.setLista(n2);
+		bar.setLista(n3);
 		
-		lista.add(n1);
-		lista.add(n2);
-		lista.add(n3);
+		TreeSet<Nombre> valoresperado = new TreeSet<Nombre>();
 		
-		Bar bar = new Bar(lista);
+		Nombre n4 = new Nombre("pepe",30);
+		Nombre n5 = new Nombre("montoto",3);
+		Nombre n6 = new Nombre("chipereli",24);
 		
-		System.out.println(Bar.getLista());
+		valoresperado.add(n4);
+		valoresperado.add(n5);
+		valoresperado.add(n6);
 		
-	}
-	
-	@Test
-	public void queLaListaSeOrdenoPorEdad(){
+		Assert.assertEquals(valoresperado,bar.getLista());
 		
-		Nombre n1 = new Nombre("eduardo",15);
-		Nombre n2 = new Nombre("anabel",49);
-		Nombre n3 = new Nombre("carlos",24);
-		
-		SortedSet<Nombre> lista = new TreeSet<Nombre>();
-		
-		lista.add(n1);
-		lista.add(n2);
-		lista.add(n3);
-		
-		Bar bar = new Bar(lista);
-		//Collections.sort(lista, new Bar(lista));
-		System.out.println(Bar.getLista());
+
+
 		
 	}
 	
 	@Test
-	public void queLaListaSeOrdenoAlfabeticamente(){
+	public void queLaListaSeOrdenoNaturalmente(){//Por nombre
 		
-		Nombre n1 = new Nombre("b",30);
-		Nombre n2 = new Nombre("z",23);
-		Nombre n3 = new Nombre("a",24);
+		Nombre n1 = new Nombre("zala",15);
+		Nombre n2 = new Nombre("alberto",35);
+		Nombre n3 = new Nombre("emiliano",55);
 		
-		LinkedList<Nombre> lista = new LinkedList<Nombre>();
+		Bar bar = new Bar();
 		
+		bar.setLista(n1);
+		bar.setLista(n2);
+		bar.setLista(n3);
+		
+		
+	
+		
+		Assert.assertEquals("alberto",bar.getLista().first().getNombre());
+			
+	}
+	
+	@Test
+	public void queLaListaSeOrdenePorEdad(){//
+		
+		Nombre n1 = new Nombre("zala",15);
+		Nombre n2 = new Nombre("Cristobal",20);
+		Nombre n3 = new Nombre("Alberto",5);
+	
+		porEdadComparator comparator = new porEdadComparator();//creo una lista a parte
+		TreeSet<Nombre> lista = new TreeSet<Nombre>(comparator);//a esta lista le paso un comparator 
 		lista.add(n1);
 		lista.add(n2);
 		lista.add(n3);
 		
-	
-		Collections.sort(lista);
-		System.out.println(lista);
+		Bar bar = new Bar ();//creo un bar
 		
+		bar.setListaEntera(lista);//le paso la lista comparada 
+	
+	
+		assertEquals("Alberto", bar.getLista().first().getNombre());
+		assertEquals("Cristobal", bar.getLista().last().getNombre());
+			
 	}
+	
 }
