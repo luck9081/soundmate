@@ -1,18 +1,21 @@
 
 public class Persona {
-	private string Nombre;
-	public string getNombre() {
+	private String Nombre;
+	private String Apellido;
+	
+	
+	public String getNombre() {
 		return Nombre;
 	}
-	public void setNombre(string nombre) {
+	public void setNombre(String nombre) {
 		Nombre = nombre;
 	}
 	
-	private string Apellido;
-	public string getApellido() {
+	
+	public String getApellido() {
 		return Apellido;
 	}
-	public void setApellido(string apellido) {
+	public void setApellido(String apellido) {
 		Apellido = apellido;
 	}
 	

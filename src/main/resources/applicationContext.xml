@@ -21,6 +21,7 @@
 	<mvc:annotation-driven />
 	<aop:aspectj-autoproxy />
 	<tx:annotation-driven transaction-manager="transactionManager" />
+	<context:component-scan base-package="x.y.z.service, x.y.z.controller"></context:component-scan>
 
 </beans>
 
