@@ -17,11 +17,12 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<import resource="classpath:hibernateContext.xml" />
-
+	<context:component-scan base-package="ar.edu.grupoesfera.cursospring.controladores"></context:component-scan>
 	<mvc:annotation-driven />
 	<aop:aspectj-autoproxy />
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<context:component-scan base-package="x.y.z.service, x.y.z.controller"></context:component-scan>
+	
+	 
 
 </beans>
 
