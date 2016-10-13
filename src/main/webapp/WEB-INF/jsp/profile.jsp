@@ -1,9 +1,10 @@
+
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/apple-icon.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>Profile Page - Material Kit by Creative Tim</title>
@@ -16,8 +17,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
   <!-- CSS Files -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/material-kit.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/material-kit.css" rel="stylesheet"/>
 
 </head>
 
@@ -33,7 +34,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="#">
-              <img src="../img/logo-sm.png" style="width:150px; margin:0px;" />
+              <img src="img/logo-sm.png" style="width:150px; margin:0px;" />
             </a>
           </div>
 
@@ -77,7 +78,7 @@
     </nav>
 
     <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('../img/examples/city.jpg');"></div>
+    <div class="header header-filter" style="background-image: url('img/examples/city.jpg');"></div>
 
     <div class="main main-raised">
       <div class="profile-content">
@@ -85,10 +86,10 @@
                   <div class="row">
                       <div class="profile">
                           <div class="avatar">
-                              <img src="../img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
+                              <img src="img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
                           </div>
                           <div class="name">
-                              <h3 class="title">Christian Louboutin</h3>
+                              <h3 class="title">${Usuario.username}</h3>
                 <h6>Designer</h6>
                           </div>
                       </div>
@@ -126,38 +127,38 @@
                     <div class="tab-pane active" id="studio">
                                     <div class="row">
                         <div class="col-md-6">
-                          <img src="../img/examples/chris1.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris0.jpg" class="img-rounded" />
+                          <img src="img/examples/chris1.jpg" class="img-rounded" />
+                          <img src="img/examples/chris0.jpg" class="img-rounded" />
                         </div>
                         <div class="col-md-6">
-                          <img src="../img/examples/chris3.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris4.jpg" class="img-rounded" />
+                          <img src="img/examples/chris3.jpg" class="img-rounded" />
+                          <img src="img/examples/chris4.jpg" class="img-rounded" />
                         </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane text-center" id="work">
                       <div class="row">
                         <div class="col-md-6">
-                          <img src="../img/examples/chris5.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris7.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris9.jpg" class="img-rounded" />
+                          <img src="img/examples/chris5.jpg" class="img-rounded" />
+                          <img src="img/examples/chris7.jpg" class="img-rounded" />
+                          <img src="img/examples/chris9.jpg" class="img-rounded" />
                         </div>
                         <div class="col-md-6">
-                          <img src="../img/examples/chris6.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris8.jpg" class="img-rounded" />
+                          <img src="img/examples/chris6.jpg" class="img-rounded" />
+                          <img src="img/examples/chris8.jpg" class="img-rounded" />
                         </div>
                       </div>
                                 </div>
                     <div class="tab-pane text-center" id="shows">
                       <div class="row">
                         <div class="col-md-6">
-                          <img src="../img/examples/chris4.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris6.jpg" class="img-rounded" />
+                          <img src="img/examples/chris4.jpg" class="img-rounded" />
+                          <img src="img/examples/chris6.jpg" class="img-rounded" />
                         </div>
                         <div class="col-md-6">
-                          <img src="../img/examples/chris7.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris5.jpg" class="img-rounded" />
-                          <img src="../img/examples/chris9.jpg" class="img-rounded" />
+                          <img src="img/examples/chris7.jpg" class="img-rounded" />
+                          <img src="img/examples/chris5.jpg" class="img-rounded" />
+                          <img src="img/examples/chris9.jpg" class="img-rounded" />
                         </div>
                       </div>
                                 </div>
@@ -209,17 +210,17 @@
 
 </body>
   <!--   Core JS Files   -->
-  <script src="../js/jquery.min.js" type="text/javascript"></script>
-  <script src="../js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="../js/material.min.js"></script>
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="js/material.min.js"></script>
 
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="../js/nouislider.min.js" type="text/javascript"></script>
+  <script src="js/nouislider.min.js" type="text/javascript"></script>
 
   <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-  <script src="../js/bootstrap-datepicker.js" type="text/javascript"></script>
+  <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 
   <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-  <script src="../js/material-kit.js" type="text/javascript"></script>
+  <script src="js/material-kit.js" type="text/javascript"></script>
 
 </html>

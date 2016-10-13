@@ -1,9 +1,10 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../img/isologo.png">
-  <link rel="icon" type="image/png" href="../img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="img/isologo.png">
+  <link rel="icon" type="image/png" href="img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
   <title>Registro - Soundmate</title>
@@ -16,8 +17,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
   <!-- CSS Files -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
-    <link href="../css/material-kit.css" rel="stylesheet"/>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/material-kit.css" rel="stylesheet"/>
 
 </head>
 
@@ -33,7 +34,7 @@
               <span class="icon-bar"></span>
           </button>
           <a class="navbar-brand" href="#">
-            <img src="../img/logo-sm.png" style="width:150px; margin:0px;" />
+            <img src="img/logo-sm.png" style="width:150px; margin:0px;" />
           </a>
         </div>
 
@@ -76,60 +77,63 @@
     </div>
   </nav>
   <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('../img/bg-concert.jpg'); background-size: cover; background-position: top center;">
+    <div class="header header-filter" style="background-image: url('img/bg-concert.jpg'); background-size: cover; background-position: top center;">
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
             <div class="card card-signup">
-              <form class="form" method="post" action="">
+            
+			           
+              <form:form class="form" method="post" ModelAttribute="usuario" action="registro">
                 <div class="content">
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">face</i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Nombre de Usuario">
+                    <form:input path="username" id="username" class="form-control" placeholder="Nombre de Usuario"></form:input>
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">email</i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Email">
+                    <form:input path="email" id="email" class="form-control" placeholder="Email"></form:input>
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">music_video</i>
                     </span>
-                    <input type="text" class="form-control" placeholder="Instrumento/Rol">
+                    <form:input path="instrumento" id="instrumento" class="form-control" placeholder="Instrumento/Rol"></form:input>
                   </div>
 
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">lock_outline</i>
                     </span>
-                    <input type="password" placeholder="Contrase&ntilde;a" class="form-control" />
+                    <form:password path="pass" id="pass" placeholder="Contrase&ntilde;a" class="form-control"></form:password>
                   </div>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="optionsCheckboxes" checked>
+                      <input type="checkbox" name="optionsCheckboxes" checked />
                       Suscribirme al newsletter
                     </label>
                   </div>
                 </div>
                 <div class="footer text-center">
-                	<button class="btn btn-primary btn-round">
+                	<button type="submit" class="btn btn-primary btn-round">
 						<i class="material-icons">done</i>Registrarme!
 					</button>
                 </div>
                 
                 <div class="text-center">
                 	<p class="text-divider">Ya tenés cuenta?
-                		<a href="./login.jsp">Ingresá!</a>
+                		<a href="./login">Ingresá!</a>
                 	</p>
                 </div>
                 <div class="input-group"></div>
-              </form>
+              </form:form>
+              
             </div>
           </div>
         </div>
@@ -161,17 +165,17 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="../js/jquery.min.js" type="text/javascript"></script>
-<script src="../js/bootstrap.min.js" type="text/javascript"></script>
-<script src="../js/material.min.js"></script>
+<script src="js/jquery.min.js" type="text/javascript"></script>
+<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js/material.min.js"></script>
 
 <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-<script src="../js/nouislider.min.js" type="text/javascript"></script>
+<script src="js/nouislider.min.js" type="text/javascript"></script>
 
 <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-<script src="../js/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
 
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-<script src="../js/material-kit.js" type="text/javascript"></script>
+<script src="js/material-kit.js" type="text/javascript"></script>
 
 </html>
