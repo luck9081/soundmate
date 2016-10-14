@@ -23,117 +23,55 @@
 </head>
 
 <body class="signup-page">
- <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation-example">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-          </button>
-          <a class="brand" href="#">
-            <img src="img/logo-sm.png" style="width:150px; margin:0px;" />
-          </a>
-        </div>
-
-        <div class="collapse navbar-collapse" id="navigation-example">
-          <ul class="nav navbar-nav navbar-right">
-              <li>
-                <a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                  <i class="fa fa-twitter"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                  <i class="fa fa-facebook-square"></i>
-                </a>
-              </li>
-              <li>
-                <a href="#" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-                  <i class="fa fa-instagram"></i>
-                </a>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">settings</i>
-                  <b class="caret"></b>
-                </a>
-                  <ul class="dropdown-menu dropdown-menu-right">
-                      <li class="dropdown-header">configuraci&oacute;n</li>
-                      <li><a href="#">Action</a></li>
-                      <li><a href="#">Another action</a></li>
-                      <li><a href="#">Something else here</a></li>
-                      <li class="divider"></li>
-                      <li>
-                        <a href="#">
-                          <i class="material-icons">exit_to_app</i>Cerrar Sesión
-                        </a>
-                      </li>
-                  </ul>
-              </li>
-          </ul>
-        </div>
-    </div>
-  </nav>
-  <div class="wrapper">
-    <div class="header header-filter" style="background-image: url('img/bg-concert.jpg'); background-size: cover; background-position: top center;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-            <div class="card card-signup">
-            
-              <form:form ModelAttribute="usuario" class="form" method="post" action="login">
-                <div class="content">
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="material-icons">face</i>
-                    </span>
-                    <form:input path="username" class="form-control" placeholder="Nombre de Usuario" />
-                  </div>
-                  <div class="input-group">
-                    <span class="input-group-addon">
-                      <i class="material-icons">lock_outline</i>
-                    </span>
-                    <form:password path="pass" placeholder="Contrase&ntilde;a" class="form-control" />
-                  </div>
-                  <div class="checkbox">
-                    <label>
-                      <input type="checkbox" name="optionsCheckboxes">
-                      No cerrar sesi&oacute;n
-                    </label>
-                  </div>
-                </div>
-                <div class="footer text-center">
-                	<button type="submit" class="btn btn-primary btn-round">
-						Ingresar  <i class="material-icons">send</i>
-					</button>
-                </div>
-                <div class="text-center">
-                	<p class="text-divider">No tenés cuenta?
-                		<a href="./signup">Registrate gratis!</a>
-                	</p>
-                </div>
-                <div class="input-group"></div>
-              </form:form>
-              
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="footer">
-        <div class="container">
-          	<div class="copyright pull-left">
-               <p>Soundmate</p>
-            </div>
-            <div class="copyright pull-right">
-                &copy; 2016, made with <i class="fa fa-heart heart"></i> by <a href="http://www.creative-tim.com" target="_blank">Equipo 7</a>
-            </div>
-        </div>
-      </footer>
-    </div>
-  </div>
+	<%@ include file="../includes/menu.jsp" %>
+  	<div class="wrapper">
+    	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg'); background-size: cover; background-position: top center;">
+	      <div class="container">
+	        <div class="row">
+	          <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+	            <div class="card card-signup">
+	            
+	              <form:form modelAttribute="usuario" class="form" method="post" action="login">
+	                <div class="content">
+	                  <div class="input-group">
+	                    <span class="input-group-addon">
+	                      <i class="material-icons">face</i>
+	                    </span>
+	                    <form:input path="nombre" class="form-control" placeholder="Nombre de Usuario" />
+	                  </div>
+	                  <div class="input-group">
+	                    <span class="input-group-addon">
+	                      <i class="material-icons">lock_outline</i>
+	                    </span>
+	                    <form:password path="pass" placeholder="Contrase&ntilde;a" class="form-control" />
+	                  </div>
+	                  <div class="checkbox">
+	                    <label>
+	                      <input type="checkbox" name="optionsCheckboxes">
+	                      No cerrar sesi&oacute;n
+	                    </label>
+	                  </div>
+	                </div>
+	                <div class="footer text-center">
+	                	<button type="submit" class="btn btn-primary btn-round">
+							Ingresar  <i class="material-icons">send</i>
+						</button>
+	                </div>
+	                <div class="text-center">
+	                	<p class="text-divider">No tenés cuenta?
+	                		<a href="./signup">Registrate gratis!</a>
+	                	</p>
+	                </div>
+	                <div class="input-group"></div>
+	              </form:form>
+	              
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <%@ include file="../includes/pie.jsp" %>
+    	</div>
+  	</div>
 </body>
 
 <!--   Core JS Files   -->

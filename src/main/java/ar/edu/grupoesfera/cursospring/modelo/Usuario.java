@@ -1,5 +1,8 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
+import org.springframework.context.annotation.Scope;
+
+@Scope("session")
 public class Usuario {
 	
 	private String nombre;
