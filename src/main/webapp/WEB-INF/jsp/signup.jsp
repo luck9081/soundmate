@@ -13,12 +13,12 @@
 
   <!--     Fonts and icons     -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
   <!-- CSS Files -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/material-kit.css" rel="stylesheet"/>
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/material-kit.css" rel="stylesheet"/>
 
 </head>
 
@@ -54,12 +54,21 @@
                     </span>
                     <form:input path="instrumento" id="instrumento" class="form-control" placeholder="Instrumento/Rol"></form:input>
                   </div>
+                  <div class="input-group">
+                    <span class="input-group-addon">
+                      <i class="material-icons">location_on</i>
+                    </span>
+                    <form:input path="localidad" id="localidad" class="form-control" placeholder="Localidad"></form:input>
+                    <form:hidden id="latitud" path="latitud" />
+                    <form:hidden id="longitud" path="longitud" />
+                  </div>
+                  
 
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">lock_outline</i>
                     </span>
-                    <form:password path="pass" id="pass" placeholder="Contrase&ntilde;a" class="form-control"></form:password>
+                    <form:password path="pass" id="pass" placeholder="Contraseña" class="form-control"></form:password>
                   </div>
                   <div class="checkbox">
                     <label>
@@ -104,5 +113,9 @@
 
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 <script src="js/material-kit.js" type="text/javascript"></script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByG25PdBB9LYQkjVm3MGcJKMem-CzZPPc&libraries=places"></script>
+    
+<script type="text/javascript" src="js/maps.js"></script>
 
 </html>

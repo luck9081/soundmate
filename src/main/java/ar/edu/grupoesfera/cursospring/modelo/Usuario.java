@@ -9,7 +9,28 @@ public class Usuario {
 	private String pass;
 	private String email;
 	private String instrumento;
+	private String localidad;
+	private String latitud;
+	private String longitud;
 	
+	public String getLatitud() {
+		return latitud;
+	}
+	public void setLatitud(String latitud) {
+		this.latitud = latitud;
+	}
+	public String getLongitud() {
+		return longitud;
+	}
+	public void setLongitud(String longitud) {
+		this.longitud = longitud;
+	}
+	public String getLocalidad() {
+		return localidad;
+	}
+	public void setLocalidad(String localidad) {
+		this.localidad = localidad;
+	}
 	public String getNombre() {
 		return nombre;
 	}

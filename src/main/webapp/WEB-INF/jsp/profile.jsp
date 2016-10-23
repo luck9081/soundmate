@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Profile Page - Material Kit by Creative Tim</title>
+  <title>Perfil - Soundmate</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -36,8 +36,8 @@
 	                      <img src="img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
-	                    <h3 class="title">${nombre}</h3>
-	        			<h6>${instrumento}</h6>
+	                    <h3 class="title">${sessionScope.user.getNombre()}</h3>
+	        			<h6><i class="material-icons" style="font-size:14px;">email</i>${sessionScope.user.getEmail()} | <i class="material-icons" style="font-size:14px;">music_note</i>${sessionScope.user.getInstrumento()} | <i class="material-icons" style="font-size:14px;">location_on</i></span> ${sessionScope.user.getLocalidad()}</h6>
 	                  </div>
 	              </div>
 	          </div>

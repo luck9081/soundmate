@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.context.annotation.Scope;
 
 @Controller
@@ -40,13 +43,17 @@ public class RegistroController {
 	}
 	
 	@RequestMapping(path="/registro", method = RequestMethod.POST)
-	public ModelAndView crearUsuario(@ModelAttribute("usuario") Usuario usuario){ 
+	public ModelAndView crearUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){ 
 			
 			ModelMap modelCrearUser = new ModelMap();
 			modelCrearUser.put("nombre", usuario.getNombre());
 			modelCrearUser.put("email", usuario.getEmail());
 			modelCrearUser.put("pass", usuario.getPass());
 			modelCrearUser.put("instrumento", usuario.getInstrumento());
+			modelCrearUser.put("localidad", usuario.getLocalidad());
+			modelCrearUser.put("latitud", usuario.getLatitud());
+			modelCrearUser.put("longitud", usuario.getLongitud());
+			request.getSession().setAttribute("user",usuario);
 			return new ModelAndView("profile", modelCrearUser);
 	}
 	
