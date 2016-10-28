@@ -23,7 +23,7 @@ public class TragamonedasTest{
 		Integer valoresperado=2;
 		
 		Assert.assertTrue(t.getPosicion()==valoresperado);
-		
+			
 		
 		
 	}
