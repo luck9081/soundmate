@@ -59,8 +59,8 @@
                       <i class="material-icons">location_on</i>
                     </span>
                     <form:input path="localidad" id="localidad" class="form-control" placeholder="Localidad"></form:input>
-                    <form:hidden id="latitud" path="latitud" />
-                    <form:hidden id="longitud" path="longitud" />
+                    <form:hidden id="partido" path="partido"/>
+		                    <form:hidden id="provincia" path="provincia"/>
                   </div>
                   
 

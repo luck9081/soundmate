@@ -10,24 +10,25 @@ public class Usuario {
 	private String email;
 	private String instrumento;
 	private String localidad;
-	private String latitud;
-	private String longitud;
+	private String partido;
+	private String provincia;
 	
-	public String getLatitud() {
-		return latitud;
+	public String getPartido() {
+		return partido;
 	}
-	public void setLatitud(String latitud) {
-		this.latitud = latitud;
+	public void setPartido(String partido) {
+		this.partido = partido;
 	}
-	public String getLongitud() {
-		return longitud;
+	public String getProvincia() {
+		return provincia;
 	}
-	public void setLongitud(String longitud) {
-		this.longitud = longitud;
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
 	}
 	public String getLocalidad() {
 		return localidad;
-	}
+	}	
+	
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}

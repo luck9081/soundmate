@@ -51,9 +51,10 @@ public class RegistroController {
 			modelCrearUser.put("pass", usuario.getPass());
 			modelCrearUser.put("instrumento", usuario.getInstrumento());
 			modelCrearUser.put("localidad", usuario.getLocalidad());
-			modelCrearUser.put("latitud", usuario.getLatitud());
-			modelCrearUser.put("longitud", usuario.getLongitud());
+			modelCrearUser.put("partido", usuario.getPartido());
+			modelCrearUser.put("provincia", usuario.getProvincia());			
 			request.getSession().setAttribute("user",usuario);
+			
 			return new ModelAndView("profile", modelCrearUser);
 	}
 	
