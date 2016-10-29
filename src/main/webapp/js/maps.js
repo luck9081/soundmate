@@ -1,5 +1,5 @@
 function initialize() {
-            var input = document.getElementById('txtUbicacion');
+            var input = document.getElementById('ubicacion');
 
             var autocomplete = new google.maps.places.Autocomplete(input);
 
@@ -7,9 +7,14 @@ function initialize() {
 
                 var place = autocomplete.getPlace();
 
-                document.getElementById('city2').value = place.name;
-                document.getElementById('txtLatitud').value = place.geometry.location.lat();
-                document.getElementById('txtLongitud').value = place.geometry.location.lng();
+                //document.getElementById('city2').value = place.name;
+                //document.getElementById('txtLatitud').value = place.geometry.location.lat();
+                //document.getElementById('txtLongitud').value = place.geometry.location.lng();
+                
+                document.getElementById('localidad').value = place.address_components[1].short_name;
+                document.getElementById('partido').value = place.address_components[2].short_name;
+                document.getElementById('provincia').value = place.address_components[3].long_name;
+                
                 //alert("This function is working!");
                 //alert(place.name);
                 //alert(place.address_components[1].short_name); // Localidad
@@ -17,22 +22,24 @@ function initialize() {
                 //alert(place.address_components[3].long_name); // Pais
                 //alert(place.address_components[1].types[0]);
 
-                var lat = document.getElementById('cityLat').value,
-                    lng = document.getElementById('cityLng').value;
-
-                var mapOptions = {
-                    center: new google.maps.LatLng(lat, lng),
-                    zoom: 12,
-                    mapTypeId: google.maps.MapTypeId.ROADMAP
-                };
-
-                var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
-
-                var marker = new google.maps.Marker({
-                    position: new google.maps.LatLng(lat, lng),
-                    map: map,
-                    draggable: true,
-                });
+                /* MAPS PARA DIV
+	                var lat = place.geometry.location.lat(),
+	                    lng = place.geometry.location.lng();
+	
+	                var mapOptions = {
+	                    center: new google.maps.LatLng(lat, lng),
+	                    zoom: 12,
+	                    mapTypeId: google.maps.MapTypeId.ROADMAP
+	                };
+	
+	                var map = new google.maps.Map(document.getElementById("mapa"), mapOptions);
+	
+	                var marker = new google.maps.Marker({
+	                    position: new google.maps.LatLng(lat, lng),
+	                    map: map,
+	                    draggable: true,
+	                });
+                */
 
             });
 

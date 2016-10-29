@@ -21,7 +21,7 @@ public class BusquedaController {
 		Busqueda busqueda = new Busqueda();
 		search.addAttribute(busqueda);		
 		
-		return new ModelAndView("busqueda", search);		
+		return new ModelAndView("busqueda", search);
 	}
 	
 	@RequestMapping(path="/resultadoBusqueda", method = RequestMethod.POST)
