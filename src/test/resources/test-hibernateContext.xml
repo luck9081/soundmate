@@ -23,6 +23,7 @@
 		<!-- Mappings -->
 		<property name="packagesToScan">
 			<list>
+				<value>ar.edu.grupoesfera.cursospring.modelo</value>
 			</list>
 		</property>
 	</bean>

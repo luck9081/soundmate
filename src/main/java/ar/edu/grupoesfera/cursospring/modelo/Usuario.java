@@ -1,7 +1,9 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
+import javax.persistence.Entity;
 import org.springframework.context.annotation.Scope;
 
+@Entity
 @Scope("session")
 public class Usuario {
 	

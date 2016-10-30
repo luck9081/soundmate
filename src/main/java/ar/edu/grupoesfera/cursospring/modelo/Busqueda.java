@@ -1,7 +1,10 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
 public class Busqueda {
-	private String rol;
+	private String rol;	
+	private String localidad;
+	private String partido;
+	private String provincia;
 	
 	public String getRol() {
 		return rol;
@@ -27,8 +30,4 @@ public class Busqueda {
 	public void setProvincia(String provincia) {
 		this.provincia = provincia;
 	}
-	
-	private String localidad;
-	private String partido;
-	private String provincia;	
 }
