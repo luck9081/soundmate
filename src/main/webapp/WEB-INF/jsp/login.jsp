@@ -43,7 +43,7 @@
 	                    <span class="input-group-addon">
 	                      <i class="material-icons">lock_outline</i>
 	                    </span>
-	                    <form:password path="pass" placeholder="Contrase&ntilde;a" class="form-control" />
+	                    <form:password path="pass" placeholder="Contraseña" class="form-control" />
 	                  </div>
 	                  <div class="checkbox">
 	                    <label>

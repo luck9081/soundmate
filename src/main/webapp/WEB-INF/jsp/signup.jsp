@@ -58,9 +58,10 @@
                     <span class="input-group-addon">
                       <i class="material-icons">location_on</i>
                     </span>
-                    <form:input path="localidad" id="localidad" class="form-control" placeholder="Localidad"></form:input>
-                    <form:hidden id="latitud" path="latitud" />
-                    <form:hidden id="longitud" path="longitud" />
+                    <input type="text" id="ubicacion" class="form-control" placeholder="Ubicación"></input>
+                    <form:hidden id="localidad" path="localidad"/>
+                    <form:hidden id="partido" path="partido"/>
+		            <form:hidden id="provincia" path="provincia"/>
                   </div>
                   
 
@@ -114,8 +115,9 @@
 <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
 <script src="js/material-kit.js" type="text/javascript"></script>
 
+<!-- MAPS  -->
+
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByG25PdBB9LYQkjVm3MGcJKMem-CzZPPc&libraries=places"></script>
-    
 <script type="text/javascript" src="js/maps.js"></script>
 
 </html>

@@ -1,5 +1,6 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import org.springframework.context.annotation.Scope;
-
 
 @Entity
 @Scope("session")
@@ -51,7 +51,8 @@ public class Usuario {
 	}
 	public String getLocalidad() {
 		return localidad;
-	}
+	}	
+	
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}
