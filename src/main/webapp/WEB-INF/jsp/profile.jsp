@@ -26,20 +26,54 @@
 	<%@ include file="../includes/menu.jsp" %>
 
   	<div class="wrapper">
-    	<div class="header header-filter" style="background-image: url('img/examples/city.jpg');"></div>
+    	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg');"></div>
 	    <div class="main main-raised">
 	      <div class="profile-content">
 	      	<div class="container">
 	          <div class="row">
 	              <div class="profile">
 	                  <div class="avatar">
-	                      <img src="img/christian.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                      <img src="img/tincho.jpg" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
 	                    <h3 class="title">${sessionScope.user.getNombre()}</h3>
-	        			<h6><i class="material-icons" style="font-size:14px;">email</i>${sessionScope.user.getEmail()} | <i class="material-icons" style="font-size:14px;">music_note</i>${sessionScope.user.getInstrumento()} | <i class="material-icons" style="font-size:14px;">location_on</i></span> ${sessionScope.user.getLocalidad()}</h6>
-	                  </div>
-	              </div>
+	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${sessionScope.user.getLocalidad()}</h6>
+	        		  </div>
+	        		</div>
+	        	</div>
+        		<div class="row">
+                  <div class="col-md-12">
+                  	<div class="col-md-3">
+                  		<div style="text-align:left; border:20pt; border-color:#f1f1f2">
+                  			<h4>Informaci&oacute;n</h4>
+                  			<hr style="margin:0; padding:0;">
+	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${sessionScope.user.getEmail()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${sessionScope.user.getInstrumento()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
+	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
+	                  	</div>
+                  	</div>
+                  	<div class="col-md-9">
+                  		<h4>Influencias</h4>
+                  		<hr style="margin:0; padding:0;">
+                  		<div class="col-sm-2">
+                        	<img id="imgInfluencias" src="img/beatles.jpg" class="img-rounded img-responsive">
+                    	</div>
+                    	<div class="col-sm-2">
+                        	<img id="imgInfluencias" src="img/beatles.jpg" class="img-circle img-responsive">
+                    	</div>
+                  	</div>
+                  </div>
+              	</div>
+	          </div>
+	          <div class="description text-center">
+	                <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+	          </div>
+	          <div class="description text-center">
+	                <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
+	          </div>
+	          <div class="description text-center">
+	                <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
 	          </div>
 	          <div class="description text-center">
 	                <p>An artist of considerable range, Chet Faker — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music, giving it a warm, intimate feel with a solid groove structure. </p>
@@ -47,7 +81,6 @@
 	         </div>
 	       </div>
 	    </div>
-    </div>
     
 	<%@ include file="../includes/pie.jsp" %>
 </body>

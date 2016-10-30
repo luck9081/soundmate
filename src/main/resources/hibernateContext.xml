@@ -29,6 +29,7 @@
 		<!-- Mappings -->
 		<property name="packagesToScan">
 			<list>
+				<value>ar.edu.grupoesfera.cursosrping.modelo</value>
 			</list>
 		</property>
 	</bean>

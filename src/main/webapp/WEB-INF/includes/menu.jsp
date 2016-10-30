@@ -8,9 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
-              <img src="img/logo-sm.png" style="width:150px; margin:0px;" />
-            </a>
+              <img src="img/logo-sm.png" style="width:150px; margin:0px; padding-top:0px" />
           </div>
 
           <div class="collapse navbar-collapse" id="navigation-example">
