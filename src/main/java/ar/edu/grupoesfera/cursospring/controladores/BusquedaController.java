@@ -35,7 +35,7 @@ public class BusquedaController {
 		ModelMap resultadoBusqueda = busquedaService.buscarUsuarios(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos un modelmap
 																			// con la lista de resultados de usuarios del instrumento buscado
 		
-		return new ModelAndView("busqueda", resultadoBusqueda);
+		return new ModelAndView("resultadoBusqueda", resultadoBusqueda);
 	}
 	
 }

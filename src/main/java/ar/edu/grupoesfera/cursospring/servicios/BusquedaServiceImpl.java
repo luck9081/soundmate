@@ -12,11 +12,11 @@ import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 public class BusquedaServiceImpl implements BusquedaService {
 
 	@Override
-	public ModelMap buscarUsuarios(Busqueda busqueda) {
+	public ModelMap buscarUsuarios(Busqueda busqueda) {				// Recibo el tipo de búsqueda que debo efectuar
 		// TODO Auto-generated method stub		
 		
 		Usuario usuarioResultado = new Usuario();					// Defino un objeto de tipo "Usuario" que utilizaré para guardar en la colección.
-		List<Busqueda> listaResultados = new ArrayList<Busqueda>();	// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda.
+		List<Usuario> listaResultados = new ArrayList<Usuario>();	// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda.
 		
 		// MOTOR DE BUSQUEDA
 		

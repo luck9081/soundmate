@@ -28,7 +28,7 @@
 	    	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg'); background-size: cover; background-position: top center;">
 		      <div class="container">
 		        <div class="row">
-		          <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+		          <div class="col-md-6 col-md-offset-3 col-sm-6 col-sm-offset-3">
 		            <div class="card card-signup">
 		            
 		              <form:form modelAttribute="busqueda" class="form" method="post" action="resultadoBusqueda">
@@ -36,11 +36,11 @@
 		                  
 		                  <div class="text-center">
 		                	<h2>¡Buscá nuevos SoundMates!</h2>
-		                	<br/><br/>
-		                	<p>En tus cercanías hay SoundMates que te están esperando</p>
+		                	<br/>
+		                	<h5>En tus cercanías hay SoundMates que te están esperando</h5>
 		                  </div>
 		                  
-		                  <div class="input-group">		                  	
+		                  <div class="input-group">
 		                    <span class="input-group-addon">
 		                      <i class="material-icons">face</i>
 		                    </span>
@@ -53,7 +53,7 @@
 		                </div>
 		                
 		                <div class="footer text-center">
-		                	<button type="submit" class="btn btn-primary btn-round">
+		                	<button type="submit" class="btn btn-info btn-round">
 								Buscar SoundMates!  <i class="material-icons">send</i>
 							</button>
 		                </div>
