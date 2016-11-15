@@ -1,5 +1,7 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.interfaces.BusquedaService;
 import ar.edu.grupoesfera.cursospring.modelo.Busqueda;
-import ar.edu.grupoesfera.cursospring.servicios.BusquedaService;
+import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Controller
 public class BusquedaController {
@@ -24,18 +27,22 @@ public class BusquedaController {
 		
 		ModelMap search = new ModelMap();
 		Busqueda busqueda = new Busqueda();
-		search.addAttribute(busqueda);		
+		search.addAttribute(busqueda);
 		
 		return new ModelAndView("busqueda", search);
+		
 	}
 	
 	@RequestMapping(path="/resultadoBusqueda", method = RequestMethod.POST)
 	public ModelAndView busquedaRol(@ModelAttribute("busqueda") Busqueda busqueda){
 		
-		ModelMap resultadoBusqueda = busquedaService.buscarUsuarios(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos un modelmap
-																			// con la lista de resultados de usuarios del instrumento buscado
+		List<Usuario> listaResultados = busquedaService.buscarUsuarios(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos una lista de Usuarios
+																					// con la lista de resultados de usuarios del instrumento buscado
 		
-		return new ModelAndView("resultadoBusqueda", resultadoBusqueda);
+		ModelMap resultado = new ModelMap();			// Creamos un modelmap y le asignamos la lista de resultados
+		resultado.addAttribute("resultados",listaResultados);
+		
+		return new ModelAndView("resultadoBusqueda",resultado);
 	}
 	
 }

@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Perfil - Soundmate</title>
+  <title>Editar Perfil - Soundmate</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -24,14 +24,15 @@
 
 <body class="profile-page">
 	<%@ include file="../includes/menu.jsp" %>
-
+	<form class="form" id="form">
   	<div class="wrapper">
-  		
+  	
     	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg');"></div>
 	    <div class="main main-raised">
 	      <div class="profile-content">
 	      	<div class="container">
 	          <div class="row">
+	          	
 	              <div class="profile">
 	                  <div class="avatar">
 	                      <img src="img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
@@ -40,59 +41,62 @@
 	                    <h3 class="title">${sessionScope.user.getNombre()}</h3>
 	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${sessionScope.user.getLocalidad()}</h6>
 	        		  </div>
-	        		</div>
-	        		<a href="editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
+	        		</div>	        		
 	        	</div>
         		<div class="row">
                   <div class="col-md-12">
                   	<div class="col-md-3">
-                  	
- 						<div style="text-align:left; border:20pt; border-color:#f1f1f2">
-                  			<h4>Infuencias</h4>
-                  			<hr style="margin:0; padding:0;">
-	                  		<p>Radiohead, Rolling Stones, The Strokes</p>
-	                  	</div>                 	
                   		<div style="text-align:left; border:20pt; border-color:#f1f1f2">
-                  			<h4>Informaci&oacute;n</h4>
+                  			<h4>Editar Informaci&oacute;n de Perfil</h4>
                   			<hr style="margin:0; padding:0;">
-	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${sessionScope.user.getEmail()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${sessionScope.user.getInstrumento()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
+                  			<div class="input-group">
+			                    <span class="input-group-addon">
+			                      <i class="material-icons" style="font-size:14px;">email</i>
+			                    </span>
+	                  			<input class="form-control" type="text" value="${sessionScope.user.getEmail()}" />
+	                  		</div>
+	                  		<div class="input-group">
+			                    <span class="input-group-addon">
+			                      <i class="material-icons" style="font-size:14px;">music_note</i>
+			                    </span>
+	                  			<input class="form-control" type="text" value="${sessionScope.user.getInstrumento()}" />
+	                  		</div>
+	                  		<div class="input-group">
+			                    <span class="input-group-addon">
+			                      <i class="material-icons" style="font-size:14px;">date_range</i>
+			                    </span>
+			                    <input class="datepicker form-control" type="text" value="" placeholder="ingresa tu fecha de nacimiento" />
+			                </div>
+			                <div class="input-group">
+			                    <span class="input-group-addon">
+			                      <i class="material-icons" style="font-size:14px;">people</i>
+			                    </span>
+			                    <input class="form-control" type="text" value="Sundmate" />
+			                </div>
+	                  		
 	                  	</div>
-	                  	
-	                  	
                   	</div>
                   	<div class="col-md-9">
-                  		
-                  		<!-- form para publicar comments en el muro -->
-               			<form id="publicacion">
-               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
-               				<button type="submit" class="btn btn-primary btn-raised">
-               					Publicar
-               				</button>
-               			</form>
-               			
-               			<h4>Publicaciones</h4>
+                  		<h4>Editar Influencias</h4>
                   		<hr style="margin:0; padding:0;">
-                  		<!-- Aca arrancan las publicaciones de users -->
-               			<div style="padding-top:2%" class="row">
-               				<div class="col-md-1">
-               					<img src="img/tincho.jpg" class="img-circle img-responsive">
-               				</div>
-               				<div class="col-md-11">
-               					<p>Tincho - 12/11/16 15:00hs</p>
-               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-               				</div>
-               			</div>
-                  	 </div>
+                  		
+                       	<div class="input-group">
+		                    <span class="input-group-addon">
+		                      <i class="material-icons" style="font-size:14px;">music_note</i>
+		                    </span>
+		                    <input class="form-control" type="text" placeholder="Bandas que te influencian" />
+		                </div>
+                  	</div>
                   </div>
               	</div>
+              	<button style="float:right" type="submit" class="btn btn-primary">
+					<i class="material-icons">done</i>Listo!
+				</button>
 	          </div>
-	         </div>
-	       </div>
+	        </div>
+	      </div>
 	    </div>
-    
+    	</form>
 	<%@ include file="../includes/pie.jsp" %>
 </body>
   <!--   Core JS Files   -->

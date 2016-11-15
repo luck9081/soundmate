@@ -19,7 +19,7 @@ public class PersonaTest extends SpringTest {
 		
 		s.save(seba);
 		
-		assertThat(s.get(Usuario.class,seba.getId())).isNotNull();
+		assertThat(s.get(Usuario.class,seba.getIdusuario())).isNotNull();
 		
 	}
 

@@ -34,12 +34,12 @@
                   </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-header">configuraci&oacute;n</li>
-                        <li><a href="#">Mi Perfil</a></li>
-                        <li><a href="#">Mis Grupos</a></li>
-                        <li><a href="#">Buscar m&uacute;sicos cerca</a></li>
+                        <li><a href="perfil">Mi Perfil</a></li>
+                        <li><a href="bandas">Mis Bandas</a></li>
+                        <li><a href="busqueda">Buscar m&uacute;sicos cerca</a></li>
                         <li class="divider"></li>
                         <li>
-                          <a href="#">
+                          <a href="destruir_sesion">
                             <i class="material-icons">exit_to_app</i>Cerrar Sesión
                           </a>
                         </li>

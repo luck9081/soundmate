@@ -1,29 +1,33 @@
 package ar.edu.grupoesfera.cursospring.servicios;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
+import org.springframework.transaction.annotation.Transactional;
+
+import ar.edu.grupoesfera.cursospring.dao.BusquedaDAOService;
+import ar.edu.grupoesfera.cursospring.interfaces.BusquedaService;
 import ar.edu.grupoesfera.cursospring.modelo.Busqueda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Service
+@Transactional
 public class BusquedaServiceImpl implements BusquedaService {
-
+	
+	@Inject
+	public BusquedaDAOService busquedaDAO;
+	
 	@Override
-	public ModelMap buscarUsuarios(Busqueda busqueda) {				// Recibo el tipo de búsqueda que debo efectuar
+	public List<Usuario> buscarUsuarios(Busqueda busqueda) {		// Recibo el tipo de búsqueda que debo efectuar
 		// TODO Auto-generated method stub		
 		
-		Usuario usuarioResultado = new Usuario();					// Defino un objeto de tipo "Usuario" que utilizaré para guardar en la colección.
-		List<Usuario> listaResultados = new ArrayList<Usuario>();	// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda.
+		// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda, y se los asigno
 		
-		// MOTOR DE BUSQUEDA
+		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorInstrumento(busqueda);
 		
-		ModelMap modelListaResultado = new ModelMap();				// Construyo un ModelMap que me permitirá llevar mis resultados a la vista.
-		modelListaResultado.addAllAttributes(listaResultados);		// Le asigno la lista de resultados para que se lleve a la vista.
-		
-		return modelListaResultado;									// Retorno el modelmap
+		return listaResultados;		// Retorno la lista de resultados
 	}
 
 }

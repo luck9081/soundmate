@@ -44,8 +44,8 @@
 		                    <span class="input-group-addon">
 		                      <i class="material-icons">face</i>
 		                    </span>
-		                    <form:input id="instrument" path="rol" class="form-control" placeholder="Rol/Instrumento" />
-		                    <form:hidden id="localidad" path="localidad"/>
+							<form:input id="instrumento" path="instrumento" class="form-control" placeholder="Rol/Instrumento" />
+							<form:hidden id="localidad" path="localidad"/>
 		                    <form:hidden id="partido" path="partido"/>
 		                    <form:hidden id="provincia" path="provincia"/>
 		                  </div>

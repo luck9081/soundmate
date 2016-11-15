@@ -1,3 +1,23 @@
+  .li_misbandas{
+  	float:left;
+  }
+  
+  .ul_misbandas{
+  	list-style:none;
+  	text-align:center;
+  	float:none;
+  	overflow:hidden;
+  	margin-left:30%;
+  }
+  
+  .content_misbandas{
+  	text-align:center;
+  	/*border-width:1px;
+  	border-style:solid;
+  	border-color:black;*/
+  	height:350px;
+  }
+  
 body {
   background-color: #CCCCCC;
 }
@@ -74,7 +94,9 @@ a .material-icons, a:hover .material-icons, a:focus .material-icons {
 .form-horizontal label.control-label {
   margin: 0;
 }
-
+.form_error{
+	color:red;
+}
 .btn,
 .navbar .navbar-nav > li > a.btn {
   border: none;
@@ -3722,6 +3744,8 @@ h2.title {
     margin-left: 10px;
     margin-right: 10px;
   }
+
+
 }
 
 /*# sourceMappingURL=material-kit.css.map */

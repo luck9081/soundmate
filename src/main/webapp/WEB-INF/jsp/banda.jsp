@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-  <title>Perfil - Soundmate</title>
+  <title>Perfil Banda - Soundmate</title>
 
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
@@ -26,46 +26,41 @@
 	<%@ include file="../includes/menu.jsp" %>
 
   	<div class="wrapper">
-  		
     	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg');"></div>
 	    <div class="main main-raised">
 	      <div class="profile-content">
 	      	<div class="container">
 	          <div class="row">
+	          	  <!-- aca esta la info de perfil de la banda -->
 	              <div class="profile">
 	                  <div class="avatar">
 	                      <img src="img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
-	                    <h3 class="title">${sessionScope.user.getNombre()}</h3>
-	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${sessionScope.user.getLocalidad()}</h6>
-	        		  </div>
+	                    <h3 class="title">Soundmate${sessionScope.banda.getNombre()}</h3>
+	                    <h4>Rodri (Bajo y Voz) | Lucas (Guitarra) | Tincho (Batería)</h4>
+	                  </div>
 	        		</div>
-	        		<a href="editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
+	        		<!-- fin info de perfil de la banda -->
 	        	</div>
         		<div class="row">
+        		  <!-- aca esta la info de la banda -->
                   <div class="col-md-12">
                   	<div class="col-md-3">
-                  	
- 						<div style="text-align:left; border:20pt; border-color:#f1f1f2">
-                  			<h4>Infuencias</h4>
-                  			<hr style="margin:0; padding:0;">
-	                  		<p>Radiohead, Rolling Stones, The Strokes</p>
-	                  	</div>                 	
-                  		<div style="text-align:left; border:20pt; border-color:#f1f1f2">
-                  			<h4>Informaci&oacute;n</h4>
-                  			<hr style="margin:0; padding:0;">
-	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${sessionScope.user.getEmail()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${sessionScope.user.getInstrumento()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
-	                  	</div>
-	                  	
-	                  	
+               			<h4>Informaci&oacute;n</h4>
+               			<hr style="margin:0; padding:0;">
+                		<h6><i class="material-icons" style="font-size:14px;">music_note</i> Genero: Rock${sessionScope.banda.getGenero()}</h6>
+                		<h6>aca va una breve descripcion de la banda. inicios, influencias y todo lo que quieran contar</h6>
+                		<h4>Proximas Fechas:</h4>
+               			<hr style="margin:0; padding:0;">
+                		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 09/12 - Ramos Mejía</h6>
+                		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16/12 - Castelar</h6>
                   	</div>
+                  	<!-- fin info de la banda -->
+                  	
                   	<div class="col-md-9">
                   		
-                  		<!-- form para publicar comments en el muro -->
+                  		<!-- form para publicar comments en el muro de la banda -->
                			<form id="publicacion">
                				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
                				<button type="submit" class="btn btn-primary btn-raised">
@@ -75,7 +70,7 @@
                			
                			<h4>Publicaciones</h4>
                   		<hr style="margin:0; padding:0;">
-                  		<!-- Aca arrancan las publicaciones de users -->
+                  		<!-- Aca arrancan las publicaciones de miembros y users -->
                			<div style="padding-top:2%" class="row">
                				<div class="col-md-1">
                					<img src="img/tincho.jpg" class="img-circle img-responsive">

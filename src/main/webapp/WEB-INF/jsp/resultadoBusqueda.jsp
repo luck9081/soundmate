@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 	<head>
@@ -28,7 +29,7 @@
 	    	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg'); background-size: cover; background-position: top center;">
 		      <div class="container">
 		        <div class="row">
-		          <div class="col-md-8 col-md-offset-2 col-sm-6 col-sm-offset-3">
+		          <div class="col-md-8 col-md-offset-2">
 		            <div class="card card-signup">
 		            
 						<div class="content" style="padding-left: 40px;padding-right: 40px;">
@@ -49,51 +50,29 @@
 							        </tr>
 							    </thead>
 							    <tbody>
-							        <tr>
-							            <td>Martín</td>
-							            <td>GUITARRA</td>
-							            <td>La Matanza, Buenos Aires Province</td>
-							            <td class="td-actions text-right">
-							                <a href="perfil">
-							                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">
-							                    	<i class="fa fa-user"></i>
-							                	</button>
-							                </a>
-							                <button type="button" rel="tooltip" title="Añadir a Banda" class="btn btn-primary btn-simple btn-xs">
-						                    	<i class="fa fa-check-square"></i>
-						                	</button>
-							            </td>
-							        </tr>
-							        <tr>
-							            <td>Rodrigo</td>
-							            <td>GUITARRA</td>
-							            <td>La Matanza, Buenos Aires Province</td>
-							            <td class="td-actions text-right">
-							                <a href="perfil">
-							                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">
-							                    	<i class="fa fa-user"></i>
-							                	</button>
-							                </a>
-							                <button type="button" rel="tooltip" title="Añadir a Banda" class="btn btn-primary btn-simple btn-xs">
-							                    <i class="fa fa-check-square"></i>
-							                </button>
-							            </td>
-							        </tr>
-							        <tr>
-							            <td>Claudio</td>
-							            <td>GUITARRA</td>
-							            <td>La Matanza, Buenos Aires Province</td>
-							            <td class="td-actions text-right">
-							                <a href="perfil">
-							                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">
-							                    	<i class="fa fa-user"></i>
-							                	</button>
-							                </a>
-							                <button type="button" rel="tooltip" title="Añadir a Banda" class="btn btn-primary btn-simple btn-xs">
-							                    <i class="fa fa-check-square"></i>
-							                </button>
-							            </td>
-							        </tr>
+							        
+							        <c:forEach var="item" items="${resultados}">
+							        
+								        <tr>
+								            <td><c:out value="${item.nombre.toUpperCase()}"/></td>
+								            <td><c:out value="${item.instrumento.toUpperCase()}"/></td>
+								            <td style="font-weight: 500;"><c:out value="${item.localidad.toUpperCase()}, ${item.partido.toUpperCase()}, ${item.provincia.toUpperCase()}"/></td>
+								            <td class="td-actions">
+								                <a href="perfil/<c:out value="${item.nombre}"/>">
+								                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">
+								                    	<i class="fa fa-user"></i>
+								                	</button>
+								                </a>
+								                <a href="">
+								                	<button type="button" rel="tooltip" title="Añadir a Banda" class="btn btn-primary btn-simple btn-xs">
+								                    	<i class="fa fa-check-square"></i>
+								                	</button>
+								                </a>
+								            </td>
+								        </tr>
+							        
+							        </c:forEach>
+
 							    </tbody>
 							</table>
 									                 		                  

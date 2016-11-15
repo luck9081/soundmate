@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.springframework.context.annotation.Scope;
 
@@ -13,30 +14,57 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class Usuario {
 	
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private long id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column
+	private long idusuario;	
+	
 	@Column
 	private String nombre;
+	
 	@Column
 	private String pass;
+	
 	@Column
 	private String email;
+	
 	@Column
 	private String instrumento;
+	
 	@Column
 	private String localidad;
+	
 	@Column
 	private String partido;
+	
 	@Column
 	private String provincia;
 	
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
+	@Transient
+	private Artista artista;
 	
+	@Transient
+	private Banda banda;
+	
+	
+	public long getIdusuario() {
+		return idusuario;
+	}
+	public void setIdusuario(long idusuario) {
+		this.idusuario = idusuario;
+	}
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public String getPass() {
+		return pass;
+	}
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
 	public String getPartido() {
 		return partido;
 	}
@@ -56,18 +84,7 @@ public class Usuario {
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}
-	public String getNombre() {
-		return nombre;
-	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	public String getPass() {
-		return pass;
-	}
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
