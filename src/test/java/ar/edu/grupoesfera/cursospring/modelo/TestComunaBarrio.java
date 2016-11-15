@@ -1,6 +1,6 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
-/*import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import org.hibernate.Session;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
@@ -28,4 +28,4 @@ public class TestComunaBarrio extends SpringTest {
 		
 	}
 
-}*/
+}
