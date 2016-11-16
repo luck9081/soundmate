@@ -12,13 +12,13 @@
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 
   <!--     Fonts and icons     -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" type="text/css"/>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" type="text/css"/>
 
   <!-- CSS Files -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
-    <link href="css/material-kit.css" rel="stylesheet"/>
+    <link href="${reubicacion}css/bootstrap.min.css" rel="stylesheet" />
+    <link href="${reubicacion}css/material-kit.css" rel="stylesheet"/>
 
 </head>
 
@@ -27,18 +27,18 @@
 
   	<div class="wrapper">
   		
-    	<div class="header header-filter" style="background-image: url('img/bg-concert.jpg');"></div>
+    	<div class="header header-filter" style="background-image: url('${reubicacion}img/bg-concert.jpg');"></div>
 	    <div class="main main-raised">
 	      <div class="profile-content">
 	      	<div class="container">
 	          <div class="row">
 	              <div class="profile">
 	                  <div class="avatar">
-	                      <img src="img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                      <img src="${reubicacion}img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
-	                    <h3 class="title">${sessionScope.user.getNombre()}</h3>
-	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${sessionScope.user.getLocalidad()}</h6>
+	                    <h3 class="title">${usuario.getNombre().toUpperCase()}</h3>
+	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${usuario.getLocalidad()}</h6>
 	        		  </div>
 	        		</div>
 	        		<a href="editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
@@ -55,8 +55,8 @@
                   		<div style="text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Informaci&oacute;n</h4>
                   			<hr style="margin:0; padding:0;">
-	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${sessionScope.user.getEmail()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${sessionScope.user.getInstrumento()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${usuario.getEmail()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${usuario.getInstrumento()}</h6>
 	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
 	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
 	                  	</div>
@@ -78,7 +78,7 @@
                   		<!-- Aca arrancan las publicaciones de users -->
                			<div style="padding-top:2%" class="row">
                				<div class="col-md-1">
-               					<img src="img/tincho.jpg" class="img-circle img-responsive">
+               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
                				</div>
                				<div class="col-md-11">
                					<p>Tincho - 12/11/16 15:00hs</p>
@@ -96,17 +96,17 @@
 	<%@ include file="../includes/pie.jsp" %>
 </body>
   <!--   Core JS Files   -->
-  <script src="js/jquery.min.js" type="text/javascript"></script>
-  <script src="js/bootstrap.min.js" type="text/javascript"></script>
-  <script src="js/material.min.js"></script>
+  <script src="${reubicacion}js/jquery.min.js" type="text/javascript"></script>
+  <script src="${reubicacion}js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="${reubicacion}js/material.min.js"></script>
 
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="js/nouislider.min.js" type="text/javascript"></script>
+  <script src="${reubicacion}js/nouislider.min.js" type="text/javascript"></script>
 
   <!--  Plugin for the Datepicker, full documentation here: http://www.eyecon.ro/bootstrap-datepicker/ -->
-  <script src="js/bootstrap-datepicker.js" type="text/javascript"></script>
+  <script src="${reubicacion}js/bootstrap-datepicker.js" type="text/javascript"></script>
 
   <!-- Control Center for Material Kit: activating the ripples, parallax effects, scripts from the example pages etc -->
-  <script src="js/material-kit.js" type="text/javascript"></script>
+  <script src="${reubicacion}js/material-kit.js" type="text/javascript"></script>
 
 </html>

@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-              <img src="img/logo-sm.png" style="width:150px; margin:0px; padding-top:0px" />
+              <img src="${reubicacion}img/logo-sm.png" style="width:150px; margin:0px; padding-top:0px" />
           </div>
 
           <div class="collapse navbar-collapse" id="navigation-example">
@@ -34,9 +34,9 @@
                   </a>
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-header">configuraci&oacute;n</li>
-                        <li><a href="perfil">Mi Perfil</a></li>
-                        <li><a href="bandas">Mis Bandas</a></li>
-                        <li><a href="busqueda">Buscar m&uacute;sicos cerca</a></li>
+                        <li><a href="${reubicacion}perfil">Mi Perfil</a></li>
+                        <li><a href="${reubicacion}bandas">Mis Bandas</a></li>
+                        <li><a href="${reubicacion}busqueda">Buscar m&uacute;sicos cerca</a></li>
                         <li class="divider"></li>
                         <li>
                           <a href="destruir_sesion">
