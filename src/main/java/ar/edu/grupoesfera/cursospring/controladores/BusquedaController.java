@@ -38,11 +38,23 @@ public class BusquedaController {
 		
 		List<Usuario> listaResultados = busquedaService.buscarUsuarios(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos una lista de Usuarios
 																					// con la lista de resultados de usuarios del instrumento buscado
+		ModelMap resultado = new ModelMap();
 		
-		ModelMap resultado = new ModelMap();			// Creamos un modelmap y le asignamos la lista de resultados
-		resultado.addAttribute("resultados",listaResultados);
+		if(!listaResultados.isEmpty()){
+			resultado.addAttribute("resultados",listaResultados);
+			
+			return new ModelAndView("resultadoBusqueda",resultado);
+		}
 		
-		return new ModelAndView("resultadoBusqueda",resultado);
+		else {
+			resultado.addAttribute("titulo","No se han encontrado resultados");
+			resultado.addAttribute("subtitulo","No te preocupes, ¡pronto se registraran usuarios que cumplan con tu requisito! Intenta otra búsqueda.");
+			resultado.addAttribute("inputValue","Volver a Búsqueda");
+			resultado.addAttribute("inputHref","busqueda");
+			resultado.addAttribute("iconClass","fa fa-chevron-left");
+			
+			return new ModelAndView("landing",resultado);
+		}
 	}
 	
 }

@@ -32,7 +32,12 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 		List<Usuario> listaResultados = new ArrayList<Usuario>();
 		
 		for(Object item : resultadosQuery){
-			listaResultados.add((Usuario)item);
+			if(item == null || resultadosQuery.isEmpty()){
+				break;
+			}
+			else{
+				listaResultados.add((Usuario)item);
+			}
 		}
 		
 		

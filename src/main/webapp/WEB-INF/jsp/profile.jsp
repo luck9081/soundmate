@@ -52,7 +52,7 @@
 					</c:choose>
 	        		
 	        	</div>
-        		<div class="row">
+        		<div class="row" style="padding-bottom: 80px;">
                   <div class="col-md-12">
                   	<div class="col-md-3">
                   	
@@ -72,13 +72,7 @@
 	                  	
                   	</div>
                   	
-                  	<c:choose>
-						<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
-							
-						</c:when>
-					</c:choose>
-					
-					<div class="col-md-9">
+                  	<div class="col-md-9">
 		                  		
 		                  		<c:choose>
 									<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
