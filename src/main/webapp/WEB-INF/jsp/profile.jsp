@@ -1,4 +1,4 @@
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -41,7 +41,16 @@
 	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${usuario.getLocalidad()}</h6>
 	        		  </div>
 	        		</div>
-	        		<a href="editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
+	        		
+	        		<c:choose>
+						<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
+							<a href="${reubicacion}editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
+						</c:when>
+						<c:otherwise>
+					        <a href="" style="float:right" class="btn btn-primary btn-raised">Añadir a Banda</a>
+					    </c:otherwise>
+					</c:choose>
+	        		
 	        	</div>
         		<div class="row">
                   <div class="col-md-12">
@@ -59,33 +68,45 @@
 	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${usuario.getInstrumento()}</h6>
 	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
 	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
-	                  	</div>
-	                  	
+	                  	</div>	                  	
 	                  	
                   	</div>
-                  	<div class="col-md-9">
-                  		
-                  		<!-- form para publicar comments en el muro -->
-               			<form id="publicacion">
-               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
-               				<button type="submit" class="btn btn-primary btn-raised">
-               					Publicar
-               				</button>
-               			</form>
-               			
-               			<h4>Publicaciones</h4>
-                  		<hr style="margin:0; padding:0;">
-                  		<!-- Aca arrancan las publicaciones de users -->
-               			<div style="padding-top:2%" class="row">
-               				<div class="col-md-1">
-               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
-               				</div>
-               				<div class="col-md-11">
-               					<p>Tincho - 12/11/16 15:00hs</p>
-               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-               				</div>
-               			</div>
-                  	 </div>
+                  	
+                  	<c:choose>
+						<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
+							
+						</c:when>
+					</c:choose>
+					
+					<div class="col-md-9">
+		                  		
+		                  		<c:choose>
+									<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
+										<!-- form para publicar comments en el muro -->
+				               			<form id="publicacion">
+				               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
+				               				<button type="submit" class="btn btn-primary btn-raised">
+				               					Publicar
+				               				</button>
+				               			</form>
+									</c:when>
+								</c:choose>
+		               			
+		               			<h4>Publicaciones</h4>
+		                  		<hr style="margin:0; padding:0;">
+		                  		<!-- Aca arrancan las publicaciones de users -->
+		               			<div style="padding-top:2%" class="row">
+		               				<div class="col-md-1">
+		               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
+		               				</div>
+		               				<div class="col-md-11">
+		               					<p>Tincho - 12/11/16 15:00hs</p>
+		               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+		               				</div>
+		               			</div>
+		               			
+		                  	 </div>
+                  	 
                   </div>
               	</div>
 	          </div>

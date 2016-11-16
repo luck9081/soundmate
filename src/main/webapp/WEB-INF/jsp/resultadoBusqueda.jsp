@@ -44,7 +44,7 @@
 			                 <table class="table">
 							    <thead>
 							        <tr>
-							            <th>SoundMate</th>
+							            <th>Usuario</th>
 							            <th>Instrumento</th>
 							            <th>Ubicación</th>
 							        </tr>

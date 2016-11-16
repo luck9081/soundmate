@@ -35,7 +35,7 @@
 		                <div class="content">
 		                  
 		                  <div class="text-center">
-		                	<h2>¡Buscá nuevos SoundMates!</h2>
+		                	<h2>¡Buscá nuevos compañeros!</h2>
 		                	<br/>
 		                	<h5>En tus cercanías hay SoundMates que te están esperando</h5>
 		                  </div>
