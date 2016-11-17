@@ -11,7 +11,7 @@ import ar.edu.grupoesfera.cursospring.modelo.Banda;
 
 @Service
 @Transactional
-public class RegistrarBandaDaoServiceImpl implements RegistrarBandaDaoService {
+public class BandaDaoServiceImpl implements BandaDaoService {
 	
 	@Inject
     private SessionFactory sessionFactory;

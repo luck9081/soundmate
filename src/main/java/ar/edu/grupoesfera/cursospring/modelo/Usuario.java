@@ -6,8 +6,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import org.springframework.context.annotation.Scope;
 
 @Entity
@@ -43,10 +47,18 @@ public class Usuario {
 	@Transient
 	private Artista artista;
 	
-	@Transient
+	@ManyToOne
+	@JoinColumn(name="bandaFK")
+	@Cascade(value = CascadeType.ALL)
 	private Banda banda;
 	
 	
+	public Banda getBanda() {
+		return banda;
+	}
+	public void setBanda(Banda banda) {
+		this.banda = banda;
+	}
 	public long getIdusuario() {
 		return idusuario;
 	}
@@ -80,11 +92,9 @@ public class Usuario {
 	public String getLocalidad() {
 		return localidad;
 	}	
-	
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
-	}
-	
+	}	
 	public String getEmail() {
 		return email;
 	}

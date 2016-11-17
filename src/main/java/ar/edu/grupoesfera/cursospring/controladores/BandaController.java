@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
-import ar.edu.grupoesfera.cursospring.interfaces.RegistrarBandaService;
+import ar.edu.grupoesfera.cursospring.interfaces.BandaService;
 import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
@@ -49,7 +49,7 @@ public class BandaController {
 		return new ModelAndView("misBandas",misbandas);
 	}
 	
-	@Inject RegistrarBandaService registroBanda;
+	@Inject BandaService registroBanda;
 	
 	@RequestMapping(path="/registrarBanda", method = RequestMethod.POST)
 	public ModelAndView crearBanda(@ModelAttribute("banda") Banda banda){ 
