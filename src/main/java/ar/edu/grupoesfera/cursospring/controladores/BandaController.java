@@ -33,6 +33,7 @@ public class BandaController {
 		ModelMap perfilBanda = new ModelMap();
 
 		perfilBanda.addAttribute(miBanda);
+		perfilBanda.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
 		
 		return new ModelAndView("banda",perfilBanda);
 	}
