@@ -9,6 +9,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Service
@@ -32,5 +33,23 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 		}
 		
 		return miUsuario;
+	}
+	
+
+	@Override
+	public Banda obtenerBandaPorNombre (String nombreBanda){
+		
+		@SuppressWarnings("rawtypes")
+		List resultadosQuery = sessionFactory.getCurrentSession()
+				.createCriteria(Banda.class)
+				.add(Restrictions.eq("nombre",nombreBanda)).list();
+		
+		Banda miBanda = new Banda();
+		
+		for(Object item : resultadosQuery){
+			miBanda = (Banda)item;
+		}
+		
+		return miBanda;
 	}
 }

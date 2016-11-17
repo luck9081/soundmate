@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Transient;
+
 
 @Entity
 public class Banda {
@@ -14,8 +14,9 @@ public class Banda {
 	private Integer id;
 	@Column
 	private String nombre;
-	@Transient
-	private Genero genero;
+	
+	@Column
+	private String genero;
 
 	
 	public Integer getId() {
@@ -30,10 +31,10 @@ public class Banda {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public Genero getGenero() {
+	public String getGenero() {
 		return genero;
 	}
-	public void setGenero(Genero genero) {
+	public void setGenero(String genero) {
 		this.genero = genero;
 	}
 

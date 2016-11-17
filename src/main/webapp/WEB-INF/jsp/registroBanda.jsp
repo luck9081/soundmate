@@ -32,7 +32,7 @@
             <div class="card card-signup">
             
 			           
-              <form:form class="form" method="post" modelAttribute="banda" action="registroBanda">
+              <form:form class="form" method="post" modelAttribute="banda" action="registrarBanda">
                 <div class="content">
                   <div class="input-group">
                     <span class="input-group-addon">
@@ -45,7 +45,12 @@
                     <span class="input-group-addon">
                       <i class="material-icons">music_note</i>
                     </span>
-                    <form:input path="genero" id="genero" class="form-control" placeholder="Genero"></form:input>
+                    <form:select path="genero" id="genero" class="form-control" placeholder="Seleccioná Genero">
+                    	<form:option value="Rock"></form:option>
+                    	<form:option value="Metal"></form:option>
+                    	<form:option value="Jazz"></form:option>
+                    	<form:option value="Blues"></form:option>
+                    </form:select>
                   </div>
                   
                   <div class="footer text-center">

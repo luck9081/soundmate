@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.grupoesfera.cursospring.dao.PerfilDAOService;
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
+import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Service
@@ -22,6 +23,14 @@ public class PerfilServiceImpl implements PerfilService{
 		Usuario usuarioEncontrado = perfilDAO.obtenerUsuarioPorNombre(nombreUsuario);
 		
 		return usuarioEncontrado;
+	}
+	
+	@Override
+	public Banda buscarPerfilBanda (String nombreBanda){
+		
+		Banda bandaEncontrada = perfilDAO.obtenerBandaPorNombre(nombreBanda);
+		
+		return bandaEncontrada;
 	}
 
 }

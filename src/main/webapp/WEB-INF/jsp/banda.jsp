@@ -37,7 +37,7 @@
 	                      <img src="img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
-	                    <h3 class="title">Soundmate${sessionScope.banda.getNombre()}</h3>
+	                    <h3 class="title">${banda.getNombre()}</h3>
 	                    <h4>Rodri (Bajo y Voz) | Lucas (Guitarra) | Tincho (Batería)</h4>
 	                  </div>
 	        		</div>
