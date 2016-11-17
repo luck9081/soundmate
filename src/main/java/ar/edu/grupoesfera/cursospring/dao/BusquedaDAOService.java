@@ -9,4 +9,6 @@ public interface BusquedaDAOService {
 	public List<Usuario> obtenerUsuariosPorInstrumentoYUbicacion(Busqueda busqueda);
 	
 	public List<Usuario> obtenerUsuariosPorNombreOEmail(String nombre, String email);
+	
+	public List<Usuario> obtenerUsuariosPorNombreYContraseña(String nombre, String pass);
 }

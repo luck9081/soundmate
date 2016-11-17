@@ -43,7 +43,7 @@
 	        		</div>
 	        		
 	        		<c:choose>
-						<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
+						<c:when test="${usuario.getNombre() == sessionScope.username}">
 							<a href="${reubicacion}editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
 						</c:when>
 						<c:otherwise>

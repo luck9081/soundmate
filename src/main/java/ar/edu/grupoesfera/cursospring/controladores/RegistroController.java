@@ -46,7 +46,7 @@ public class RegistroController {
 				resultado.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate :)");
 				resultado.addAttribute("inputValue","Continuar");
 				resultado.addAttribute("inputHref","login");
-				resultado.addAttribute("iconClass","fa fa-chevron-left");
+				resultado.addAttribute("iconClass","fa fa-chevron-right");
 				
 				return new ModelAndView("landing",resultado);
 			}
@@ -65,21 +65,36 @@ public class RegistroController {
 	
 	@RequestMapping("/login")
 	public ModelAndView login() {
-		ModelMap login = new ModelMap();
+		
 		Usuario usuario = new Usuario();
+		
+		ModelMap login = new ModelMap();
 		login.addAttribute(usuario);
 
 		return new ModelAndView("login", login);
 	}
 	
 	@RequestMapping(path="/loguearse", method = RequestMethod.POST)
-	public ModelAndView ingresoUsuario(@ModelAttribute("usuario") Usuario usuario){ 
+	public ModelAndView ingresoUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){ 
 			
-			ModelMap ingresoUser = new ModelMap();
-			ingresoUser.put("nombre", usuario.getNombre());
-			ingresoUser.put("pass", usuario.getPass());
+			ModelMap login = new ModelMap();
+		
+			if(registroService.loguearUsuario(usuario)){
+				
+				request.getSession().setAttribute("username", usuario.getNombre());
+				
+				return new ModelAndView("redirect:/perfil");
+			}
 			
-			return new ModelAndView("profile", ingresoUser);
+			else{
+				login.addAttribute("titulo","¡Ups! No ha salido bien");
+				login.addAttribute("subtitulo","Parece que no ingresaste correctamente tu usuario/contraseña. No te preocupes, ¡volvé a intentarlo!");
+				login.addAttribute("inputValue","Volver a Ingresar");
+				login.addAttribute("inputHref","login");
+				login.addAttribute("iconClass","fa fa-chevron-left");
+				
+				return new ModelAndView("landing",login);
+			}
 	}
 	
 	@RequestMapping(path="/destruir_sesion")

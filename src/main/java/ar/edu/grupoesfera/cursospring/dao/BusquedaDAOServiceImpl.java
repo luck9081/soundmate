@@ -53,7 +53,7 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 		return listaResultados;
 	}
 	
-	/* ------- BUSQUEDA POR NOMBRE -------- */
+	/* ------- BUSQUEDA POR NOMBRE O EMAIL -------- */
 	
 	@SuppressWarnings("rawtypes")
 	@Override
@@ -66,6 +66,38 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 						Restrictions.or(
 								Restrictions.eq("nombre",nombre),
 								Restrictions.eq("email",email)
+						)
+				)
+				.list();
+		
+		List<Usuario> listaResultados = new ArrayList<Usuario>();
+		
+		for(Object item : resultadosQuery){
+			if(item == null || resultadosQuery.isEmpty()){
+				break;
+			}
+			else{
+				listaResultados.add((Usuario)item);
+			}
+		}
+		
+		
+		return listaResultados;
+	}
+	
+/* ------- BUSQUEDA POR NOMBRE Y CONTRASEÑA -------- */
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<Usuario> obtenerUsuariosPorNombreYContraseña(String nombre, String pass){
+		
+		
+		List resultadosQuery = sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(
+						Restrictions.and(
+								Restrictions.eq("nombre",nombre),
+								Restrictions.eq("pass",pass)
 						)
 				)
 				.list();

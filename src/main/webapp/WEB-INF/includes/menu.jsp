@@ -35,7 +35,7 @@
                     <ul class="dropdown-menu dropdown-menu-right">
                         <li class="dropdown-header">configuraci&oacute;n</li>
                         <li><a href="${reubicacion}perfil">Mi Perfil</a></li>
-                        <li><a href="${reubicacion}bandas">Mis Bandas</a></li>
+                        <li><a href="${reubicacion}mis-bandas">Mis Bandas</a></li>
                         <li><a href="${reubicacion}busqueda">Buscar m&uacute;sicos cerca</a></li>
                         <li class="divider"></li>
                         <li>

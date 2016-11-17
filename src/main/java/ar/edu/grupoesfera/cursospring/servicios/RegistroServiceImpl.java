@@ -36,4 +36,18 @@ public class RegistroServiceImpl implements RegistroService {
 			return false;
 		}
 	}
+	
+	@Override
+	public Boolean loguearUsuario(Usuario usuario){
+		
+		Usuario resultado = busquedaService.buscarUsuariosPorNombreYContraseña(usuario.getNombre(),usuario.getPass());
+		
+		if(resultado != null){
+			return true;
+		}
+		
+		else{
+			return false;
+		}
+	}
 }

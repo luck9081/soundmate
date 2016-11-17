@@ -5,7 +5,9 @@ import ar.edu.grupoesfera.cursospring.modelo.Busqueda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 public interface BusquedaService {
-	List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda);
+	public List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda);
 	
-	List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email);
+	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email);
+	
+	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass);
 }

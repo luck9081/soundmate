@@ -31,14 +31,27 @@ public class BusquedaServiceImpl implements BusquedaService {
 	}
 	
 	@Override
-	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email) {		// Recibo el tipo de búsqueda que debo efectuar
+	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email) {
 		// TODO Auto-generated method stub		
-		
-		// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda, y se los asigno
 		
 		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorNombreOEmail(nombre, email);
 		
-		return listaResultados;		// Retorno la lista de resultados
+		return listaResultados;
+	}
+	
+	@Override
+	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass) {
+		// TODO Auto-generated method stub
+		
+		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorNombreOEmail(nombre, pass);
+		
+		if(listaResultados.isEmpty()){
+			return null;
+		}
+		
+		else{
+			return listaResultados.get(0);			
+		}
 	}
 
 }
