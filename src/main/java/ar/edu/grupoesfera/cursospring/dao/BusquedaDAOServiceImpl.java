@@ -20,14 +20,55 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 	@Inject
     private SessionFactory sessionFactory;
 	
+	
+	/* ------- BUSQUEDA POR INSTRUMENTO Y UBICACION -------- */
+	
 	@SuppressWarnings("rawtypes")
 	@Override
-	public List<Usuario> obtenerUsuariosPorInstrumento(Busqueda busqueda){
+	public List<Usuario> obtenerUsuariosPorInstrumentoYUbicacion(Busqueda busqueda){
 		
 		
 		List resultadosQuery = sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
-				.add(Restrictions.eq("instrumento",busqueda.getInstrumento())).list();
+				.add(
+						Restrictions.and(
+								Restrictions.eq("instrumento",busqueda.getInstrumento()),
+								Restrictions.eq("instrumento",busqueda.getInstrumento())
+						)
+				)
+				.list();
+		
+		List<Usuario> listaResultados = new ArrayList<Usuario>();
+		
+		for(Object item : resultadosQuery){
+			if(item == null || resultadosQuery.isEmpty()){
+				break;
+			}
+			else{
+				listaResultados.add((Usuario)item);
+			}
+		}
+		
+		
+		return listaResultados;
+	}
+	
+	/* ------- BUSQUEDA POR NOMBRE -------- */
+	
+	@SuppressWarnings("rawtypes")
+	@Override
+	public List<Usuario> obtenerUsuariosPorNombreOEmail(String nombre, String email){
+		
+		
+		List resultadosQuery = sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(
+						Restrictions.or(
+								Restrictions.eq("nombre",nombre),
+								Restrictions.eq("email",email)
+						)
+				)
+				.list();
 		
 		List<Usuario> listaResultados = new ArrayList<Usuario>();
 		

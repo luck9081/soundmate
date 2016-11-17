@@ -6,5 +6,7 @@ import ar.edu.grupoesfera.cursospring.modelo.Busqueda;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 public interface BusquedaDAOService {
-	public List<Usuario> obtenerUsuariosPorInstrumento(Busqueda busqueda);
+	public List<Usuario> obtenerUsuariosPorInstrumentoYUbicacion(Busqueda busqueda);
+	
+	public List<Usuario> obtenerUsuariosPorNombreOEmail(String nombre, String email);
 }

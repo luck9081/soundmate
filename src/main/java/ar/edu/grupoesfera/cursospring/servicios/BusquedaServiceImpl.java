@@ -20,12 +20,23 @@ public class BusquedaServiceImpl implements BusquedaService {
 	public BusquedaDAOService busquedaDAO;
 	
 	@Override
-	public List<Usuario> buscarUsuarios(Busqueda busqueda) {		// Recibo el tipo de búsqueda que debo efectuar
+	public List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda) {		// Recibo el tipo de búsqueda que debo efectuar
 		// TODO Auto-generated method stub		
 		
 		// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda, y se los asigno
 		
-		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorInstrumento(busqueda);
+		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorInstrumentoYUbicacion(busqueda);
+		
+		return listaResultados;		// Retorno la lista de resultados
+	}
+	
+	@Override
+	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email) {		// Recibo el tipo de búsqueda que debo efectuar
+		// TODO Auto-generated method stub		
+		
+		// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda, y se los asigno
+		
+		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorNombreOEmail(nombre, email);
 		
 		return listaResultados;		// Retorno la lista de resultados
 	}

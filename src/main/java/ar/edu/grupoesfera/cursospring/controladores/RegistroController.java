@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.interfaces.RegistroService;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
@@ -19,12 +21,46 @@ import org.springframework.context.annotation.Scope;
 @Scope("session")
 public class RegistroController {
 	
+	@Inject
+	public RegistroService registroService;
+	
 	@RequestMapping("/signup")
 	public ModelAndView signup(){
-		ModelMap registro = new ModelMap();
+		
 		Usuario usuario = new Usuario();
+		
+		ModelMap registro = new ModelMap();
 		registro.addAttribute(usuario);
+		
 		return new ModelAndView("signup", registro);
+	}
+	
+	@RequestMapping(path="/registro", method = RequestMethod.POST)
+	public ModelAndView crearUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){ 
+			
+			ModelMap resultado = new ModelMap();
+			
+			if(registroService.registrarUsuario(usuario)){
+				
+				resultado.addAttribute("titulo","¡Ya estás registrado!");
+				resultado.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate :)");
+				resultado.addAttribute("inputValue","Continuar");
+				resultado.addAttribute("inputHref","login");
+				resultado.addAttribute("iconClass","fa fa-chevron-left");
+				
+				return new ModelAndView("landing",resultado);
+			}
+			
+			else {
+				
+				resultado.addAttribute("titulo","¡Ups! No ha salido bien");
+				resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, ¡volvé a intentarlo!");
+				resultado.addAttribute("inputValue","Volver a Registrarse");
+				resultado.addAttribute("inputHref","signup");
+				resultado.addAttribute("iconClass","fa fa-chevron-left");
+				
+				return new ModelAndView("landing",resultado);
+			}
 	}
 	
 	@RequestMapping("/login")
@@ -36,23 +72,7 @@ public class RegistroController {
 		return new ModelAndView("login", login);
 	}
 	
-	@RequestMapping(path="/registro", method = RequestMethod.POST)
-	public ModelAndView crearUsuario(@ModelAttribute("usuario") Usuario usuario, HttpServletRequest request){ 
-			
-			ModelMap modelCrearUser = new ModelMap();
-			modelCrearUser.put("nombre", usuario.getNombre());
-			modelCrearUser.put("email", usuario.getEmail());
-			modelCrearUser.put("pass", usuario.getPass());
-			modelCrearUser.put("instrumento", usuario.getInstrumento());
-			modelCrearUser.put("localidad", usuario.getLocalidad());
-			modelCrearUser.put("partido", usuario.getPartido());
-			modelCrearUser.put("provincia", usuario.getProvincia());			
-			request.getSession().setAttribute("user",usuario);
-			
-			return new ModelAndView("landing-registro", modelCrearUser);
-	}	
-	
-	@RequestMapping(path="/login", method = RequestMethod.POST)
+	@RequestMapping(path="/loguearse", method = RequestMethod.POST)
 	public ModelAndView ingresoUsuario(@ModelAttribute("usuario") Usuario usuario){ 
 			
 			ModelMap ingresoUser = new ModelMap();

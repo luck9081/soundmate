@@ -36,7 +36,7 @@ public class BusquedaController {
 	@RequestMapping(path="/resultadoBusqueda", method = RequestMethod.POST)
 	public ModelAndView busquedaRol(@ModelAttribute("busqueda") Busqueda busqueda){
 		
-		List<Usuario> listaResultados = busquedaService.buscarUsuarios(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos una lista de Usuarios
+		List<Usuario> listaResultados = busquedaService.buscarUsuariosPorInstrumentoYUbicacion(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos una lista de Usuarios
 																					// con la lista de resultados de usuarios del instrumento buscado
 		ModelMap resultado = new ModelMap();
 		

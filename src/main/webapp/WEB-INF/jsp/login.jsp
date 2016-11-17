@@ -31,7 +31,7 @@
 	          <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 	            <div class="card card-signup">
 	            
-	              <form:form modelAttribute="usuario" class="form" method="post" action="login">
+	              <form:form modelAttribute="usuario" class="form" method="post" action="loguearse">
 	                <div class="content">
 	                  <div class="input-group">
 	                    <span class="input-group-addon">
