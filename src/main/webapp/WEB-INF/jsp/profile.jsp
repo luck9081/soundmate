@@ -56,12 +56,12 @@
                   <div class="col-md-12">
                   	<div class="col-md-3">
                   	
- 						<div style="margin-bottom:28px;text-align:left; border:20pt; border-color:#f1f1f2">
+ 						<div style="text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Infuencias</h4>
                   			<hr style="margin:0; padding:0;">
 	                  		<p>Radiohead, Rolling Stones, The Strokes</p>
 	                  	</div>                 	
-                  		<div style="text-align:left; border:20pt; border-color:#f1f1f2">
+                  		<div style="margin-top:58px;text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Informaci&oacute;n</h4>
                   			<hr style="margin:0; padding:0;">
 	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${usuario.getEmail()}</h6>
@@ -74,32 +74,32 @@
                   	
                   	<div class="col-md-9">
 		                  		
-		                  		<c:choose>
-									<c:when test="${usuario.getNombre() == sessionScope.username}">
-										<!-- form para publicar comments en el muro -->
-				               			<form id="publicacion">
-				               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
-				               				<button type="submit" class="btn btn-primary btn-raised">
-				               					Publicar
-				               				</button>
-				               			</form>
-									</c:when>
-								</c:choose>
-		               			
-		               			<h4>Publicaciones</h4>
-		                  		<hr style="margin:0; padding:0;">
-		                  		<!-- Aca arrancan las publicaciones de users -->
-		               			<div style="padding-top:2%" class="row">
-		               				<div class="col-md-1">
-		               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
-		               				</div>
-		               				<div class="col-md-11">
-		               					<p>Tincho - 12/11/16 15:00hs</p>
-		               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-		               				</div>
-		               			</div>
-		               			
-		                  	 </div>
+                  		<c:choose>
+							<c:when test="${usuario.getNombre() == sessionScope.username}">
+								<!-- form para publicar comments en el muro -->
+		               			<form id="publicacion">
+		               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="3"></textarea>
+		               				<button type="submit" class="btn btn-primary btn-raised">
+		               					Publicar
+		               				</button>
+		               			</form>
+							</c:when>
+						</c:choose>
+               			
+               			<h4>Publicaciones</h4>
+                  		<hr style="margin:0; padding:0;">
+                  		<!-- Aca arrancan las publicaciones de users -->
+               			<div style="padding-top:2%" class="row">
+               				<div class="col-md-1">
+               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
+               				</div>
+               				<div class="col-md-11">
+               					<p>Tincho - 12/11/16 15:00hs</p>
+               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+               				</div>
+               			</div>
+               			
+					</div>
                   	 
                   </div>
               	</div>

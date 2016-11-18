@@ -33,7 +33,7 @@
 	            
 	              <form:form modelAttribute="usuario" class="form" method="post" action="loguearse">
 	                <div class="content">
-	                  <div class="input-group">
+	                  <div style="margin-top:10px;" class="input-group">
 	                    <span class="input-group-addon">
 	                      <i class="material-icons">face</i>
 	                    </span>
