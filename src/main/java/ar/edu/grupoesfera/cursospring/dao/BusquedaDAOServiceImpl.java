@@ -37,7 +37,7 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 					.add(
 							Restrictions.and(
 									Restrictions.not(Restrictions.eq("nombre",nombre)),
-									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.eq("instrumento",busqueda.getInstrumento().toLowerCase()),
 									Restrictions.like("localidad",busqueda.getLocalidad()),
 									Restrictions.like("partido",busqueda.getPartido()),
 									Restrictions.like("provincia",busqueda.getProvincia())
@@ -63,7 +63,7 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 							Restrictions.and(
 									Restrictions.not(Restrictions.eq("nombre",nombre)),
 									Restrictions.not(Restrictions.eq("localidad",busqueda.getLocalidad())),
-									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.eq("instrumento",busqueda.getInstrumento().toLowerCase()),
 									Restrictions.like("partido",busqueda.getPartido()),
 									Restrictions.like("provincia",busqueda.getProvincia())
 							)
@@ -89,7 +89,7 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 									Restrictions.not(Restrictions.eq("nombre",nombre)),
 									Restrictions.not(Restrictions.eq("localidad",busqueda.getLocalidad())),
 									Restrictions.not(Restrictions.eq("partido",busqueda.getPartido())),
-									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.eq("instrumento",busqueda.getInstrumento().toLowerCase()),
 									Restrictions.like("provincia",busqueda.getProvincia())
 							)
 					)

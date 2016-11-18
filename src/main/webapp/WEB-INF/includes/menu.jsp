@@ -39,7 +39,7 @@
                         <li><a href="${reubicacion}busqueda">Buscar m&uacute;sicos cerca</a></li>
                         <li class="divider"></li>
                         <li>
-                          <a href="destruir_sesion">
+                          <a href="${reubicacion}destruir_sesion">
                             <i class="material-icons">exit_to_app</i>Cerrar Sesión
                           </a>
                         </li>

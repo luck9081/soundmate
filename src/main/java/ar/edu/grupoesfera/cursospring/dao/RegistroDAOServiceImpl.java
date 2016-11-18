@@ -17,6 +17,8 @@ public class RegistroDAOServiceImpl implements RegistroDAOService {
 	
 	@Override
 	public void registrarUsuario(Usuario usuario){
+		usuario.setInstrumento(usuario.getInstrumento().toLowerCase());
+		
 		sessionFactory.getCurrentSession().save(usuario);
 	}
 

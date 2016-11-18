@@ -32,7 +32,7 @@
 		          <div class="col-md-8 col-md-offset-2">
 		            <div class="card card-signup">
 		            
-						<div class="content" style="padding-left: 40px;padding-right: 40px;">
+						<div class="content" style="padding-left: 40px;padding-right: 40px;padding-bottom:20px;">
 						
 							<div class="text-center">
 			                	<h2>Resultados de tu Búsqueda</h2>
@@ -69,14 +69,12 @@
 								            </td>
 								            <td class="td-actions">
 								                <a href="perfil/<c:out value="${item.nombre}"/>">
-								                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">
-								                    	<i class="fa fa-user"></i>
-								                	</button>
+								                	<i rel="tooltip" title="Ver Perfil" class="material-icons" style="color:#2196F3">face</i>
 								                </a>
+								            </td>
+								            <td class="td-actions">
 								                <a href="">
-								                	<button type="button" rel="tooltip" title="Añadir a Banda" class="btn btn-primary btn-simple btn-xs">
-								                    	<i class="fa fa-check-square"></i>
-								                	</button>
+								                	<i rel="tooltip" title="Añadir a Banda" class="material-icons">playlist_add</i>
 								                </a>
 								            </td>
 								        </tr>
@@ -85,6 +83,16 @@
 
 							    </tbody>
 							</table>
+							
+							<br>
+							
+							<div class="footer text-center">
+			                	<a href="busqueda">
+			                		<button type="submit" class="btn btn-info btn-round">
+										Volver a Búsqueda <i class="material-icons">skip_previous</i>
+									</button>
+			                	</a>
+			                </div>
 									                 		                  
 		                </div>
 		              

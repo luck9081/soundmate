@@ -38,7 +38,7 @@
 	                  </div>
 	                  <div class="name">
 	                    <h3 class="title">${usuario.getNombre().toUpperCase()}</h3>
-	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${usuario.getLocalidad()}</h6>
+	                    <h6><i class="material-icons" style="font-size:14px;">location_on</i> ${usuario.getLocalidad()}, ${usuario.getPartido()}, ${usuario.getProvincia()}</h6>
 	        		  </div>
 	        		</div>
 	        		
@@ -56,7 +56,7 @@
                   <div class="col-md-12">
                   	<div class="col-md-3">
                   	
- 						<div style="text-align:left; border:20pt; border-color:#f1f1f2">
+ 						<div style="margin-bottom:28px;text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Infuencias</h4>
                   			<hr style="margin:0; padding:0;">
 	                  		<p>Radiohead, Rolling Stones, The Strokes</p>

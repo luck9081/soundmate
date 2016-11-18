@@ -80,7 +80,7 @@
                 </div>
                 <div class="footer text-center">
                 	<button type="submit" class="btn btn-primary btn-round">
-						<i class="material-icons">done</i>Registrarme!
+						Registrarme! <i class="material-icons">done</i>
 					</button>
                 </div>
                 
@@ -89,8 +89,10 @@
                 		<a href="./login">Ingresá!</a>
                 	</p>
                 </div>
-                <div class="input-group"></div>
+
               </form:form>
+              
+              <br/>
               
             </div>
           </div>

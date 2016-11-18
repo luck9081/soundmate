@@ -50,11 +50,11 @@
 	                      <input type="checkbox" name="optionsCheckboxes">
 	                      No cerrar sesi&oacute;n
 	                    </label>
-	                  </div>
+	                  </div>	                  
 	                </div>
 	                <div class="footer text-center">
 	                	<button type="submit" class="btn btn-primary btn-round">
-							Ingresar  <i class="material-icons">send</i>
+							Ingresar <i class="material-icons">play_circle_outline</i>
 						</button>
 	                </div>
 	                <div class="text-center">
@@ -62,8 +62,10 @@
 	                		<a href="./signup">Registrate gratis!</a>
 	                	</p>
 	                </div>
-	                <div class="input-group"></div>
+	                
 	              </form:form>
+	              
+	              <br/>
 	              
 	            </div>
 	          </div>

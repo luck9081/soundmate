@@ -54,7 +54,7 @@
 		                
 		                <div class="footer text-center">
 		                	<button type="submit" class="btn btn-info btn-round">
-								Buscar SoundMates!  <i class="material-icons">send</i>
+								Buscar SoundMates!  <i class="material-icons">skip_next</i>
 							</button>
 		                </div>
 		                
