@@ -11,7 +11,9 @@
 						http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
 
 	<import resource="classpath:test-hibernateContext.xml" />
-	
+	<context:component-scan base-package="ar.edu.grupoesfera.cursospring.controladores" />
+	<context:component-scan base-package="ar.edu.grupoesfera.cursospring.servicios" />
+	<context:component-scan base-package="ar.edu.grupoesfera.cursospring.dao" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
 </beans>
 

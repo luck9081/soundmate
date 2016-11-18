@@ -1,3 +1,5 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -31,15 +33,24 @@
 	      	<div class="container">
 	      		
 	          <div class="row">
-	          	<div class="col-md-6">
-	               <img style="margin-top:50px" src="img/default-avatar.png" class="img-raised" />
-	               <h3>Banda 1</h3>
-	            </div>
-	            <div class="col-md-6">   
-	                <button style="margin-top:25%; margin-left:-80%';" data-toggle="tooltip" data-placement="top" title="Agregar Banda" data-container="body" class="btn btn-fab btn-fab-mini btn-round">
-						<i class="material-icons">add</i>
-					</button>
-				</div>
+	            <c:choose>
+					<c:when test="${banda.getNombre() == null}">
+						<div class="col-md-6">  
+							<a href="crear-banda"> 
+				                <button style="margin-top:25%; margin-left:-80%';" data-toggle="tooltip" data-placement="top" title="Agregar Banda" data-container="body" class="btn btn-fab btn-fab-mini btn-round">
+									<i class="material-icons">add</i>
+								</button>
+							</a>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<div class="col-md-6">
+			               <img style="margin-top:50px" src="img/default-avatar.png" class="img-raised" />
+			               <h3>${banda.getNombre()}</h3>
+			            </div>
+					</c:otherwise>
+				</c:choose>					
+	            
 	          </div>
 	         </div>
 	       </div>
