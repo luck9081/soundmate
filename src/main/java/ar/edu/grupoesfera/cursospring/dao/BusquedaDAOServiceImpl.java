@@ -6,7 +6,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.transform.Transformers;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,44 +25,97 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 	
 	/* ------- BUSQUEDA POR INSTRUMENTO Y UBICACION -------- */
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> obtenerUsuariosPorInstrumentoYUbicacion(Busqueda busqueda){
+	public List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda, String nombre){
 		
+		List<Usuario> resultadoFinal = new ArrayList<Usuario>();
 		
-		List resultadosQuery = sessionFactory.getCurrentSession()
-				.createCriteria(Usuario.class)
-				.add(
-						Restrictions.and(
-								Restrictions.eq("instrumento",busqueda.getInstrumento()),
-								Restrictions.eq("instrumento",busqueda.getInstrumento())
-						)
-				)
-				.list();
+		resultadoFinal.addAll(
+				(List<Usuario>)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.not(Restrictions.eq("nombre",nombre)),
+									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.like("localidad",busqueda.getLocalidad()),
+									Restrictions.like("partido",busqueda.getPartido()),
+									Restrictions.like("provincia",busqueda.getProvincia())
+							)
+					)
+					
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("idusuario"),"idusuario")
+							.add(Projections.property("nombre"),"nombre")
+							.add(Projections.property("instrumento"),"instrumento")
+							.add(Projections.property("localidad"),"localidad")
+							.add(Projections.property("partido"),"partido")
+							.add(Projections.property("provincia"),"provincia")
+					)
+					.setResultTransformer(Transformers.aliasToBean(Usuario.class))
+					.list()
+		);
 		
-		List<Usuario> listaResultados = new ArrayList<Usuario>();
+		resultadoFinal.addAll(
+				(List<Usuario>)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.not(Restrictions.eq("nombre",nombre)),
+									Restrictions.not(Restrictions.eq("localidad",busqueda.getLocalidad())),
+									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.like("partido",busqueda.getPartido()),
+									Restrictions.like("provincia",busqueda.getProvincia())
+							)
+					)
+					
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("idusuario"),"idusuario")
+							.add(Projections.property("nombre"),"nombre")
+							.add(Projections.property("instrumento"),"instrumento")
+							.add(Projections.property("localidad"),"localidad")
+							.add(Projections.property("partido"),"partido")
+							.add(Projections.property("provincia"),"provincia")
+					)
+					.setResultTransformer(Transformers.aliasToBean(Usuario.class))
+					.list()
+		);
 		
-		for(Object item : resultadosQuery){
-			if(item == null || resultadosQuery.isEmpty()){
-				break;
-			}
-			else{
-				listaResultados.add((Usuario)item);
-			}
-		}
+		resultadoFinal.addAll(
+				(List<Usuario>)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.not(Restrictions.eq("nombre",nombre)),
+									Restrictions.not(Restrictions.eq("localidad",busqueda.getLocalidad())),
+									Restrictions.not(Restrictions.eq("partido",busqueda.getPartido())),
+									Restrictions.eq("instrumento",busqueda.getInstrumento()),
+									Restrictions.like("provincia",busqueda.getProvincia())
+							)
+					)
+					
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("idusuario"),"idusuario")
+							.add(Projections.property("nombre"),"nombre")
+							.add(Projections.property("instrumento"),"instrumento")
+							.add(Projections.property("localidad"),"localidad")
+							.add(Projections.property("partido"),"partido")
+							.add(Projections.property("provincia"),"provincia")
+					)
+					.setResultTransformer(Transformers.aliasToBean(Usuario.class))
+					.list()
+		);
 		
-		
-		return listaResultados;
+		return resultadoFinal;
 	}
 	
 	/* ------- BUSQUEDA POR NOMBRE O EMAIL -------- */
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> obtenerUsuariosPorNombreOEmail(String nombre, String email){
+	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email){
 		
-		
-		List resultadosQuery = sessionFactory.getCurrentSession()
+		return sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
 				.add(
 						Restrictions.or(
@@ -69,30 +124,15 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 						)
 				)
 				.list();
-		
-		List<Usuario> listaResultados = new ArrayList<Usuario>();
-		
-		for(Object item : resultadosQuery){
-			if(item == null || resultadosQuery.isEmpty()){
-				break;
-			}
-			else{
-				listaResultados.add((Usuario)item);
-			}
-		}
-		
-		
-		return listaResultados;
 	}
 	
 /* ------- BUSQUEDA POR NOMBRE Y CONTRASEÑA -------- */
 	
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> obtenerUsuariosPorNombreYContraseña(String nombre, String pass){
+	public List<Usuario> buscarUsuariosPorNombreYContraseña(String nombre, String pass){
 		
-		
-		List resultadosQuery = sessionFactory.getCurrentSession()
+		return sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
 				.add(
 						Restrictions.and(
@@ -101,20 +141,6 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 						)
 				)
 				.list();
-		
-		List<Usuario> listaResultados = new ArrayList<Usuario>();
-		
-		for(Object item : resultadosQuery){
-			if(item == null || resultadosQuery.isEmpty()){
-				break;
-			}
-			else{
-				listaResultados.add((Usuario)item);
-			}
-		}
-		
-		
-		return listaResultados;
 	}
 
 }

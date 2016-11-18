@@ -54,9 +54,19 @@
 							        <c:forEach var="item" items="${resultados}">
 							        
 								        <tr>
-								            <td><c:out value="${item.nombre.toUpperCase()}"/></td>
-								            <td><c:out value="${item.instrumento.toUpperCase()}"/></td>
-								            <td style="font-weight: 500;"><c:out value="${item.localidad.toUpperCase()}, ${item.partido.toUpperCase()}, ${item.provincia.toUpperCase()}"/></td>
+								            <td>
+								            	<c:out value="${item.nombre.toUpperCase()}"/>
+								            </td>
+								            <td>
+								            	<c:out value="${item.instrumento.toUpperCase()}"/>
+								            </td>
+								            <td style="font-weight: 500;">
+								            	<c:out value="${item.localidad.toUpperCase()},"/>
+								            	<br>
+								            	<c:out value="${item.partido.toUpperCase()},"/>
+								            	<br>
+								            	<c:out value="${item.provincia.toUpperCase()}"/>
+								            </td>
 								            <td class="td-actions">
 								                <a href="perfil/<c:out value="${item.nombre}"/>">
 								                	<button type="button" rel="tooltip" title="Ver Perfil" class="btn btn-info btn-simple btn-xs">

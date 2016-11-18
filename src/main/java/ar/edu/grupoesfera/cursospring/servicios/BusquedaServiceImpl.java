@@ -20,12 +20,12 @@ public class BusquedaServiceImpl implements BusquedaService {
 	public BusquedaDAOService busquedaDAO;
 	
 	@Override
-	public List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda) {		// Recibo el tipo de búsqueda que debo efectuar
+	public List<Usuario> buscarUsuariosPorInstrumentoYUbicacion(Busqueda busqueda, String nombre) {		// Recibo el tipo de búsqueda que debo efectuar
 		// TODO Auto-generated method stub		
 		
 		// Defino la colección de usuarios de tipo "Usuario" que contendrá los usuarios resultados de la búsqueda, y se los asigno
 		
-		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorInstrumentoYUbicacion(busqueda);
+		List<Usuario> listaResultados = busquedaDAO.buscarUsuariosPorInstrumentoYUbicacion(busqueda,nombre);
 		
 		return listaResultados;		// Retorno la lista de resultados
 	}
@@ -34,7 +34,7 @@ public class BusquedaServiceImpl implements BusquedaService {
 	public List<Usuario> buscarUsuariosPorNombreOEmail(String nombre, String email) {
 		// TODO Auto-generated method stub		
 		
-		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorNombreOEmail(nombre, email);
+		List<Usuario> listaResultados = busquedaDAO.buscarUsuariosPorNombreOEmail(nombre, email);
 		
 		return listaResultados;
 	}
@@ -43,7 +43,7 @@ public class BusquedaServiceImpl implements BusquedaService {
 	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass) {
 		// TODO Auto-generated method stub
 		
-		List<Usuario> listaResultados = busquedaDAO.obtenerUsuariosPorNombreOEmail(nombre, pass);
+		List<Usuario> listaResultados = busquedaDAO.buscarUsuariosPorNombreYContraseña(nombre, pass);
 		
 		if(listaResultados.isEmpty()){
 			return null;

@@ -5,5 +5,5 @@ import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 public interface RegistroService {
 	public Boolean registrarUsuario(Usuario usuario);
 	
-	public Boolean loguearUsuario(Usuario usuario);
+	public Usuario loguearUsuario(Usuario usuario);
 }

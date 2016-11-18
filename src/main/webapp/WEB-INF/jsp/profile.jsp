@@ -75,7 +75,7 @@
                   	<div class="col-md-9">
 		                  		
 		                  		<c:choose>
-									<c:when test="${usuario.getIdusuario() == sessionScope.user.getIdusuario()}">
+									<c:when test="${usuario.getNombre() == sessionScope.username}">
 										<!-- form para publicar comments en el muro -->
 				               			<form id="publicacion">
 				               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>

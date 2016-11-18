@@ -23,7 +23,7 @@ public class BusquedaController {
 	public BusquedaService busquedaService;	// Añado la interface como atributo del controlador
 	
 	@RequestMapping(path="/busqueda")
-	public ModelAndView search(HttpServletRequest request){
+	public ModelAndView search(){
 		
 		ModelMap search = new ModelMap();
 		Busqueda busqueda = new Busqueda();
@@ -34,13 +34,16 @@ public class BusquedaController {
 	}
 	
 	@RequestMapping(path="/resultadoBusqueda", method = RequestMethod.POST)
-	public ModelAndView busquedaRol(@ModelAttribute("busqueda") Busqueda busqueda){
+	public ModelAndView busquedaRol(@ModelAttribute("busqueda") Busqueda busqueda, HttpServletRequest request){
 		
-		List<Usuario> listaResultados = busquedaService.buscarUsuariosPorInstrumentoYUbicacion(busqueda);	// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda", y obtenemos una lista de Usuarios
-																					// con la lista de resultados de usuarios del instrumento buscado
+		// Pasamos al servicio el objeto "busqueda" de tipo "Busqueda" y el nombre de usuario, y obtenemos una lista de Usuarios
+		// con la lista de resultados de usuarios del instrumento buscado
+		
+		List<Usuario> listaResultados = busquedaService.buscarUsuariosPorInstrumentoYUbicacion(busqueda,(String)request.getSession().getAttribute("username"));
+		
 		ModelMap resultado = new ModelMap();
 		
-		if(!listaResultados.isEmpty()){
+		if(!listaResultados.isEmpty() || listaResultados == null){
 			resultado.addAttribute("resultados",listaResultados);
 			
 			return new ModelAndView("resultadoBusqueda",resultado);

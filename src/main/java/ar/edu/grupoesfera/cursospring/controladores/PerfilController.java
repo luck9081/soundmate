@@ -36,7 +36,7 @@ public class PerfilController {
 	/* ------ BUSCAR PERFIL PUBLICO ------ */
 	
 	@RequestMapping("/perfil/{username}")
-	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario, HttpServletRequest request){		
+	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario){		
 
 		Usuario usuarioEncontrado = perfilService.buscarPerfilUsuario(nombreUsuario);
 		

@@ -79,9 +79,14 @@ public class RegistroController {
 			
 			ModelMap login = new ModelMap();
 		
-			if(registroService.loguearUsuario(usuario)){
+			Usuario resultado = registroService.loguearUsuario(usuario);
+			
+			if(resultado != null){
 				
-				request.getSession().setAttribute("username", usuario.getNombre());
+				request.getSession().setAttribute("username", resultado.getNombre());
+				request.getSession().setAttribute("localidad", resultado.getLocalidad());
+				request.getSession().setAttribute("partido", resultado.getPartido());
+				request.getSession().setAttribute("provincia", resultado.getProvincia());
 				
 				return new ModelAndView("redirect:/perfil");
 			}
@@ -100,13 +105,12 @@ public class RegistroController {
 	@RequestMapping(path="/destruir_sesion")
 	public ModelAndView destruirSesion(HttpServletRequest request){
 		
-		ModelMap login = new ModelMap();
-		Usuario usuario = new Usuario();
-		login.addAttribute(usuario);
+		request.getSession().removeAttribute("username");
+		request.getSession().removeAttribute("localidad");
+		request.getSession().removeAttribute("partido");
+		request.getSession().removeAttribute("provincia");
 		
-		request.getSession().removeAttribute("user");
-		
-		return new ModelAndView("login",login);
+		return new ModelAndView("redirect:/login");
 	}
 	
 }
