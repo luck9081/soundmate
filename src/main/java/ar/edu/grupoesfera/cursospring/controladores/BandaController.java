@@ -16,8 +16,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.interfaces.BandaService;
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
+import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.Banda;
-import ar.edu.grupoesfera.cursospring.modelo.Usuario;
+import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
 
 @Controller
 @Scope("session")
@@ -34,8 +35,13 @@ public class BandaController {
 		
 		ModelMap perfilBanda = new ModelMap();
 
+		Publicacion publicacion = new Publicacion();
+		
 		perfilBanda.addAttribute(miBanda);
 		perfilBanda.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
+		List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones(nombreBanda);
+		perfilBanda.addAttribute("publicaciones", publicaciones);
+		perfilBanda.addAttribute("publicar", publicacion);
 		
 		return new ModelAndView("banda",perfilBanda);
 	}
@@ -74,6 +80,16 @@ public class BandaController {
 		Banda banda = new Banda();
 		registroBanda.addAttribute(banda);
 		return new ModelAndView("registroBanda", registroBanda);
+	}
+	
+	
+	@Inject
+	public PublicacionService publicacionService;
+	
+	@RequestMapping(path="/postear/{nombreBanda}" , method = RequestMethod.POST)
+	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") Publicacion publicacion, HttpServletRequest request, @PathVariable("nombreBanda") String nombreBanda){
+		publicacionService.crearPublicacion(publicacion,(String)request.getSession().getAttribute("username"));
+		return new ModelAndView("redirect:/banda/"+nombreBanda);
 	}
 	
 }

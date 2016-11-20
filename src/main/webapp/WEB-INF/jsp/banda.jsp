@@ -1,4 +1,5 @@
-
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,18 +39,18 @@
 	                  </div>
 	                  <div class="name">
 	                    <h3 class="title">${banda.getNombre()}</h3>
-	                    <h4>Rodri (Bajo y Voz) | Lucas (Guitarra) | Tincho (Batería)</h4>
+	                    <h4><i class="material-icons" style="font-size:14px;">music_note</i>${banda.getGenero()}</h4>
 	                  </div>
 	        		</div>
 	        		<!-- fin info de perfil de la banda -->
 	        	</div>
-        		<div class="row">
+        		<div class="row" style="min-height:600px">
         		  <!-- aca esta la info de la banda -->
                   <div class="col-md-12">
                   	<div class="col-md-3">
                			<h4>Informaci&oacute;n</h4>
                			<hr style="margin:0; padding:0;">
-                		<h6><i class="material-icons" style="font-size:14px;">music_note</i> Genero: Rock${sessionScope.banda.getGenero()}</h6>
+                		<%-- <h6><i class="material-icons" style="font-size:14px;">music_note</i> Genero: Rock${sessionScope.banda.getGenero()}</h6> --%>
                 		<h6>aca va una breve descripcion de la banda. inicios, influencias y todo lo que quieran contar</h6>
                 		<h4>Proximas Fechas:</h4>
                			<hr style="margin:0; padding:0;">
@@ -61,23 +62,29 @@
                   	<div class="col-md-9">
                   		
                   		<!-- form para publicar comments en el muro de la banda -->
-               			<form id="publicacion">
-               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="5"></textarea>
-               				<button type="submit" class="btn btn-primary btn-raised">
+               			<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
+               				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
+               				<form:button type="submit" class="btn btn-primary btn-raised">
                					Publicar
-               				</button>
-               			</form>
-               			
+               				</form:button>
+               			</form:form>
+               		</div>
+               		<div class="col-md-3">
+               		</div>
+               		<div class="col-md-9">
                			<h4>Publicaciones</h4>
                   		<hr style="margin:0; padding:0;">
                   		<!-- Aca arrancan las publicaciones de miembros y users -->
                			<div style="padding-top:2%" class="row">
-               				<div class="col-md-1">
-               					<img src="${reubicacion}img/tincho.jpg" class="img-circle img-responsive">
-               				</div>
+               				
                				<div class="col-md-11">
-               					<p>Tincho - 12/11/16 15:00hs</p>
-               					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed eiusmod tempor incidunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquid ex ea commodi consequat. Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint obcaecat cupiditat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+         						<c:forEach var="item" items="${publicaciones}">
+         							<div class="col-md-1">
+               							<img src="${reubicacion}img/default-avatar.png" class="img-circle img-responsive">
+               						</div>
+									<p><c:out value="${item.usuario.getNombre()}"/> - <c:out value="${item.fechaPublicacion}"/></p>
+   									<p><c:out value="${item.descripcion}"/></p>
+								</c:forEach>
                				</div>
                			</div>
                   	 </div>
