@@ -19,6 +19,7 @@ import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
+import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Controller
 @Scope("session")
@@ -32,16 +33,19 @@ public class BandaController {
 		
 		Banda miBanda = perfilService.buscarPerfilBanda(nombreBanda); // A la busqueda de banda le paso el atributo de session (casteado a string).
 		
-		
 		ModelMap perfilBanda = new ModelMap();
 
 		Publicacion publicacion = new Publicacion();
+		
 		
 		perfilBanda.addAttribute(miBanda);
 		perfilBanda.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
 		List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones(nombreBanda);
 		perfilBanda.addAttribute("publicaciones", publicaciones);
 		perfilBanda.addAttribute("publicar", publicacion);
+		
+		List<Usuario> miembros = bandaService.consultarMiembros(miBanda);
+		perfilBanda.addAttribute("miembros", miembros);
 		
 		return new ModelAndView("banda",perfilBanda);
 	}

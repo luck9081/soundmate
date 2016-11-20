@@ -20,6 +20,14 @@
   <!-- CSS Files -->
     <link href="${reubicacion}css/bootstrap.min.css" rel="stylesheet" />
     <link href="${reubicacion}css/material-kit.css" rel="stylesheet"/>
+    
+    <style>
+    #publis:hover {
+    	
+    	background-color: #f2f2f2;
+    	pointer:
+    }
+    </style>
 
 </head>
 
@@ -35,7 +43,7 @@
 	          	  <!-- aca esta la info de perfil de la banda -->
 	              <div class="profile">
 	                  <div class="avatar">
-	                      <img src="${reubicacion}img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                      <img src="${reubicacion}img/default.gif" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
 	                    <h3 class="title">${banda.getNombre()}</h3>
@@ -47,53 +55,53 @@
         		<div class="row" style="min-height:600px">
         		  <!-- aca esta la info de la banda -->
                   <div class="col-md-12">
-                  	<div class="col-md-3">
-               			<h4>Informaci&oacute;n</h4>
+               		<div class="col-md-3">
+                		<h4>Miembros:</h4>
                			<hr style="margin:0; padding:0;">
-                		<%-- <h6><i class="material-icons" style="font-size:14px;">music_note</i> Genero: Rock${sessionScope.banda.getGenero()}</h6> --%>
-                		<h6>aca va una breve descripcion de la banda. inicios, influencias y todo lo que quieran contar</h6>
-                		<h4>Proximas Fechas:</h4>
-               			<hr style="margin:0; padding:0;">
-                		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 09/12 - Ramos Mejía</h6>
-                		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16/12 - Castelar</h6>
+                		<c:forEach var="item" items="${miembros}">
+                			<div style="float:left; padding-right:20px">
+                				<a href="${reubicacion}perfil/${item.nombre}">
+		                			<div><img src="<c:out value="${reubicacion}img/${item.imagen}"/>" class="img-circle img-responsive img-raised" style="width:50px" /></div>
+		                			<h6><c:out value="${item.nombre}"/></h6>
+	                			</a>
+                			</div>
+                		</c:forEach>
                   	</div>
                   	<!-- fin info de la banda -->
-                  	
-                  	<div class="col-md-9">
-                  		
-                  		<!-- form para publicar comments en el muro de la banda -->
-               			<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
-               				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
-               				<form:button type="submit" class="btn btn-primary btn-raised">
-               					Publicar
-               				</form:button>
-               			</form:form>
-               		</div>
-               		<div class="col-md-3">
-               		</div>
-               		<div class="col-md-9">
-               			<h4>Publicaciones</h4>
-                  		<hr style="margin:0; padding:0;">
-                  		<!-- Aca arrancan las publicaciones de miembros y users -->
-               			<div style="padding-top:2%" class="row">
-               				
-               				<div class="col-md-11">
-         						<c:forEach var="item" items="${publicaciones}">
-         							<div class="col-md-1">
-               							<img src="${reubicacion}img/default-avatar.png" class="img-circle img-responsive">
-               						</div>
-									<p><c:out value="${item.usuario.getNombre()}"/> - <c:out value="${item.fechaPublicacion}"/></p>
-   									<p><c:out value="${item.descripcion}"/></p>
-								</c:forEach>
-               				</div>
-               			</div>
-                  	 </div>
+				  	<div class="col-md-9">
+				  		<h4>Escribinos!</h4>
+               			<hr style="margin:0; padding:0;">
+	           			<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
+	           				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
+	           				<form:button type="submit" class="btn btn-primary btn-raised">
+	           					Publicar
+	           				</form:button>
+	           			</form:form>
+            	  	</div>
+            	  </div>
+               	  <div class="col-md-12">
+           			<h4>Publicaciones:</h4>
+               		<hr style="margin:0; padding:0;">
+               		<!-- Aca arrancan las publicaciones de miembros y users -->
+           			<div style="margin-right:1%" class="row">
+   						<c:forEach var="item" items="${publicaciones}">
+							<div class="col-md-12" style="padding:1%; margin:1%; background-color:#f9f9f9;" onmouseover="this.style.background="white">
+								<div class="col-md-1">
+	      								<img src="${reubicacion}img/<c:out value="${item.usuario.getImagen()}"/>" class="img-circle img-responsive">
+								</div>
+								<div class="col-md-11">
+									<p>Publicado por <a href="${reubicacion}perfil/${item.usuario.getNombre()}"><span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span></a> el <c:out value="${item.fechaPublicacion}"/></p>
+									<p><c:out value="${item.descripcion}"/></p>
+								</div>
+							</div>
+						</c:forEach>
+               		 </div>
+                   </div>
                   </div>
               	</div>
 	          </div>
 	         </div>
 	       </div>
-	    </div>
     
 	<%@ include file="../includes/pie.jsp" %>
 </body>

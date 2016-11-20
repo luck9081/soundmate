@@ -36,4 +36,14 @@ public class BandaServiceImpl implements BandaService {
 		return banda;
 	}
 	
+	@Override 
+	public List<Usuario> consultarMiembros (Banda banda){
+		
+		List<Usuario> miembros = bandaDAO.consultarMiembros(banda);
+		
+		return miembros;
+		
+		
+	}
+	
 }

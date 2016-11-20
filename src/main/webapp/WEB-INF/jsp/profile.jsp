@@ -59,7 +59,7 @@
 	                  		<h6><i class="material-icons" style="font-size:18px;">email</i> ${usuario.getEmail()}</h6>
 	                  		<h6><i class="material-icons" style="font-size:18px;">music_note</i> ${usuario.getInstrumento()}</h6>
 	                  		<h6><i class="material-icons" style="font-size:18px;">date_range</i> 16 de Junio</h6>
-	                  		<a href="">
+	                  		<a href="${reubicacion}banda/${usuario.getBanda().getNombre()}">
 	                  			<h6> <i class="material-icons" style="font-size:18px;">people</i> ${usuario.getBanda().getNombre()}</h6>
 	                  		</a>
 	                  	</div>

@@ -1,6 +1,5 @@
 package ar.edu.grupoesfera.cursospring.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -44,6 +43,19 @@ public class BandaDaoServiceImpl implements BandaDaoService {
 				.uniqueResult();
 		
 		return usuario.getBanda();
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Usuario> consultarMiembros (Banda banda){
+		
+		
+		List<Usuario> miembros = sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("banda", banda))
+				.list();
+		
+		return miembros;
 	}
 
 }
