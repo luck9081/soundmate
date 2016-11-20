@@ -30,8 +30,8 @@ public class Publicacion {
 	@Cascade(value = CascadeType.ALL)
 	private Usuario usuario;
 	
-	@ManyToOne
-	@JoinColumn(name="idbanda")
+	@ManyToOne(optional=true)
+	@JoinColumn(name="idbanda", nullable=true)
 	@Cascade(value = CascadeType.ALL)
 	private Banda banda;
 	

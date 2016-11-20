@@ -50,4 +50,36 @@ public class PublicacionDaoImpl implements PublicacionDao {
 		return publicaciones;
 	}
 	
+	@Override
+	public void crearPublicacionUsuario (Publicacion publicacion, String username){
+		
+		Usuario usuario =  (Usuario)sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre", username))
+				.uniqueResult();
+		
+		publicacion.setUsuario(usuario);
+		
+		
+		final Session s = sessionFactory.openSession();
+		
+		s.save(publicacion);
+	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Publicacion> mostrarPublicacionesUsuario (String username){
+		
+		
+		List<Publicacion> publicaciones = sessionFactory.getCurrentSession()
+			.createCriteria(Publicacion.class)
+			.createAlias("usuario", "u")
+			.add(Restrictions.eq("u.nombre", username ))
+			.list();
+
+		
+		return publicaciones;
+	}
+	
 }

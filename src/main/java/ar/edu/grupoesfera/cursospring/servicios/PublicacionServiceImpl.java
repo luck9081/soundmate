@@ -33,4 +33,18 @@ public class PublicacionServiceImpl implements PublicacionService {
 		return publicaciones;
 	}
 	
+	
+	@Override
+	public void crearPublicacionUsuario ( Publicacion publicacion, String username){
+		
+		publicacionDao.crearPublicacion(publicacion, username);
+	}
+	
+	@Override
+	public List<Publicacion> mostrarPublicacionesUsuario (String username){
+		
+		List<Publicacion> publicacionesUser = publicacionDao.mostrarPublicacionesUsuario(username);
+		
+		return publicacionesUser;
+	}
 }

@@ -1,5 +1,7 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
+import java.util.List;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -9,9 +11,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
+import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
+import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Controller
@@ -21,6 +26,10 @@ public class PerfilController {
 	@Inject
 	public PerfilService perfilService;
 	
+	@Inject
+	public PublicacionService publicacionService;
+	
+	
 	/* ------ MOSTRAR PERFIL PROPIO ------ */
 	
 	@RequestMapping("/perfil")
@@ -28,10 +37,23 @@ public class PerfilController {
 		
 		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
 		
+		Publicacion publicacion = new Publicacion();
+		List<Publicacion> publicacionesUser = publicacionService.mostrarPublicacionesUsuario((String)request.getSession().getAttribute("username"));
+		
 		ModelMap perfil = new ModelMap();
 		perfil.addAttribute("usuario",miUsuario);
+		perfil.addAttribute("publicar", publicacion);
+		perfil.addAttribute("publicaciones", publicacionesUser);
 		
 		return new ModelAndView("profile",perfil);
+	}
+	
+	/* ------ PUBLICAR CONTENIDOS ------ */
+	
+	@RequestMapping(path="/post" , method = RequestMethod.POST)
+	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") Publicacion publicacion, HttpServletRequest request){
+		publicacionService.crearPublicacionUsuario(publicacion, (String)request.getSession().getAttribute("username"));
+		return new ModelAndView("redirect:/perfil");
 	}
 	
 	/* ------ BUSCAR PERFIL PUBLICO O EDITAR PERFIL PROPIO ------ */
