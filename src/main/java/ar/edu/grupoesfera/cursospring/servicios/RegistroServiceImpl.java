@@ -30,6 +30,7 @@ public class RegistroServiceImpl implements RegistroService {
 		
 		usuario.setPartido(usuario.getPartido().replaceAll(regex1, ""));
 		usuario.setProvincia(usuario.getProvincia().replaceAll(regex2, ""));
+		usuario.setImagen("default-avatar.png");
 		
 		List<Usuario> listaResultados = busquedaService.buscarUsuariosPorNombreOEmail(usuario.getNombre(),usuario.getEmail());
 		

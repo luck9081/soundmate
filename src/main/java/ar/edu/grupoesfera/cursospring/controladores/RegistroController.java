@@ -24,6 +24,14 @@ public class RegistroController {
 	@Inject
 	public RegistroService registroService;
 	
+	
+	// Método que permite setear el atributo registroService para mockearlo.
+	public void setRegistroServiceMock (RegistroService servicioRegistro){
+		this.registroService = servicioRegistro;
+	}
+	
+	
+	
 	@RequestMapping("/signup")
 	public ModelAndView signup(){
 		

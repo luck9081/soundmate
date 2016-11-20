@@ -56,23 +56,77 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 	@Override
 	public Usuario editarPerfil (Usuario usuarioEditado,String nombreUsuario){
 		
-		Usuario usuario = (Usuario)sessionFactory.getCurrentSession()
-				.createCriteria(Usuario.class)
-				.add(Restrictions.eq("nombre",nombreUsuario))
-				.uniqueResult();
+		Usuario usuario = new Usuario();
 		
-		usuario.setNombre(usuarioEditado.getNombre());
-		usuario.setPass(usuarioEditado.getPass());
-		usuario.setEmail(usuarioEditado.getEmail());
-		usuario.setInstrumento(usuarioEditado.getInstrumento());
-		usuario.setLocalidad(usuarioEditado.getLocalidad());
-		usuario.setPartido(usuarioEditado.getPartido());
-		usuario.setProvincia(usuarioEditado.getProvincia());
-		usuario.setInfluencias(usuarioEditado.getInfluencias());
+		if(usuarioEditado.getNombre().equals(nombreUsuario)){
+			usuario = (Usuario)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.eq("nombre",nombreUsuario)
+						)
+					.uniqueResult();
+			
+			usuario = (Usuario)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(Restrictions.eq("nombre",nombreUsuario))
+					.uniqueResult();
+			
+			usuario.setNombre(usuarioEditado.getNombre());
+			usuario.setPass(usuarioEditado.getPass());
+			usuario.setEmail(usuarioEditado.getEmail());
+			usuario.setInstrumento(usuarioEditado.getInstrumento());
+			usuario.setLocalidad(usuarioEditado.getLocalidad());
+			usuario.setPartido(usuarioEditado.getPartido());
+			usuario.setProvincia(usuarioEditado.getProvincia());
+			usuario.setInfluencias(usuarioEditado.getInfluencias());
+			usuario.setImagen(usuario.getImagen());
+			
+			sessionFactory.getCurrentSession().update("Usuario", usuario);
+			
+			return usuario;
+		}
 		
-		sessionFactory.getCurrentSession().update("Usuario", usuario);
+		else{
+			usuario = (Usuario)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.or(
+									Restrictions.eq("nombre",usuarioEditado.getNombre()),
+									Restrictions.eq("email",usuarioEditado.getEmail())
+							)
+						)
+					.uniqueResult();
+			
+			if (usuario.equals(null)){
+				
+				usuario = (Usuario)sessionFactory.getCurrentSession()
+						.createCriteria(Usuario.class)
+						.add(Restrictions.eq("nombre",nombreUsuario))
+						.uniqueResult();
+				
+				usuario.setNombre(usuarioEditado.getNombre());
+				usuario.setPass(usuarioEditado.getPass());
+				usuario.setEmail(usuarioEditado.getEmail());
+				usuario.setInstrumento(usuarioEditado.getInstrumento());
+				usuario.setLocalidad(usuarioEditado.getLocalidad());
+				usuario.setPartido(usuarioEditado.getPartido());
+				usuario.setProvincia(usuarioEditado.getProvincia());
+				usuario.setInfluencias(usuarioEditado.getInfluencias());
+				usuario.setImagen(usuario.getImagen());
+				
+				sessionFactory.getCurrentSession().update("Usuario", usuario);
+				
+				return usuario;
+				
+			}
+			else{
+				usuario = new Usuario();	// Si existe un usuario con el mismo nombre/email que al que yo lo quiero cambiar (que no sea mi actual usuario), devuelvo usuario vacío.
+				return usuario;
+				
+			}
+			
+		}
 		
-		return usuario;
 	}
 	
 }

@@ -43,7 +43,7 @@ public class BusquedaController {
 		
 		ModelMap resultado = new ModelMap();
 		
-		if(!listaResultados.isEmpty() || listaResultados == null){
+		if(!listaResultados.isEmpty()){
 			resultado.addAttribute("resultados",listaResultados);
 			
 			return new ModelAndView("resultadoBusqueda",resultado);

@@ -120,20 +120,34 @@ public class PerfilController {
 		
 		Usuario usuarioEditado = perfilService.editarPerfil(usuario,(String)request.getSession().getAttribute("username"));
 		
-		request.getSession().setAttribute("username", usuarioEditado.getNombre());
-		request.getSession().setAttribute("localidad", usuarioEditado.getLocalidad());
-		request.getSession().setAttribute("partido", usuarioEditado.getPartido());
-		request.getSession().setAttribute("provincia", usuarioEditado.getProvincia());
-		
 		ModelMap resultado = new ModelMap();
 		
-		resultado.addAttribute("titulo","¡Se ha modificado tu perfil!");
-		resultado.addAttribute("subtitulo","Todos tus datos se guardaron satisfactoriamente");
-		resultado.addAttribute("inputValue","Ver Mi Perfil");
-		resultado.addAttribute("inputHref","perfil");
-		resultado.addAttribute("iconClass","fa fa-chevron-right");
+		if(usuarioEditado.getNombre().equals(usuario.getNombre())){
+			request.getSession().setAttribute("username", usuarioEditado.getNombre());
+			request.getSession().setAttribute("localidad", usuarioEditado.getLocalidad());
+			request.getSession().setAttribute("partido", usuarioEditado.getPartido());
+			request.getSession().setAttribute("provincia", usuarioEditado.getProvincia());
+			
+			resultado.addAttribute("title","Perfil");
+			resultado.addAttribute("titulo","¡Se ha modificado tu perfil!");
+			resultado.addAttribute("subtitulo","Todos tus datos se guardaron satisfactoriamente");
+			resultado.addAttribute("inputValue","Ver Mi Perfil");
+			resultado.addAttribute("inputHref","perfil");
+			resultado.addAttribute("iconClass","fa fa-chevron-right");
+			
+			return new ModelAndView("landing",resultado);
+		}
+		else{
+			resultado.addAttribute("title","Editar Perfil");
+			resultado.addAttribute("titulo","¡Ups! No ha salido bien");
+			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, ¡volvé a intentarlo!");
+			resultado.addAttribute("inputValue","Volver a Editar Perfil");
+			resultado.addAttribute("inputHref","perfil/editar");
+			resultado.addAttribute("iconClass","fa fa-chevron-left");
+			
+			return new ModelAndView("landing",resultado);
+		}
 		
-		return new ModelAndView("landing",resultado);
 	}
 	
 }
