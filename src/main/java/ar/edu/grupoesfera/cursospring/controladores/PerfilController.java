@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
+import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Controller
@@ -37,8 +38,8 @@ public class PerfilController {
 		
 		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
 		
-		Publicacion publicacion = new Publicacion();
-		List<Publicacion> publicacionesUser = publicacionService.mostrarPublicacionesUsuario((String)request.getSession().getAttribute("username"));
+		PublicacionUsuario publicacion = new PublicacionUsuario();
+		List<PublicacionUsuario> publicacionesUser = publicacionService.mostrarPublicacionesUsuario((String)request.getSession().getAttribute("username"));
 		
 		ModelMap perfil = new ModelMap();
 		perfil.addAttribute("usuario",miUsuario);
@@ -51,7 +52,7 @@ public class PerfilController {
 	/* ------ PUBLICAR CONTENIDOS ------ */
 	
 	@RequestMapping(path="/post" , method = RequestMethod.POST)
-	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") Publicacion publicacion, HttpServletRequest request){
+	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") PublicacionUsuario publicacion, HttpServletRequest request){
 		publicacionService.crearPublicacionUsuario(publicacion, (String)request.getSession().getAttribute("username"));
 		return new ModelAndView("redirect:/perfil");
 	}
