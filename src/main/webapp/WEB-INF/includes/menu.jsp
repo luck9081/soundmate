@@ -29,7 +29,7 @@
                   </a>
                 </li>
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">settings</i>
+                  <a href="" class="dropdown-toggle" data-toggle="dropdown"><i class="material-icons">settings</i>
                     <b class="caret"></b>
                   </a>
                     <ul class="dropdown-menu dropdown-menu-right">

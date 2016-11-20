@@ -32,5 +32,14 @@ public class PerfilServiceImpl implements PerfilService{
 		
 		return bandaEncontrada;
 	}
+	
+	@Override
+	public Usuario editarPerfil (Usuario usuarioEditado,String nombreUsuario){
+		
+		Usuario usuario = perfilDAO.editarPerfil(usuarioEditado,nombreUsuario);
+		
+		return usuario;
+		
+	}
 
 }

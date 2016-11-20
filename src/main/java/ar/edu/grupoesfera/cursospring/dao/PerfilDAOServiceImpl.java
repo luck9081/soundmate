@@ -52,4 +52,27 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 		
 		return miBanda;
 	}
+	
+	@Override
+	public Usuario editarPerfil (Usuario usuarioEditado,String nombreUsuario){
+		
+		Usuario usuario = (Usuario)sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre",nombreUsuario))
+				.uniqueResult();
+		
+		usuario.setNombre(usuarioEditado.getNombre());
+		usuario.setPass(usuarioEditado.getPass());
+		usuario.setEmail(usuarioEditado.getEmail());
+		usuario.setInstrumento(usuarioEditado.getInstrumento());
+		usuario.setLocalidad(usuarioEditado.getLocalidad());
+		usuario.setPartido(usuarioEditado.getPartido());
+		usuario.setProvincia(usuarioEditado.getProvincia());
+		usuario.setInfluencias(usuarioEditado.getInfluencias());
+		
+		sessionFactory.getCurrentSession().update("Usuario", usuario);
+		
+		return usuario;
+	}
+	
 }

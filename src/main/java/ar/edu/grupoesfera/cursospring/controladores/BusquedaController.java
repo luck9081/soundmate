@@ -50,6 +50,7 @@ public class BusquedaController {
 		}
 		
 		else {
+			resultado.addAttribute("title","Búsqueda");
 			resultado.addAttribute("titulo","No se han encontrado resultados");
 			resultado.addAttribute("subtitulo","No te preocupes, ¡pronto se registraran usuarios que cumplan con tu requisito! Intenta otra búsqueda.");
 			resultado.addAttribute("inputValue","Volver a Búsqueda");

@@ -17,8 +17,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" type="text/css"/>
 
   <!-- CSS Files -->
-    <link href="${reubicacion}css/bootstrap.min.css" rel="stylesheet" />
-    <link href="${reubicacion}css/material-kit.css" rel="stylesheet"/>
+  <link href="${reubicacion}css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="${reubicacion}css/material-kit.css" rel="stylesheet"/>
 
 </head>
 
@@ -34,7 +34,7 @@
 	          <div class="row">
 	              <div class="profile">
 	                  <div class="avatar">
-	                      <img src="${reubicacion}img/default-avatar.png" alt="Circle Image" class="img-circle img-responsive img-raised">
+	                      <img src="${reubicacion}img/${usuario.getImagen()}" alt="Circle Image" class="img-circle img-responsive img-raised">
 	                  </div>
 	                  <div class="name">
 	                    <h3 class="title">${usuario.getNombre().toUpperCase()}</h3>
@@ -42,16 +42,8 @@
 	        		  </div>
 	        		</div>
 	        		
-	        		<c:choose>
-						<c:when test="${usuario.getNombre() == sessionScope.username}">
-							<a href="${reubicacion}editarPerfil" style="float:right" class="btn btn-primary btn-raised">Editar</a>
-						</c:when>
-						<c:otherwise>
-					        <a href="" style="float:right" class="btn btn-primary btn-raised">Añadir a Banda</a>
-					    </c:otherwise>
-					</c:choose>
-	        		
 	        	</div>
+        		
         		<div class="row" style="padding-bottom: 80px;">
                   <div class="col-md-12">
                   	<div class="col-md-3">
@@ -59,16 +51,27 @@
  						<div style="text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Infuencias</h4>
                   			<hr style="margin:0; padding:0;">
-	                  		<p>Radiohead, Rolling Stones, The Strokes</p>
+	                  		<p>${usuario.getInfluencias()}</p>
 	                  	</div>                 	
                   		<div style="margin-top:58px;text-align:left; border:20pt; border-color:#f1f1f2">
                   			<h4>Informaci&oacute;n</h4>
                   			<hr style="margin:0; padding:0;">
-	                  		<h6><i class="material-icons" style="font-size:14px;">email</i> ${usuario.getEmail()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">music_note</i> ${usuario.getInstrumento()}</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">date_range</i> 16 de Junio</h6>
-	                  		<h6><i class="material-icons" style="font-size:14px;">people</i> Soundmate </h6>
-	                  	</div>	                  	
+	                  		<h6><i class="material-icons" style="font-size:18px;">email</i> ${usuario.getEmail()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:18px;">music_note</i> ${usuario.getInstrumento()}</h6>
+	                  		<h6><i class="material-icons" style="font-size:18px;">date_range</i> 16 de Junio</h6>
+	                  		<a href="">
+	                  			<h6> <i class="material-icons" style="font-size:18px;">people</i> ${usuario.getBanda().getNombre()}</h6>
+	                  		</a>
+	                  	</div>
+	                  	
+	                  	<c:choose>
+						<c:when test="${usuario.getNombre() == sessionScope.username}">
+							<a href="perfil/editar" style="float:left" class="btn btn-primary btn-raised">Editar</a>
+						</c:when>
+						<c:otherwise>
+					        <a href="" style="float:left" class="btn btn-primary btn-raised">Añadir a Banda</a>
+					    </c:otherwise>
+					</c:choose>
 	                  	
                   	</div>
                   	
@@ -79,7 +82,7 @@
 								<!-- form para publicar comments en el muro -->
 		               			<form id="publicacion">
 		               				<textarea class="form-control" placeholder="Escribi acá tu publicacion..." rows="3"></textarea>
-		               				<button type="submit" class="btn btn-primary btn-raised">
+		               				<button type="submit" class="btn btn-info btn-round">
 		               					Publicar
 		               				</button>
 		               			</form>
@@ -103,6 +106,7 @@
                   	 
                   </div>
               	</div>
+              	
 	          </div>
 	         </div>
 	       </div>

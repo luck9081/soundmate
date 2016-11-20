@@ -54,6 +54,7 @@
                     </span>
                     <form:input path="instrumento" id="instrumento" class="form-control" placeholder="Instrumento/Rol"></form:input>
                   </div>
+                  
                   <div class="input-group">
                     <span class="input-group-addon">
                       <i class="material-icons">location_on</i>
@@ -62,8 +63,7 @@
                     <form:hidden id="localidad" path="localidad"/>
                     <form:hidden id="partido" path="partido"/>
 		            <form:hidden id="provincia" path="provincia"/>
-                  </div>
-                  
+                  </div>                  
 
                   <div class="input-group">
                     <span class="input-group-addon">

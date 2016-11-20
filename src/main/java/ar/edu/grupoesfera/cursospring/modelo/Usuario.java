@@ -8,7 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -44,8 +43,11 @@ public class Usuario {
 	@Column
 	private String provincia;
 	
-	@Transient
-	private Artista artista;
+	@Column
+	private String influencias;
+	
+	@Column
+	private String imagen;
 	
 	@ManyToOne
 	@JoinColumn(name="bandaFK")
@@ -53,6 +55,18 @@ public class Usuario {
 	private Banda banda;
 	
 	
+	public String getImagen() {
+		return imagen;
+	}
+	public void setImagen(String imagen) {
+		this.imagen = imagen;
+	}
+	public String getInfluencias() {
+		return influencias;
+	}
+	public void setInfluencias(String influencias) {
+		this.influencias = influencias;
+	}
 	public Banda getBanda() {
 		return banda;
 	}
