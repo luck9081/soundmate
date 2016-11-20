@@ -107,13 +107,13 @@
 										<div class="tab-content text-center">
 											<div class="tab-pane active" id="publicacion">
 												<form:form modelAttribute="publicar" method="POST" action="post">
-													<form:textarea path="descripcion" placeholder="&iquest;Que ten&eacute;s en mente?" class="form-control" rows="5"/>
+													<form:textarea path="descripcion" placeholder="Que tenes en mente?" class="form-control" rows="5"/>
 													<form:button type="submit"  style="float:right" class="btn btn-primary btn-raised">Publicar</form:button>
 												</form:form>
 											</div>
 											<div class="tab-pane" id="video">
 												<form:form modelAttribute="publicar" method="POST" action="post">
-													<form:input path="descripcion" class="form-control" type="text" placeholder="Ingres&aacute; la URL del video"/>
+													<form:input path="video" class="form-control" type="text" placeholder="Ingresa la URL del video"/>
 													<form:button type="submit"  style="float:right" class="btn btn-primary btn-raised">Publicar</form:button>
 												</form:form>
 											</div>
@@ -128,19 +128,22 @@
                   		<!-- Aca arrancan las publicaciones de users -->
                			<div style="padding-top:2%" class="row">
                				<c:forEach var="item" items="${publicaciones}">
-               					<c:choose>
-	               					<c:when test="${item.banda == null}">
-										<div class="col-md-12" style="padding:1%; margin:1%; background-color:#f9f9f9;">
-											<div class="col-md-1">
-				      								<img src="${reubicacion}img/<c:out value="${item.usuario.getImagen()}"/>" class="img-circle img-responsive">
-											</div>
-											<div class="col-md-11">
-												<p>Publicado por <a href="${reubicacion}perfil/${item.usuario.getNombre()}"><span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span></a> el <c:out value="${item.fechaPublicacion}"/></p>
+								<div class="col-md-12" style="padding:1%; margin:1%; background-color:#f9f9f9;">
+									<div class="col-md-1">
+		      								<img src="${reubicacion}img/<c:out value="${item.usuario.getImagen()}"/>" class="img-circle img-responsive">
+									</div>
+									<div class="col-md-11">
+										<p>Publicado por <a href="${reubicacion}perfil/${item.usuario.getNombre()}"><span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span></a> el <c:out value="${item.fechaPublicacion}"/></p>
+										<c:choose>
+											<c:when test="${item.descripcion == null}">
+												<iframe type="text/html" width="640" height="360" src="https://www.youtube.com/embed/<c:out value="${item.video}"/>" frameborder="0" allowfullscreen></iframe>
+											</c:when>
+											<c:otherwise>
 												<p><c:out value="${item.descripcion}"/></p>
-											</div>
-										</div>
-									</c:when>
-								</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</div>
+								</div>
 							</c:forEach>
                			</div>
                			

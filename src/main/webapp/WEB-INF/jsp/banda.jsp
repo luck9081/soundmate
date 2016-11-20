@@ -71,12 +71,37 @@
 				  	<div class="col-md-9">
 				  		<h4>Escribinos!</h4>
                			<hr style="margin:0; padding:0;">
-	           			<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
-	           				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
-	           				<form:button type="submit" class="btn btn-primary btn-raised">
-	           					Publicar
-	           				</form:button>
-	           			</form:form>
+               			
+               			<!-- form para publicar comments en el muro -->
+	
+						<div class="card card-nav-tabs">
+							<div class="header header-primary" style="height:auto">
+								<div class="nav-tabs-navigation">
+									<div class="nav-tabs-wrapper">
+										<ul class="nav nav-tabs" data-tabs="tabs">
+											<li class="active">
+												<a href="#publicacion" data-toggle="tab">
+													<i class="material-icons">chat</i>
+													Publicacion
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+							<div class="content">
+								<div class="tab-content text-center">
+									<div class="tab-pane active" id="publicacion">
+										<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
+					           				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
+					           				<form:button type="submit" style="float:right" class="btn btn-primary btn-raised">
+					           					Publicar
+					           				</form:button>
+					           			</form:form>
+									</div>
+								</div>
+							</div>
+						</div>	
             	  	</div>
             	  </div>
                	  <div class="col-md-12">

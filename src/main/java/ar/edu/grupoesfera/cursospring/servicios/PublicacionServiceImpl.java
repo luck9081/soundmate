@@ -9,8 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import ar.edu.grupoesfera.cursospring.dao.PublicacionDao;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
-import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
+import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 
 @Service
 @Transactional
@@ -35,15 +35,20 @@ public class PublicacionServiceImpl implements PublicacionService {
 	
 	
 	@Override
-	public void crearPublicacionUsuario ( Publicacion publicacion, String username){
+	public void crearPublicacionUsuario ( PublicacionUsuario publicacion, String username){
 		
-		publicacionDao.crearPublicacion(publicacion, username);
+		if(publicacion.getVideo() != null){
+			publicacion.setVideo((publicacion.getVideo().substring(32)));
+		}
+		
+		
+		publicacionDao.crearPublicacionUsuario(publicacion, username);
 	}
 	
 	@Override
-	public List<Publicacion> mostrarPublicacionesUsuario (String username){
+	public List<PublicacionUsuario> mostrarPublicacionesUsuario (String username){
 		
-		List<Publicacion> publicacionesUser = publicacionDao.mostrarPublicacionesUsuario(username);
+		List<PublicacionUsuario> publicacionesUser = publicacionDao.mostrarPublicacionesUsuario(username);
 		
 		return publicacionesUser;
 	}

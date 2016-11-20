@@ -10,6 +10,7 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
+import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 @Service
@@ -51,7 +52,7 @@ public class PublicacionDaoImpl implements PublicacionDao {
 	}
 	
 	@Override
-	public void crearPublicacionUsuario (Publicacion publicacion, String username){
+	public void crearPublicacionUsuario (PublicacionUsuario publicacion, String username){
 		
 		Usuario usuario =  (Usuario)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
@@ -60,8 +61,7 @@ public class PublicacionDaoImpl implements PublicacionDao {
 		
 		publicacion.setUsuario(usuario);
 		
-		
-		final Session s = sessionFactory.openSession();
+		Session s = sessionFactory.getCurrentSession();
 		
 		s.save(publicacion);
 	
@@ -69,17 +69,17 @@ public class PublicacionDaoImpl implements PublicacionDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Publicacion> mostrarPublicacionesUsuario (String username){
+	public List<PublicacionUsuario> mostrarPublicacionesUsuario (String username){
 		
 		
-		List<Publicacion> publicaciones = sessionFactory.getCurrentSession()
-			.createCriteria(Publicacion.class)
+		List<PublicacionUsuario> publicacionesUser = sessionFactory.getCurrentSession()
+			.createCriteria(PublicacionUsuario.class)
 			.createAlias("usuario", "u")
 			.add(Restrictions.eq("u.nombre", username ))
 			.list();
 
 		
-		return publicaciones;
+		return publicacionesUser;
 	}
 	
 }
