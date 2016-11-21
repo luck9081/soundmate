@@ -86,8 +86,8 @@ public class PerfilController {
 				ModelMap resultado = new ModelMap();
 				
 				resultado.addAttribute("title","Perfil");
-				resultado.addAttribute("titulo","¡Ups! No hemos encontrado este usuario.");
-				resultado.addAttribute("subtitulo","Probablemente haya dado de baja su cuenta. ¡Probá buscar otro!");
+				resultado.addAttribute("titulo","Ups. No hemos encontrado este usuario.");
+				resultado.addAttribute("subtitulo","Probablemente haya dado de baja su cuenta. Probá buscar otro");
 				resultado.addAttribute("inputValue","Ir a Búsqueda");
 				resultado.addAttribute("inputHref","../busqueda");
 				resultado.addAttribute("iconClass","fa fa-chevron-left");
@@ -142,7 +142,7 @@ public class PerfilController {
 			request.getSession().setAttribute("provincia", usuarioEditado.getProvincia());
 			
 			resultado.addAttribute("title","Perfil");
-			resultado.addAttribute("titulo","¡Se ha modificado tu perfil!");
+			resultado.addAttribute("titulo","Se ha modificado tu perfil");
 			resultado.addAttribute("subtitulo","Todos tus datos se guardaron satisfactoriamente");
 			resultado.addAttribute("inputValue","Ver Mi Perfil");
 			resultado.addAttribute("inputHref","perfil");
@@ -152,8 +152,8 @@ public class PerfilController {
 		}
 		else{
 			resultado.addAttribute("title","Editar Perfil");
-			resultado.addAttribute("titulo","¡Ups! No ha salido bien");
-			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, ¡volvé a intentarlo!");
+			resultado.addAttribute("titulo","Ups. No ha salido bien");
+			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, volvé a intentarlo.");
 			resultado.addAttribute("inputValue","Volver a Editar Perfil");
 			resultado.addAttribute("inputHref","perfil/editar");
 			resultado.addAttribute("iconClass","fa fa-chevron-left");

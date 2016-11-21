@@ -68,8 +68,8 @@ public class BandaController {
 	public ModelAndView crearBanda(@ModelAttribute("banda") Banda banda){ 
 			
 			ModelMap modelCrearBanda = new ModelMap();
-			modelCrearBanda.addAttribute("titulo","¡Banda registrada!");
-			modelCrearBanda.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate :)");
+			modelCrearBanda.addAttribute("titulo","Banda registrada");
+			modelCrearBanda.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate");
 			modelCrearBanda.addAttribute("inputValue","ir a banda");
 			modelCrearBanda.addAttribute("inputHref","banda/"+banda.getNombre());
 			modelCrearBanda.addAttribute("iconClass","fa fa-chevron-right");		

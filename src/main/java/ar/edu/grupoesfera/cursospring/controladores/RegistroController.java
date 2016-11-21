@@ -51,8 +51,8 @@ public class RegistroController {
 			if(registroService.registrarUsuario(usuario)){
 				
 				resultado.addAttribute("title","Registro");
-				resultado.addAttribute("titulo","¡Ya estás registrado!");
-				resultado.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate :)");
+				resultado.addAttribute("titulo","Ya estás registrado");
+				resultado.addAttribute("subtitulo","Hacé click en el link de abajo y comenzá a disfrutar del increíble mundo de Soundmate");
 				resultado.addAttribute("inputValue","Continuar");
 				resultado.addAttribute("inputHref","login");
 				resultado.addAttribute("iconClass","fa fa-chevron-right");
@@ -63,8 +63,8 @@ public class RegistroController {
 			else {
 				
 				resultado.addAttribute("title","Registro");
-				resultado.addAttribute("titulo","¡Ups! No ha salido bien");
-				resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, ¡volvé a intentarlo!");
+				resultado.addAttribute("titulo","Ups No ha salido bien");
+				resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, volvé a intentarlo.");
 				resultado.addAttribute("inputValue","Volver a Registrarse");
 				resultado.addAttribute("inputHref","signup");
 				resultado.addAttribute("iconClass","fa fa-chevron-left");
@@ -108,8 +108,8 @@ public class RegistroController {
 			else{
 				
 				login.addAttribute("title","Login");
-				login.addAttribute("titulo","¡Ups! No ha salido bien");
-				login.addAttribute("subtitulo","Parece que no ingresaste correctamente tu usuario/contraseña. No te preocupes, ¡volvé a intentarlo!");
+				login.addAttribute("titulo","Ups. No ha salido bien");
+				login.addAttribute("subtitulo","Parece que no ingresaste correctamente tu usuario/contraseña. No te preocupes, volvé a intentarlo.");
 				login.addAttribute("inputValue","Volver a Ingresar");
 				login.addAttribute("inputHref","login");
 				login.addAttribute("iconClass","fa fa-chevron-left");
