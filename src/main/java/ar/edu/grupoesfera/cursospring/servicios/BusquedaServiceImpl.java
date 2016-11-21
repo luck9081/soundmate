@@ -43,15 +43,9 @@ public class BusquedaServiceImpl implements BusquedaService {
 	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass) {
 		// TODO Auto-generated method stub
 		
-		List<Usuario> listaResultados = busquedaDAO.buscarUsuariosPorNombreYContraseña(nombre, pass);
+		Usuario resultado = busquedaDAO.buscarUsuariosPorNombreYContraseña(nombre, pass);
 		
-		if(listaResultados.isEmpty()){
-			return null;
-		}
-		
-		else{
-			return listaResultados.get(0);			
-		}
+		return resultado;
 	}
 
 }

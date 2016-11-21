@@ -98,6 +98,10 @@ public class RegistroController {
 				request.getSession().setAttribute("partido", resultado.getPartido());
 				request.getSession().setAttribute("provincia", resultado.getProvincia());
 				
+				if(resultado.getBanda().getId() != null){
+					request.getSession().setAttribute("banda", resultado.getBanda().getId());
+				}
+				
 				return new ModelAndView("redirect:/perfil");
 			}
 			

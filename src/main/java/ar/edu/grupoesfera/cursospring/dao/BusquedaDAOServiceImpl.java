@@ -128,11 +128,10 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 	
 /* ------- BUSQUEDA POR NOMBRE Y CONTRASEÑA -------- */
 	
-	@SuppressWarnings("unchecked")
 	@Override
-	public List<Usuario> buscarUsuariosPorNombreYContraseña(String nombre, String pass){
+	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass){
 		
-		return sessionFactory.getCurrentSession()
+		return (Usuario)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
 				.add(
 						Restrictions.and(
@@ -140,7 +139,7 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 								Restrictions.eq("pass",pass)
 						)
 				)
-				.list();
+				.uniqueResult();
 	}
 
 }

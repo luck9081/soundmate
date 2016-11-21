@@ -66,13 +66,22 @@
 	                  	</div>
 	                  	
 	                  	<c:choose>
-						<c:when test="${usuario.getNombre() == sessionScope.username}">
-							<a href="perfil/editar" style="float:left" class="btn btn-primary btn-raised">Editar</a>
-						</c:when>
-						<c:otherwise>
-					        <a href="" style="float:left" class="btn btn-primary btn-raised">Añadir a Banda</a>
-					    </c:otherwise>
-					</c:choose>
+							
+							<c:when test="${usuario.getNombre() == sessionScope.username}">
+								<a href="perfil/editar" style="float:left" class="btn btn-primary btn-raised">Editar</a>
+							</c:when>
+							
+							<c:otherwise>
+						        
+						        <c:choose>
+									<c:when test="${!mismaBanda}">
+										<a href="" style="float:left" class="btn btn-primary btn-raised">Añadir a Banda</a>
+									</c:when>
+								</c:choose>
+								
+						    </c:otherwise>
+						    
+						</c:choose>
 	                  	
                   	</div>
                   	
@@ -80,6 +89,7 @@
 		                  		
                   		<c:choose>
 							<c:when test="${usuario.getNombre() == sessionScope.username}">
+								
 								<!-- form para publicar comments en el muro -->
 		               			
 								<div class="card card-nav-tabs">
@@ -120,13 +130,16 @@
 										</div>
 									</div>
 								</div>
+											
 							</c:when>
 						</c:choose>
                			
                			<h4>Publicaciones</h4>
                   		<hr style="margin:0; padding:0;">
+                  		
                   		<!-- Aca arrancan las publicaciones de users -->
                			<div style="padding-top:2%" class="row">
+               				
                				<c:forEach var="item" items="${publicaciones}">
 								<div class="col-md-12" style="padding:1%; margin:1%; background-color:#f9f9f9;">
 									<div class="col-md-1">
@@ -145,6 +158,7 @@
 									</div>
 								</div>
 							</c:forEach>
+							
                			</div>
                			
 					</div>

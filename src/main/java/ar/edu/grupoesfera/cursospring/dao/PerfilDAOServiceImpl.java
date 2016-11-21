@@ -21,18 +21,10 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 	@Override
 	public Usuario obtenerUsuarioPorNombre (String nombreUsuario){
 		
-		@SuppressWarnings("rawtypes")
-		List resultadosQuery = sessionFactory.getCurrentSession()
+		return (Usuario)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
-				.add(Restrictions.eq("nombre",nombreUsuario)).list();
-		
-		Usuario miUsuario = new Usuario();
-		
-		for(Object item : resultadosQuery){
-			miUsuario = (Usuario)item;
-		}
-		
-		return miUsuario;
+				.add(Restrictions.eq("nombre",nombreUsuario))
+				.uniqueResult();
 	}
 	
 

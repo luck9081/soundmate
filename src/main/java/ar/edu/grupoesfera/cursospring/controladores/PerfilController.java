@@ -16,7 +16,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
-import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
 import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
@@ -39,6 +38,7 @@ public class PerfilController {
 		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
 		
 		PublicacionUsuario publicacion = new PublicacionUsuario();
+		
 		List<PublicacionUsuario> publicacionesUser = publicacionService.mostrarPublicacionesUsuario((String)request.getSession().getAttribute("username"));
 		
 		ModelMap perfil = new ModelMap();
@@ -53,8 +53,11 @@ public class PerfilController {
 	
 	@RequestMapping(path="/post" , method = RequestMethod.POST)
 	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") PublicacionUsuario publicacion, HttpServletRequest request){
+		
 		publicacionService.crearPublicacionUsuario(publicacion, (String)request.getSession().getAttribute("username"));
+		
 		return new ModelAndView("redirect:/perfil");
+		
 	}
 	
 	/* ------ BUSCAR PERFIL PUBLICO O EDITAR PERFIL PROPIO ------ */
@@ -62,26 +65,24 @@ public class PerfilController {
 	@RequestMapping("/perfil/{username}")
 	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario,HttpServletRequest request){
 
-		String sesion = (String)request.getSession().getAttribute("username");
-		
 		ModelMap perfil = new ModelMap();
 		
 		if(nombreUsuario.equals("editar")){
-			Usuario miUsuario = perfilService.buscarPerfilUsuario(sesion);
+			Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
 			
 			perfil.addAttribute("usuario",miUsuario);
 			perfil.addAttribute("reubicacion","../");
 			
 			return new ModelAndView("profileEdit",perfil);
 		}
-		else if(nombreUsuario.equals(sesion)){
+		else if(nombreUsuario.equals((String)request.getSession().getAttribute("username"))){
 			
 			return new ModelAndView("redirect:../perfil");
 		}
 		else{
 			Usuario usuarioEncontrado = perfilService.buscarPerfilUsuario(nombreUsuario);
 			
-			if(usuarioEncontrado.getNombre() == null){
+			if(usuarioEncontrado == null){
 				ModelMap resultado = new ModelMap();
 				
 				resultado.addAttribute("title","Perfil");
@@ -95,8 +96,19 @@ public class PerfilController {
 				return new ModelAndView("landing",resultado);
 			}
 			else{
+				List<PublicacionUsuario> publicacionesUser = publicacionService.mostrarPublicacionesUsuario(nombreUsuario);
+				
 				perfil.addAttribute("usuario",usuarioEncontrado);
+				perfil.addAttribute("publicaciones", publicacionesUser);
 				perfil.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
+				
+				if (request.getSession().getAttribute("banda") != null && usuarioEncontrado.getBanda() != null){
+					if(usuarioEncontrado.getBanda().getId() == (Integer)request.getSession().getAttribute("banda")){
+						
+						perfil.addAttribute("mismaBanda",true);
+						
+					}
+				}
 				
 				return new ModelAndView("profile",perfil);
 			}

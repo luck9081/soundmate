@@ -46,7 +46,9 @@
 							        <tr>
 							            <th>Usuario</th>
 							            <th>Instrumento</th>
-							            <th>Ubicación</th>
+							            <th>Localidad</th>
+							            <th>Partido</th>
+							            <th>Provincia</th>
 							        </tr>
 							    </thead>
 							    <tbody>
@@ -54,28 +56,22 @@
 							        <c:forEach var="item" items="${resultados}">
 							        
 								        <tr>
-								            <td>
-								            	<c:out value="${item.nombre.toUpperCase()}"/>
+								            <td style="font-weight: 500;">
+								            	<a rel="tooltip" title="Ver Perfil" style="color:#2196F3" href="perfil/<c:out value="${item.nombre}"/>">
+								                	<i class="material-icons">face</i> <c:out value="${item.nombre.toUpperCase()}"/>
+								                </a>
 								            </td>
-								            <td>
+								            <td style="font-weight: 500;">
 								            	<c:out value="${item.instrumento.toUpperCase()}"/>
 								            </td>
 								            <td style="font-weight: 500;">
-								            	<c:out value="${item.localidad.toUpperCase()},"/>
-								            	<br>
-								            	<c:out value="${item.partido.toUpperCase()},"/>
-								            	<br>
+								            	<c:out value="${item.localidad.toUpperCase()}"/>
+								            </td>
+								            <td style="font-weight: 500;">
+								            	<c:out value="${item.partido.toUpperCase()}"/>
+								            </td>
+								            <td style="font-weight: 500;">
 								            	<c:out value="${item.provincia.toUpperCase()}"/>
-								            </td>
-								            <td class="td-actions">
-								                <a href="perfil/<c:out value="${item.nombre}"/>">
-								                	<i rel="tooltip" title="Ver Perfil" class="material-icons" style="color:#2196F3">face</i>
-								                </a>
-								            </td>
-								            <td class="td-actions">
-								                <a href="">
-								                	<i rel="tooltip" title="Añadir a Banda" class="material-icons">playlist_add</i>
-								                </a>
 								            </td>
 								        </tr>
 							        
