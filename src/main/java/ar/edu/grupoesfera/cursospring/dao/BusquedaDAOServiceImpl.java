@@ -126,10 +126,10 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 				.list();
 	}
 	
-/* ------- BUSQUEDA POR NOMBRE Y CONTRASEÑA -------- */
+/* ------- BUSQUEDA POR NOMBRE Y CONTRASEniA -------- */
 	
 	@Override
-	public Usuario buscarUsuariosPorNombreYContraseña(String nombre, String pass){
+	public Usuario buscarUsuariosPorNombreYContrasenia(String nombre, String pass){
 		
 		return (Usuario)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)

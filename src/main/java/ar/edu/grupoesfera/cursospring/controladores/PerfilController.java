@@ -87,8 +87,8 @@ public class PerfilController {
 				
 				resultado.addAttribute("title","Perfil");
 				resultado.addAttribute("titulo","Ups. No hemos encontrado este usuario.");
-				resultado.addAttribute("subtitulo","Probablemente haya dado de baja su cuenta. Probá buscar otro");
-				resultado.addAttribute("inputValue","Ir a Búsqueda");
+				resultado.addAttribute("subtitulo","Probablemente haya dado de baja su cuenta. Proba buscar otro");
+				resultado.addAttribute("inputValue","Ir a Busqueda");
 				resultado.addAttribute("inputHref","../busqueda");
 				resultado.addAttribute("iconClass","fa fa-chevron-left");
 				resultado.addAttribute("reubicacion","../");
@@ -153,7 +153,7 @@ public class PerfilController {
 		else{
 			resultado.addAttribute("title","Editar Perfil");
 			resultado.addAttribute("titulo","Ups. No ha salido bien");
-			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, volvé a intentarlo.");
+			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, volve a intentarlo.");
 			resultado.addAttribute("inputValue","Volver a Editar Perfil");
 			resultado.addAttribute("inputHref","perfil/editar");
 			resultado.addAttribute("iconClass","fa fa-chevron-left");

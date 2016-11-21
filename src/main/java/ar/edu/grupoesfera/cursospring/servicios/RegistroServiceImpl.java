@@ -47,7 +47,7 @@ public class RegistroServiceImpl implements RegistroService {
 	@Override
 	public Usuario loguearUsuario(Usuario usuario){
 		
-		Usuario resultado = busquedaService.buscarUsuariosPorNombreYContraseña(usuario.getNombre(),usuario.getPass());
+		Usuario resultado = busquedaService.buscarUsuariosPorNombreYContrasenia(usuario.getNombre(),usuario.getPass());
 		
 		return resultado;
 	}

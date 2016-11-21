@@ -112,7 +112,7 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 				
 			}
 			else{
-				usuario = new Usuario();	// Si existe un usuario con el mismo nombre/email que al que yo lo quiero cambiar (que no sea mi actual usuario), devuelvo usuario vacío.
+				usuario = new Usuario();	// Si existe un usuario con el mismo nombre/email que al que yo lo quiero cambiar (que no sea mi actual usuario), devuelvo usuario vacio.
 				return usuario;
 				
 			}
