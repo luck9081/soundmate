@@ -8,7 +8,7 @@ public class TestRegistrarse {
 
 	
 	@Test
-	public void testUsuarioYContraseñaCorrectosDebenLlevarAPerfil(){
+	public void testUsuarioYContraseniaCorrectosDebenLlevarAPerfil(){
 		
 		RegistroController controladorRegistro = new RegistroController();
 		
