@@ -18,11 +18,12 @@ import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
+import ar.edu.grupoesfera.cursospring.modelo.SpringTest;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 
 
-public class TestBanda {
+public class TestBanda  extends SpringTest{
 	//TEST DEL CONTROLLER MISBANDAS
 	@Test
 	public void testQueAlPresionarEnMisBandasElControladorLoLLeveAMisBandas(){
@@ -59,35 +60,41 @@ public class TestBanda {
 	//TEST DEL CONTROLLER CREAR BANDA 
 	@Test
 	public void testDeQueAlCrearUnaBandaElControllerMeLLevaAlLanding(){
-		
+
 		
 		HttpServletRequest requestMock = mock(HttpServletRequest.class);
 		when(requestMock.getSession()).thenReturn(mock(HttpSession.class));
+		when((String)requestMock.getSession().getAttribute("username")).thenReturn("rodrigo1990");
 		 
 		
 		
 		
 		Banda banda = new Banda ();
+
+		banda.setNombre("Black Sabbath");
+		banda.setGenero("Rock");
 		
-		 banda.setNombre("Black Sabbath");
-		 banda.setGenero("Rock");
+		 
+		Usuario usuario = new Usuario ();
+
+		usuario.setNombre("rodrigo1990");
+		usuario.setEmail("mcd77.1990@gmail.com");
+		usuario.setBanda(banda);
+		usuario.setImagen("rodri.jpg");
+		usuario.setIdusuario(1);
+		usuario.setInfluencias("rock");
+		usuario.setInstrumento("bajista");
+		usuario.setPartido("moron");
+		usuario.setLocalidad("moron");
+		usuario.setPass("1990");
+		usuario.setProvincia("Buenos Aires");
 		
+		
+		
+		String nombreUsuario = "rodrigo1990";
 		 
-		 Usuario usuario = new Usuario ();
 		 
-		 usuario.setNombre("rodrigo1990");
-		 usuario.setEmail("mcd77.1990@gmail.com");
-		 usuario.setBanda(banda);
-		 usuario.setImagen("rodri.jpg");
-		 usuario.setIdusuario(1);
-		 usuario.setInfluencias("rock");
-		 usuario.setInstrumento("bajista");
-		 usuario.setPartido("moron");
-		 usuario.setLocalidad("moron");
-		 usuario.setPass("1990");
-		 usuario.setProvincia("Buenos Aires");
 		 
-		 String nombreUsuario=usuario.getNombre();
 		
 		PerfilService perfilServiceMock=mock(PerfilService.class);
 		when(perfilServiceMock.buscarPerfilUsuario(nombreUsuario)).thenReturn(usuario);

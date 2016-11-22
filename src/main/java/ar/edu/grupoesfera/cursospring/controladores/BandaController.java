@@ -39,13 +39,9 @@ public class BandaController {
 	public void setPerfilServiceMock(PerfilService perfilService) {
 		this.perfilService = perfilService;
 	}
-
-
-
 	public void setBandaServiceMock(BandaService bandaService) {
 		this.bandaService = bandaService;
-	}
-	
+	}	
 	public void setPublicacionServiceMock(PublicacionService publicacionService){
 		this.publicacionService=publicacionService;
 	}
@@ -89,17 +85,23 @@ public class BandaController {
 	public ModelAndView crearBanda(@ModelAttribute("banda") Banda banda, HttpServletRequest request){ 
 		
 			Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
-			String nombreUsuario=miUsuario.getNombre();
+			
+			String nombreUsuario = miUsuario.getNombre();
+			
+			bandaService.registrarBanda(banda,nombreUsuario);
+			
+			
 			ModelMap modelCrearBanda = new ModelMap();
 			modelCrearBanda.addAttribute("titulo","Banda registrada");
 			modelCrearBanda.addAttribute("subtitulo","Haz click en el link de abajo y comienza a disfrutar del increible mundo de Soundmate");
 			modelCrearBanda.addAttribute("inputValue","ir a banda");
 			modelCrearBanda.addAttribute("inputHref","banda/"+banda.getNombre());
-			modelCrearBanda.addAttribute("iconClass","fa fa-chevron-right");		
-			bandaService.registrarBanda(banda,nombreUsuario);
+			modelCrearBanda.addAttribute("iconClass","fa fa-chevron-right");
 			
 			return new ModelAndView("landing", modelCrearBanda);
 	}
+
+	
 	
 	@RequestMapping("/crear-banda")
 	public ModelAndView nuevaBanda(){
