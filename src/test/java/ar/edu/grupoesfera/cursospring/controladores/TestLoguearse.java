@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
-public class TestRegistrarse {
+public class TestLoguearse {
 
 	
 	@Test
