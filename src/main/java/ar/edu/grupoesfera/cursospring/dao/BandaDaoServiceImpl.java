@@ -21,12 +21,20 @@ public class BandaDaoServiceImpl implements BandaDaoService {
     private SessionFactory sessionFactory;
 	
 	@Override
-	public void crearNuevaBanda (Banda banda){
+	public void crearNuevaBanda (Banda banda,String nombreUsuario){
 		
 		final Session s = sessionFactory.openSession();
 		
 		s.save(banda);
 		
+		Usuario usuario =  (Usuario)sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre", nombreUsuario))
+				.uniqueResult();
+		
+		usuario.setBanda(banda);
+		
+		sessionFactory.getCurrentSession().update("Usuario",usuario);
 		
 		
 		return;
@@ -56,6 +64,22 @@ public class BandaDaoServiceImpl implements BandaDaoService {
 				.list();
 		
 		return miembros;
+	}
+	
+	@Override
+	public void aniadirABanda (String nombreUsuario,Banda banda){
+		
+		Usuario usuario =  (Usuario)sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre", nombreUsuario))
+				.uniqueResult();
+		
+		usuario.setBanda(banda);
+		
+		sessionFactory.getCurrentSession().update("Usuario",usuario);
+		
+		
+	return;
 	}
 
 }

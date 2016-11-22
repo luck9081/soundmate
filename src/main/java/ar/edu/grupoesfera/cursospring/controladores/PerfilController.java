@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.interfaces.BandaService;
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
@@ -61,6 +62,8 @@ public class PerfilController {
 	}
 	
 	/* ------ BUSCAR PERFIL PUBLICO O EDITAR PERFIL PROPIO ------ */
+	@Inject
+	public BandaService bandaservice;
 	
 	@RequestMapping("/perfil/{username}")
 	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario,HttpServletRequest request){
@@ -74,7 +77,11 @@ public class PerfilController {
 			perfil.addAttribute("reubicacion","../");
 			
 			return new ModelAndView("profileEdit",perfil);
+			
+			
+			
 		}
+	
 		else if(nombreUsuario.equals((String)request.getSession().getAttribute("username"))){
 			
 			return new ModelAndView("redirect:../perfil");

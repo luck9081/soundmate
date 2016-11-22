@@ -21,9 +21,9 @@ public class BandaServiceImpl implements BandaService {
 	public BandaDaoService bandaDAO;
 	
 	@Override
-	public void registrarBanda (Banda banda){
+	public void registrarBanda (Banda banda,String nombreUsuario){
 		
-		bandaDAO.crearNuevaBanda(banda);
+		bandaDAO.crearNuevaBanda(banda,nombreUsuario);
 		
 		return;
 	}
@@ -45,5 +45,17 @@ public class BandaServiceImpl implements BandaService {
 		
 		
 	}
+	
+
+	public void aniadirABanda(String nombreUsuario,Banda banda){
+		
+	 bandaDAO.aniadirABanda(nombreUsuario,banda);
+		
+		return;
+		
+		
+	}
+
+
 	
 }

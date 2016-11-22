@@ -34,7 +34,7 @@
 	      		
 	          <div class="row">
 	            <c:choose>
-					<c:when test="${banda.getNombre() == null}">
+					<c:when test="${banda == null}">
 						<div style="text-align:center" class="col-md-12"> 
 							<h2>Al parecer aún no sos miembro de ninguna banda :(</h2>
 							<h3>No pierdas más tiempo y armá la tuya acá!</h3> 

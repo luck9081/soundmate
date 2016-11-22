@@ -7,7 +7,12 @@ import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
 public interface BandaDaoService {
 
-	public void crearNuevaBanda (Banda banda);
+	public void crearNuevaBanda (Banda banda,String nombreUsuario);
+	
 	public Banda consultarBandas(String nombre);
+	
 	public List<Usuario> consultarMiembros(Banda banda);
+	
+	public void aniadirABanda(String nombreUsuario, Banda banda);
+	
 }

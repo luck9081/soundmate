@@ -28,6 +28,13 @@ public class BandaController {
 	@Inject
 	public PerfilService perfilService;
 	
+	@Inject
+	public BandaService bandaService;
+	
+	@Inject
+	public PublicacionService publicacionService;
+	
+	
 	@RequestMapping(path="/banda/{nombreBanda}")
 	public ModelAndView perfilUser(@PathVariable("nombreBanda") String nombreBanda, HttpServletRequest request){
 		
@@ -50,8 +57,6 @@ public class BandaController {
 		return new ModelAndView("banda",perfilBanda);
 	}
 	
-	@Inject BandaService bandaService;
-	
 	@RequestMapping(path="/mis-bandas")
 	public ModelAndView misbandas(HttpServletRequest request){
 		
@@ -65,15 +70,17 @@ public class BandaController {
 	
 	
 	@RequestMapping(path="/registrarBanda", method = RequestMethod.POST)
-	public ModelAndView crearBanda(@ModelAttribute("banda") Banda banda){ 
-			
+	public ModelAndView crearBanda(@ModelAttribute("banda") Banda banda, HttpServletRequest request){ 
+		
+			Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+			String nombreUsuario=miUsuario.getNombre();
 			ModelMap modelCrearBanda = new ModelMap();
 			modelCrearBanda.addAttribute("titulo","Banda registrada");
 			modelCrearBanda.addAttribute("subtitulo","Haz click en el link de abajo y comienza a disfrutar del increible mundo de Soundmate");
 			modelCrearBanda.addAttribute("inputValue","ir a banda");
 			modelCrearBanda.addAttribute("inputHref","banda/"+banda.getNombre());
 			modelCrearBanda.addAttribute("iconClass","fa fa-chevron-right");		
-			bandaService.registrarBanda(banda);
+			bandaService.registrarBanda(banda,nombreUsuario);
 			
 			return new ModelAndView("landing", modelCrearBanda);
 	}
@@ -87,13 +94,47 @@ public class BandaController {
 	}
 	
 	
-	@Inject
-	public PublicacionService publicacionService;
-	
 	@RequestMapping(path="/postear/{nombreBanda}" , method = RequestMethod.POST)
 	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") Publicacion publicacion, HttpServletRequest request, @PathVariable("nombreBanda") String nombreBanda){
 		publicacionService.crearPublicacion(publicacion,(String)request.getSession().getAttribute("username"));
 		return new ModelAndView("redirect:/banda/"+nombreBanda);
 	}
 	
+	@RequestMapping("perfil/sumarABanda/{username}")
+	public ModelAndView sumarABanda(@PathVariable("username") String nombreUsuario,HttpServletRequest request){
+	
+		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+		Banda banda = miUsuario.getBanda();
+			if(banda==null){//Si el usuario logueado no tiene banda mostrar mensaje en lading y dirigir a crear banda
+				
+			
+				ModelMap resultado = new ModelMap();
+				resultado.addAttribute("title","Aniadir a banda ");
+				resultado.addAttribute("titulo","Ups. Todavia no has creado una banda ");
+				resultado.addAttribute("subtitulo","Procura crear una para aniadir a tus Soundmates");
+				resultado.addAttribute("inputValue","Ir a crear banda");
+				resultado.addAttribute("inputHref","../../crear-banda");
+				resultado.addAttribute("iconClass","fa fa-chevron-left");
+				resultado.addAttribute("reubicacion","../../");
+				
+				
+				return new ModelAndView("landing",resultado);
+			}
+			else{//Si el usuario logueado tiene una banda aniade al usuario visitado a su propia banda
+				bandaService.aniadirABanda(nombreUsuario, banda);
+		
+		ModelMap resultado2 = new ModelMap();
+		resultado2.addAttribute("title","Aniadir a banda ");
+		resultado2.addAttribute("titulo","Genial, has aniadido un nuevo Soundmate a tu banda ");
+		resultado2.addAttribute("subtitulo","Sigue navegando y formando nuevas bandas");
+		resultado2.addAttribute("inputValue","Ir a mis bandas");
+		resultado2.addAttribute("inputHref","../../mis-bandas");
+		resultado2.addAttribute("iconClass","fa fa-chevron-left");
+		resultado2.addAttribute("reubicacion","../../");
+		
+		
+		return new ModelAndView("landing",resultado2);
+
+	}
+}
 }
