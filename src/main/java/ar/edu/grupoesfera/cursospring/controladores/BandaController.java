@@ -35,6 +35,22 @@ public class BandaController {
 	public PublicacionService publicacionService;
 	
 	
+	//SETTERS PARA SERVICIOS MOCK
+	public void setPerfilServiceMock(PerfilService perfilService) {
+		this.perfilService = perfilService;
+	}
+
+
+
+	public void setBandaServiceMock(BandaService bandaService) {
+		this.bandaService = bandaService;
+	}
+	
+	public void setPublicacionServiceMock(PublicacionService publicacionService){
+		this.publicacionService=publicacionService;
+	}
+	
+	
 	@RequestMapping(path="/banda/{nombreBanda}")
 	public ModelAndView perfilUser(@PathVariable("nombreBanda") String nombreBanda, HttpServletRequest request){
 		
