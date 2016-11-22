@@ -26,8 +26,8 @@ public class RegistroController {
 	
 	
 	// Metodo que permite setear el atributo registroService para mockearlo.
-	public void setRegistroServiceMock (RegistroService servicioRegistroMock){
-		this.registroService = servicioRegistroMock;
+	public void setRegistroServiceMock (RegistroService servicioRegistro){
+		this.registroService = servicioRegistro;
 	}
 	
 	
@@ -98,7 +98,7 @@ public class RegistroController {
 				request.getSession().setAttribute("partido", resultado.getPartido());
 				request.getSession().setAttribute("provincia", resultado.getProvincia());
 				
-				if(resultado.getBanda() != null){
+				if(resultado.getBanda().getId() != null){
 					request.getSession().setAttribute("banda", resultado.getBanda().getId());
 				}
 				
