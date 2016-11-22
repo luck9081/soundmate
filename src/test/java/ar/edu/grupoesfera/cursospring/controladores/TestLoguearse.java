@@ -59,7 +59,7 @@ public class TestLoguearse {
 		
 		
 		
-		ModelAndView resultado = controlador.crearUsuario(usuario,requestMock);
+		ModelAndView resultado = controlador.ingresoUsuario(usuario,requestMock);
 		
 
 
