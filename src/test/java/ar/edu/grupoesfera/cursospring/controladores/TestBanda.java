@@ -199,6 +199,117 @@ public class TestBanda  extends SpringTest{
 	}
 
 
+	//CONTROLLER SUMAR A BANDA SI EL USUARIO LOGUEADO TIENE BANDA
+	@Test
+	public void testDeQueAlApretarEnAniadirABandaSiElUsuarioLogeadoTieneUnaLoLLeveAlLanding(){
+		
+	HttpServletRequest requestMock = mock(HttpServletRequest.class);
+	when(requestMock.getSession()).thenReturn(mock(HttpSession.class));
+	when(requestMock.getSession().getAttribute("username")).thenReturn("rodrigo1990");
+	
+	
+	Usuario usuarioSumado = new Usuario();
+	usuarioSumado.setNombre("Martin");
+	String nombreUsuarioSumado=usuarioSumado.getNombre();
+	
+	
+	
+	Banda banda = new Banda();
+	
+	 banda.setNombre("Black Sabbath");
+	 banda.setGenero("Rock");
+	 banda.setId(1);
+	
+	Usuario usuarioLogueado = new Usuario();
+	
+	 usuarioLogueado.setNombre("rodrigo1990");
+	 usuarioLogueado.setEmail("mcd77.1990@gmail.com");
+	 usuarioLogueado.setBanda(banda);
+	 usuarioLogueado.setImagen("rodri.jpg");
+	 usuarioLogueado.setIdusuario(1);
+	 usuarioLogueado.setInfluencias("rock");
+	 usuarioLogueado.setInstrumento("bajista");
+	 usuarioLogueado.setPartido("moron");
+	 usuarioLogueado.setLocalidad("moron");
+	 usuarioLogueado.setPass("1990");
+	 usuarioLogueado.setProvincia("Buenos Aires");
+	 
+	 String nombreUsuarioLogueado = usuarioLogueado.getNombre();
+	 
+	 PerfilService perfilServiceMock = mock(PerfilService.class);
+	 when(perfilServiceMock.buscarPerfilUsuario(nombreUsuarioLogueado)).thenReturn(usuarioLogueado);
+	 
+	 BandaService bandaServiceMock=mock(BandaService.class);
+	doNothing().when(bandaServiceMock).aniadirABanda(nombreUsuarioSumado, banda);
+	
+	BandaController controller = new BandaController();
+	
+	controller.setBandaServiceMock(bandaServiceMock);
+	controller.setPerfilServiceMock(perfilServiceMock);
+	
+	ModelAndView mav = new ModelAndView();
+	
+	mav=controller.sumarABanda(nombreUsuarioSumado, requestMock);
+	
+	assertThat(mav.getViewName()).isEqualTo("landing");
+	
+	
+	
+}
+
+	//CONTROLLER SUMAR A BANDA SI EL USUARIO LOGUEADO NO TIENE BANDA
+		@Test
+		public void testDeQueAlApretarEnAniadirABandaSiElUsuarioLogeadoNoTieneUnaLoLLeveAlLanding(){
+			
+		HttpServletRequest requestMock = mock(HttpServletRequest.class);
+		when(requestMock.getSession()).thenReturn(mock(HttpSession.class));
+		when(requestMock.getSession().getAttribute("username")).thenReturn("rodrigo1990");
+		
+		
+		Usuario usuarioSumado = new Usuario();
+		usuarioSumado.setNombre("Martin");
+		String nombreUsuarioSumado=usuarioSumado.getNombre();
+		
+		
+		
+		Banda banda = null;
+		
+		Usuario usuarioLogueado = new Usuario();
+		
+		 usuarioLogueado.setNombre("rodrigo1990");
+		 usuarioLogueado.setEmail("mcd77.1990@gmail.com");
+		 usuarioLogueado.setBanda(banda);
+		 usuarioLogueado.setImagen("rodri.jpg");
+		 usuarioLogueado.setIdusuario(1);
+		 usuarioLogueado.setInfluencias("rock");
+		 usuarioLogueado.setInstrumento("bajista");
+		 usuarioLogueado.setPartido("moron");
+		 usuarioLogueado.setLocalidad("moron");
+		 usuarioLogueado.setPass("1990");
+		 usuarioLogueado.setProvincia("Buenos Aires");
+		 
+		 String nombreUsuarioLogueado = usuarioLogueado.getNombre();
+		 
+		 PerfilService perfilServiceMock = mock(PerfilService.class);
+		 when(perfilServiceMock.buscarPerfilUsuario(nombreUsuarioLogueado)).thenReturn(usuarioLogueado);
+		 
+		 BandaService bandaServiceMock=mock(BandaService.class);
+		doNothing().when(bandaServiceMock).aniadirABanda(nombreUsuarioSumado, banda);
+		
+		BandaController controller = new BandaController();
+		
+		controller.setBandaServiceMock(bandaServiceMock);
+		controller.setPerfilServiceMock(perfilServiceMock);
+		
+		ModelAndView mav = new ModelAndView();
+		
+		mav=controller.sumarABanda(nombreUsuarioSumado, requestMock);
+		
+		assertThat(mav.getViewName()).isEqualTo("landing");
+		
+		
+		
+	}
 
 
 	

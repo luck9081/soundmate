@@ -21,7 +21,6 @@ public class BandaDaoTest extends SpringTest {
 	@Test @Rollback @Transactional
 	public void testConsultarBandaDevuelveBandaExistente(){
 		
-		bandaDaoService.setSessionFactoryMock(sessionFactory);
 		
 		Banda banda = new Banda();
 		
@@ -56,6 +55,46 @@ public class BandaDaoTest extends SpringTest {
 		Banda bandaResultado = bandaDaoService.consultarBandas("username");
 		
 		assertThat(banda).isEqualTo(bandaResultado);
+	}
+	
+	
+	@Test
+	@Rollback @Transactional
+	public void testCrearBandaYConsultarBanda(){
+		
+		Banda banda = new Banda();
+		
+		banda.setNombre("metallica");
+		banda.setGenero("rock");
+		//banda.setId(1);
+		
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("bajo");
+		usuario.setLocalidad("San Justo");
+		usuario.setPartido("La Matanza");
+		usuario.setProvincia("Buenos Aires");
+		usuario.setImagen("img");
+		usuario.setInfluencias("banda");
+		//usuario.setBanda(banda);
+		
+		getSession().save(usuario);
+		
+		String nombreUsuario = usuario.getNombre();
+		
+		bandaDaoService.crearNuevaBanda(banda, nombreUsuario);
+		
+		Banda bandaResultado = bandaDaoService.consultarBandas(nombreUsuario);
+		
+		assertThat(banda).isEqualTo(bandaResultado);
+
+		
+		
 	}
 	
 
