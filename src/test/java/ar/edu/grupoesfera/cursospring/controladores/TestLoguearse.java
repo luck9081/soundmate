@@ -81,20 +81,7 @@ public class TestLoguearse {
 		
 		usuario.setNombre("luck");
 		usuario.setPass("pass");
-		
-		
-		
-		Usuario usuarioResultado = new Usuario();
-		
-		usuario.setIdusuario(1);
-		usuario.setNombre("luck");
-		usuario.setPass("pass");
-		usuario.setEmail("luck@hotmail.com");
-		usuario.setInstrumento("guitarra");
-		usuario.setImagen("asd");
-		usuario.setLocalidad("asd");
-		usuario.setPartido("ads");
-		usuario.setProvincia("asd");
+
 		
 		
 		

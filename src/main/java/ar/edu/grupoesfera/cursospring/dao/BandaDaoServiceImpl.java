@@ -21,6 +21,12 @@ public class BandaDaoServiceImpl implements BandaDaoService {
     private SessionFactory sessionFactory;
 	
 	@Override
+	// Metodo que permite setear el atributo sessionFactory para mockearlo.
+	public void setSessionFactoryMock (SessionFactory sessionFactoryMock){
+		this.sessionFactory = sessionFactoryMock;
+	}
+		
+	@Override
 	public void crearNuevaBanda (Banda banda,String nombreUsuario){
 		
 		final Session s = sessionFactory.openSession();
