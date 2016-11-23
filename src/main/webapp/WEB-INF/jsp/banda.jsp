@@ -72,36 +72,54 @@
 				  		<h4>Escribinos!</h4>
                			<hr style="margin:0; padding:0;">
                			
-               			<!-- form para publicar comments en el muro -->
-	
-						<div class="card card-nav-tabs">
-							<div class="header header-primary" style="height:auto">
-								<div class="nav-tabs-navigation">
-									<div class="nav-tabs-wrapper">
-										<ul class="nav nav-tabs" data-tabs="tabs">
-											<li class="active">
-												<a href="#publicacion" data-toggle="tab">
-													<i class="material-icons">chat</i>
-													Publicacion
-												</a>
-											</li>
-										</ul>
+               			<c:choose>
+							<c:when test="${sessionScope.username != null}">
+               			
+	               			<!-- form para publicar comments en el muro -->
+		
+							<div class="card card-nav-tabs">
+								<div class="header header-primary" style="height:auto">
+									<div class="nav-tabs-navigation">
+										<div class="nav-tabs-wrapper">
+											<ul class="nav nav-tabs" data-tabs="tabs">
+												<li class="active">
+													<a href="#publicacion" data-toggle="tab">
+														<i class="material-icons">chat</i>
+														Publicacion
+													</a>
+												</li>
+												<li>
+													<a href="#video" data-toggle="tab">
+														<i class="material-icons">videocam</i>
+														Video
+													</a>
+												</li>
+											</ul>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="content">
-								<div class="tab-content text-center">
-									<div class="tab-pane active" id="publicacion">
-										<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
-					           				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
-					           				<form:button type="submit" style="float:right" class="btn btn-primary btn-raised">
-					           					Publicar
-					           				</form:button>
-					           			</form:form>
+								<div class="content">
+									<div class="tab-content text-center">
+										<div class="tab-pane active" id="publicacion">
+											<form:form id="publicacion" modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
+						           				<form:textarea path="descripcion" class="form-control" placeholder="Escribi acá tu publicacion..." rows="5" />
+						           				<form:button type="submit" style="float:right" class="btn btn-primary btn-raised">
+						           					Publicar
+						           				</form:button>
+						           			</form:form>
+										</div>
+										<div class="tab-pane" id="video">
+											<form:form modelAttribute="publicar" method="POST" action="../postear/${banda.getNombre()}">
+												<form:input path="video" class="form-control" type="text" placeholder="Ingresa la URL del video"/>
+												<form:button type="submit"  style="float:right" class="btn btn-primary btn-raised">Publicar</form:button>
+											</form:form>
+										</div>
 									</div>
 								</div>
-							</div>
-						</div>	
+							</div>	
+							
+							</c:when>
+						</c:choose>
             	  	</div>
             	  </div>
                	  <div class="col-md-12">
@@ -116,7 +134,14 @@
 								</div>
 								<div class="col-md-11">
 									<p>Publicado por <a href="${reubicacion}perfil/${item.usuario.getNombre()}"><span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span></a> el <c:out value="${item.fechaPublicacion}"/></p>
-									<p><c:out value="${item.descripcion}"/></p>
+									<c:choose>
+										<c:when test="${item.descripcion == null}">
+											<iframe type="text/html" width="640" height="360" src="https://www.youtube.com/embed/<c:out value="${item.video}"/>" frameborder="0" allowfullscreen></iframe>
+										</c:when>
+										<c:otherwise>
+											<p><c:out value="${item.descripcion}"/></p>
+										</c:otherwise>
+									</c:choose>
 								</div>
 							</div>
 						</c:forEach>

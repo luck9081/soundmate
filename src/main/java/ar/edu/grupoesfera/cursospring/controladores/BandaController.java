@@ -114,7 +114,7 @@ public class BandaController {
 	
 	@RequestMapping(path="/postear/{nombreBanda}" , method = RequestMethod.POST)
 	public ModelAndView nuevaPublicacion(@ModelAttribute("publicar") Publicacion publicacion, HttpServletRequest request, @PathVariable("nombreBanda") String nombreBanda){
-		publicacionService.crearPublicacion(publicacion,(String)request.getSession().getAttribute("username"));
+		publicacionService.crearPublicacion(publicacion,(String)request.getSession().getAttribute("username"), nombreBanda);
 		return new ModelAndView("redirect:/banda/"+nombreBanda);
 	}
 	
@@ -142,8 +142,8 @@ public class BandaController {
 				bandaService.aniadirABanda(nombreUsuario, banda);
 		
 		ModelMap resultado2 = new ModelMap();
-		resultado2.addAttribute("title","Aniadir a banda ");
-		resultado2.addAttribute("titulo","Genial, has aniadido un nuevo Soundmate a tu banda ");
+		resultado2.addAttribute("title","Agregar a banda ");
+		resultado2.addAttribute("titulo","Genial, has agregado un nuevo Soundmate a tu banda ");
 		resultado2.addAttribute("subtitulo","Sigue navegando y formando nuevas bandas");
 		resultado2.addAttribute("inputValue","Ir a mis bandas");
 		resultado2.addAttribute("inputHref","../../mis-bandas");

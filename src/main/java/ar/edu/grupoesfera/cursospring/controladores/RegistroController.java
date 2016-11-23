@@ -94,9 +94,6 @@ public class RegistroController {
 			if(resultado != null){
 				
 				request.getSession().setAttribute("username", resultado.getNombre());
-				request.getSession().setAttribute("localidad", resultado.getLocalidad());
-				request.getSession().setAttribute("partido", resultado.getPartido());
-				request.getSession().setAttribute("provincia", resultado.getProvincia());
 				request.getSession().setAttribute("imagen", resultado.getImagen());
 				
 				if(resultado.getBanda() != null){

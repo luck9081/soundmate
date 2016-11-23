@@ -15,4 +15,6 @@ public interface BandaService {
 	
 	public void aniadirABanda(String nombreUsuario,Banda banda);
 	
+	public void eliminarUsuarioDeBanda (String nombreUsuario);
+	
 }

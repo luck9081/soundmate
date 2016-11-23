@@ -1,6 +1,8 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -49,12 +51,21 @@ public class Usuario {
 	@Column
 	private String imagen;
 	
+	@Column
+	private Date fechaNacimiento;
+	
 	@ManyToOne
 	@JoinColumn(name="bandaFK")
 	@Cascade(value = CascadeType.ALL)
 	private Banda banda;
 	
 	
+	public Date getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+	public void setFechaNacimiento(Date fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
 	public String getImagen() {
 		return imagen;
 	}

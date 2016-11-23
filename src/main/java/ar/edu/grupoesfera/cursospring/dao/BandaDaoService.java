@@ -19,4 +19,6 @@ public interface BandaDaoService {
 	
 	public void setSessionFactoryMock (SessionFactory sessionFactoryMock);
 	
+	public void eliminarUsuarioDeBanda (String nombreUsuario);
+	
 }

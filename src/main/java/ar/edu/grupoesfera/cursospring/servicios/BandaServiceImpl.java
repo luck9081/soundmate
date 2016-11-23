@@ -55,6 +55,14 @@ public class BandaServiceImpl implements BandaService {
 		
 		
 	}
+	
+	@Override
+	public void eliminarUsuarioDeBanda (String nombreUsuario){
+		
+		bandaDAO.eliminarUsuarioDeBanda(nombreUsuario);
+		
+		return;
+	}
 
 
 	

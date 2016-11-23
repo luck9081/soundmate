@@ -96,7 +96,7 @@
 			                    <span class="input-group-addon">
 			                      <i class="material-icons" style="font-size:25px;">date_range</i>
 			                    </span>
-			                    <input class="datepicker form-control" value="" placeholder="Ingresa tu fecha de nacimiento" />
+			                    <form:input path="fechaNacimiento" class="datepicker form-control" value="${usuario.getFechaNacimiento()}" placeholder="Ingresa tu fecha de nacimiento" />
 			                </div>
 	                  		
 	                  	</div>

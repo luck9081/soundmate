@@ -115,6 +115,11 @@ public class PerfilController {
 						perfil.addAttribute("mismaBanda",true);
 						
 					}
+					else{
+						
+						perfil.addAttribute("mismaBanda",false);
+						
+					}
 				}
 				
 				return new ModelAndView("profile",perfil);
@@ -144,9 +149,6 @@ public class PerfilController {
 		
 		if(usuarioEditado.getNombre().equals(usuario.getNombre())){
 			request.getSession().setAttribute("username", usuarioEditado.getNombre());
-			request.getSession().setAttribute("localidad", usuarioEditado.getLocalidad());
-			request.getSession().setAttribute("partido", usuarioEditado.getPartido());
-			request.getSession().setAttribute("provincia", usuarioEditado.getProvincia());
 			
 			resultado.addAttribute("title","Perfil");
 			resultado.addAttribute("titulo","Se ha modificado tu perfil");

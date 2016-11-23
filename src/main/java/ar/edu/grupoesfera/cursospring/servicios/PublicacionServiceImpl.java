@@ -19,9 +19,13 @@ public class PublicacionServiceImpl implements PublicacionService {
 	@Inject PublicacionDao publicacionDao;
 	
 	@Override
-	public void crearPublicacion (Publicacion publicacion, String username){
+	public void crearPublicacion (Publicacion publicacion, String username, String nombreBanda){
 		
-		publicacionDao.crearPublicacion(publicacion, username);
+		if(publicacion.getVideo() != null){
+			publicacion.setVideo((publicacion.getVideo().substring(32)));
+		}
+		
+		publicacionDao.crearPublicacion(publicacion, username, nombreBanda);
 		
 	}
 	

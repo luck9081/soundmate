@@ -23,6 +23,9 @@ public class Publicacion {
 	private String descripcion;
 	
 	@Column
+	private String video;
+	
+	@Column
 	private Date fechaPublicacion;
 	
 	@ManyToOne
@@ -35,6 +38,14 @@ public class Publicacion {
 	@Cascade(value = CascadeType.ALL)
 	private Banda banda;
 	
+
+	public String getVideo() {
+		return video;
+	}
+
+	public void setVideo(String video) {
+		this.video = video;
+	}
 
 	public Integer getId() {
 		return id;

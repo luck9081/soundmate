@@ -87,5 +87,19 @@ public class BandaDaoServiceImpl implements BandaDaoService {
 		
 	return;
 	}
-
+	
+	@Override
+	public void eliminarUsuarioDeBanda (String nombreUsuario){
+		
+		Usuario usuario = (Usuario)sessionFactory.getCurrentSession()
+				.createCriteria(Usuario.class)
+				.add(Restrictions.eq("nombre", nombreUsuario))
+				.uniqueResult();
+		
+		usuario.setBanda(null);
+		
+		sessionFactory.getCurrentSession().update("usuario", usuario);
+		
+		return;
+	}
 }

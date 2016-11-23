@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 
+import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.Publicacion;
 import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
@@ -20,15 +21,20 @@ public class PublicacionDaoImpl implements PublicacionDao {
     private SessionFactory sessionFactory;
 	
 	@Override
-	public void crearPublicacion (Publicacion publicacion, String username){
+	public void crearPublicacion (Publicacion publicacion, String username, String nombreBanda){
 		
 		Usuario usuario =  (Usuario)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
 				.add(Restrictions.eq("nombre", username))
 				.uniqueResult();
 		
+		Banda banda = (Banda)sessionFactory.getCurrentSession()
+				.createCriteria(Banda.class)
+				.add(Restrictions.eq("nombre", nombreBanda))
+				.uniqueResult();
+		
 		publicacion.setUsuario(usuario);
-		publicacion.setBanda(usuario.getBanda());
+		publicacion.setBanda(banda);
 		
 		final Session s = sessionFactory.openSession();
 		
