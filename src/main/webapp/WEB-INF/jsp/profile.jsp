@@ -75,7 +75,7 @@
 						        
 						        <c:choose>
 									<c:when test="${!mismaBanda}">
-										<a href="sumarABanda/${usuario.getNombre()}" style="float:left" class="btn btn-primary btn-raised">Añadir a Banda</a>
+										<a href="sumarABanda/${usuario.getNombre()}" style="float:left" class="btn btn-primary btn-raised">Agregar a Banda</a>
 									</c:when>
 								</c:choose>
 								
