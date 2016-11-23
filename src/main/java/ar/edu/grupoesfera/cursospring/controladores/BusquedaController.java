@@ -19,6 +19,11 @@ import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 @Controller
 public class BusquedaController {
 	
+	//Setter para servicio mockeado en testeos
+	public void setBusquedaServiceMock(BusquedaService busquedaServiceMock) {
+		this.busquedaService=busquedaServiceMock;
+}
+	
 	@Inject
 	public BusquedaService busquedaService;	// Añado la interface como atributo del controlador
 	
@@ -60,5 +65,7 @@ public class BusquedaController {
 			return new ModelAndView("landing",resultado);
 		}
 	}
+
+	
 	
 }
