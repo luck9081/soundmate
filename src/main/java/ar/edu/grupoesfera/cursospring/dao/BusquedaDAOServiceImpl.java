@@ -106,6 +106,31 @@ public class BusquedaDAOServiceImpl implements BusquedaDAOService{
 					.list()
 		);
 		
+		resultadoFinal.addAll(
+				(List<Usuario>)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.not(Restrictions.eq("nombre",nombre)),
+									Restrictions.not(Restrictions.eq("localidad",busqueda.getLocalidad())),
+									Restrictions.not(Restrictions.eq("partido",busqueda.getPartido())),
+									Restrictions.not(Restrictions.eq("provincia",busqueda.getPartido())),
+									Restrictions.eq("instrumento",busqueda.getInstrumento().toLowerCase())
+							)
+					)
+					
+					.setProjection(Projections.projectionList()
+							.add(Projections.property("idusuario"),"idusuario")
+							.add(Projections.property("nombre"),"nombre")
+							.add(Projections.property("instrumento"),"instrumento")
+							.add(Projections.property("localidad"),"localidad")
+							.add(Projections.property("partido"),"partido")
+							.add(Projections.property("provincia"),"provincia")
+					)
+					.setResultTransformer(Transformers.aliasToBean(Usuario.class))
+					.list()
+		);
+		
 		return resultadoFinal;
 	}
 	
