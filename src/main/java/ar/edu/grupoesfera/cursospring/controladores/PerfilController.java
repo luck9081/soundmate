@@ -30,9 +30,25 @@ public class PerfilController {
 	@Inject
 	public PublicacionService publicacionService;
 	
+	@Inject
+	public BandaService bandaservice;
+	
+	//Setters para mockear en testeos
+	public void setPerfilServiceMock(PerfilService perfilServiceMock) {
+		this.perfilService = perfilServiceMock;
+	}
+
+	public void setPublicacionServiceMock(PublicacionService publicacionServiceMock) {
+		this.publicacionService = publicacionServiceMock;
+	}
+
+	public void setBandaserviceMock(BandaService bandaserviceMock) {
+		this.bandaservice = bandaserviceMock;
+	}
 	
 	/* ------ MOSTRAR PERFIL PROPIO ------ */
-	
+
+
 	@RequestMapping("/perfil")
 	public ModelAndView perfil(HttpServletRequest request) {
 		
@@ -62,8 +78,7 @@ public class PerfilController {
 	}
 	
 	/* ------ BUSCAR PERFIL PUBLICO O EDITAR PERFIL PROPIO ------ */
-	@Inject
-	public BandaService bandaservice;
+	
 	
 	@RequestMapping("/perfil/{username}")
 	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario,HttpServletRequest request){

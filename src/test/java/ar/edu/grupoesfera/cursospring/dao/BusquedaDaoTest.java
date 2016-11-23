@@ -70,5 +70,129 @@ public class BusquedaDaoTest extends SpringTest {
 		assertThat(listaUsuario).isNotEmpty();
 		assertThat(listaUsuario).hasSize(1);
 	}
+	
+	//TEST BUSCAR POR NOMBRE O POR EMAIL
+	@Test
+	@Rollback @Transactional
+	public void testBuscarPorPorEmail(){
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("guitarra");
+		usuario.setLocalidad("Moron");
+		usuario.setPartido("Ituzaingo");
+		usuario.setProvincia("Salta");
+		usuario.setImagen("img");
+		usuario.setInfluencias("banda");
+		
+		getSession().save(usuario);
+		
+		List<Usuario> listaDeUsuarios;
+		
+		listaDeUsuarios=busquedaDaoService.buscarUsuariosPorNombreOEmail("pepito", "mail@user.com");
+		
+		assertThat(listaDeUsuarios).isNotEmpty();
+		assertThat(listaDeUsuarios).hasSize(1);
+		
+		
+		
+	}
+	
+	//TEST BUSCAR POR NOMBRE O POR EMAIL
+	@Test
+	@Rollback @Transactional
+	public void testBuscarPorNombre(){
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("guitarra");
+		usuario.setLocalidad("Moron");
+		usuario.setPartido("Ituzaingo");
+		usuario.setProvincia("Salta");
+		usuario.setImagen("img");
+		usuario.setInfluencias("banda");
+		
+		getSession().save(usuario);
+		
+		List<Usuario> listaDeUsuarios;
+		
+		listaDeUsuarios=busquedaDaoService.buscarUsuariosPorNombreOEmail("username", "Wrongmail@user.com");
+		
+		assertThat(listaDeUsuarios).isNotEmpty();
+		assertThat(listaDeUsuarios).hasSize(1);
+		
+		
+	}
+	
+	//TEST BUSCAR POR NOMBRE O POR EMAIL
+	@Test
+	@Rollback @Transactional
+	public void testBuscarPorNombreYContraseniaSiEsQueNoHayUnUsuarioConLasCaracteristicasBuscadas(){
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("guitarra");
+		usuario.setLocalidad("Moron");
+		usuario.setPartido("Ituzaingo");
+		usuario.setProvincia("Salta");
+		usuario.setImagen("img");
+		usuario.setInfluencias("banda");
+		
+		getSession().save(usuario);
+		
+		List<Usuario> listaDeUsuarios;
+		
+		listaDeUsuarios=busquedaDaoService.buscarUsuariosPorNombreOEmail("wrongNombre", "Wrongmail@user.com");
+		
+		assertThat(listaDeUsuarios).isEmpty();
+		
+		
+	}
+	
+	@Test
+	@Rollback @Transactional
+	public void testBuscarUsuariosPorNombreYContrasenia(){
+		
+		Usuario usuario = new Usuario();
+		
+		usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("guitarra");
+		usuario.setLocalidad("Moron");
+		usuario.setPartido("Ituzaingo");
+		usuario.setProvincia("Salta");
+		usuario.setImagen("img");
+		usuario.setInfluencias("banda");
+		
+		getSession().save(usuario);
+		
+		Usuario usuarioResultado;
+		//busco por nombre y contrasenia
+		usuarioResultado=busquedaDaoService.buscarUsuariosPorNombreYContrasenia("username","hola");
+		
+		assertThat(usuarioResultado).isEqualTo(usuario);
+		//Testeo los resultados nada mas coincidiendo la  contrasenia
+		usuarioResultado=busquedaDaoService.buscarUsuariosPorNombreYContrasenia("pepe","hola");
+		
+		assertThat(usuarioResultado).isNotEqualTo(usuario);
+		//Testeos los resutlados  nada mas coinciendo el nombre 
+		usuarioResultado=busquedaDaoService.buscarUsuariosPorNombreYContrasenia("username","chau");
+		
+		assertThat(usuarioResultado).isNotEqualTo(usuario);
+	}
 
 }

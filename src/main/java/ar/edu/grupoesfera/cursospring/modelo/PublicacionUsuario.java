@@ -29,6 +29,10 @@ public class PublicacionUsuario {
 	private Date fechaPublicacion;
 	
 
+	public void setFechaPublicacion(Date fechaPublicacion) {
+		this.fechaPublicacion = fechaPublicacion;
+	}
+
 	@ManyToOne
 	@JoinColumn(name="idusuariocreador")
 	@Cascade(value = CascadeType.ALL)
