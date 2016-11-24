@@ -46,21 +46,19 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 	}
 	
 	@Override
-	public Usuario editarPerfil (Usuario usuarioEditado,String nombreUsuario){
+	public String editarPerfil (Usuario usuarioEditado,String nombreUsuarioActual, String emailActual){
 		
 		Usuario usuario = new Usuario();
 		
-		if(usuarioEditado.getNombre().equals(nombreUsuario)){
+		if(usuarioEditado.getNombre().equals(nombreUsuarioActual) && usuarioEditado.getEmail().equals(emailActual)){
 			usuario = (Usuario)sessionFactory.getCurrentSession()
 					.createCriteria(Usuario.class)
 					.add(
-							Restrictions.eq("nombre",nombreUsuario)
+							Restrictions.and(
+									Restrictions.eq("nombre",nombreUsuarioActual),
+									Restrictions.eq("email",emailActual)
+							)							
 						)
-					.uniqueResult();
-			
-			usuario = (Usuario)sessionFactory.getCurrentSession()
-					.createCriteria(Usuario.class)
-					.add(Restrictions.eq("nombre",nombreUsuario))
 					.uniqueResult();
 			
 			usuario.setNombre(usuarioEditado.getNombre());
@@ -76,25 +74,117 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 			
 			sessionFactory.getCurrentSession().update("Usuario", usuario);
 			
-			return usuario;
+			return "success";
+		}
+		
+		else if(usuarioEditado.getNombre().equals(nombreUsuarioActual) && !usuarioEditado.getEmail().equals(emailActual)){
+			usuario = (Usuario)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.eq("email",usuarioEditado.getEmail()),
+									Restrictions.not(Restrictions.eq("nombre", nombreUsuarioActual))
+							)						
+						)
+					.uniqueResult();
+			
+			if(usuario == null){
+				
+				usuario = new Usuario();
+				
+				usuario = (Usuario)sessionFactory.getCurrentSession()
+						.createCriteria(Usuario.class)
+						.add(
+								Restrictions.and(
+										Restrictions.eq("nombre",usuarioEditado.getNombre()),
+										Restrictions.eq("email",emailActual)
+								)							
+							)
+						.uniqueResult();
+				
+				usuario.setNombre(usuarioEditado.getNombre());
+				usuario.setPass(usuarioEditado.getPass());
+				usuario.setEmail(usuarioEditado.getEmail());
+				usuario.setInstrumento(usuarioEditado.getInstrumento());
+				usuario.setLocalidad(usuarioEditado.getLocalidad());
+				usuario.setPartido(usuarioEditado.getPartido());
+				usuario.setProvincia(usuarioEditado.getProvincia());
+				usuario.setInfluencias(usuarioEditado.getInfluencias());
+				usuario.setImagen(usuario.getImagen());
+				usuario.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
+				
+				sessionFactory.getCurrentSession().update("Usuario", usuario);
+				
+				return "success";
+			}
+			else{
+				return "fail";
+			}
+			
+		}
+		
+		else if(!usuarioEditado.getNombre().equals(nombreUsuarioActual) && usuarioEditado.getEmail().equals(emailActual)){
+			usuario = (Usuario)sessionFactory.getCurrentSession()
+					.createCriteria(Usuario.class)
+					.add(
+							Restrictions.and(
+									Restrictions.eq("nombre",usuarioEditado.getNombre()),
+									Restrictions.not(Restrictions.eq("email", emailActual))
+							)
+						)
+					.uniqueResult();
+			
+			if(usuario == null){
+				usuario = new Usuario();
+				
+				usuario = (Usuario)sessionFactory.getCurrentSession()
+						.createCriteria(Usuario.class)
+						.add(
+								Restrictions.and(
+										Restrictions.eq("nombre",nombreUsuarioActual),
+										Restrictions.eq("email",usuarioEditado.getEmail())
+								)							
+							)
+						.uniqueResult();
+				
+				usuario.setNombre(usuarioEditado.getNombre());
+				usuario.setPass(usuarioEditado.getPass());
+				usuario.setEmail(usuarioEditado.getEmail());
+				usuario.setInstrumento(usuarioEditado.getInstrumento());
+				usuario.setLocalidad(usuarioEditado.getLocalidad());
+				usuario.setPartido(usuarioEditado.getPartido());
+				usuario.setProvincia(usuarioEditado.getProvincia());
+				usuario.setInfluencias(usuarioEditado.getInfluencias());
+				usuario.setImagen(usuario.getImagen());
+				usuario.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
+				
+				sessionFactory.getCurrentSession().update("Usuario", usuario);
+				
+				return "success";
+			}
+			else{
+				return "fail";
+			}
 		}
 		
 		else{
-			usuario = (Usuario)sessionFactory.getCurrentSession()
+			@SuppressWarnings("unchecked")
+			List<Usuario>resultado = (List<Usuario>)sessionFactory.getCurrentSession()
 					.createCriteria(Usuario.class)
 					.add(
 							Restrictions.or(
 									Restrictions.eq("nombre",usuarioEditado.getNombre()),
 									Restrictions.eq("email",usuarioEditado.getEmail())
 							)
+							
 						)
-					.uniqueResult();
+					.list();
 			
-			if (usuario.equals(null)){
+			if (resultado.isEmpty() || resultado.equals(null)){
 				
 				usuario = (Usuario)sessionFactory.getCurrentSession()
 						.createCriteria(Usuario.class)
-						.add(Restrictions.eq("nombre",nombreUsuario))
+						.add(Restrictions.eq("nombre",nombreUsuarioActual))
 						.uniqueResult();
 				
 				usuario.setNombre(usuarioEditado.getNombre());
@@ -109,12 +199,12 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 				
 				sessionFactory.getCurrentSession().update("Usuario", usuario);
 				
-				return usuario;
+				return "success";
 				
 			}
 			else{
-				usuario = new Usuario();	// Si existe un usuario con el mismo nombre/email que al que yo lo quiero cambiar (que no sea mi actual usuario), devuelvo usuario vacio.
-				return usuario;
+				
+				return "fail";	// Si existe un usuario con el mismo nombre/email que al que yo lo quiero cambiar (que no sea mi actual usuario), devuelvo string "nulo".
 				
 			}
 			

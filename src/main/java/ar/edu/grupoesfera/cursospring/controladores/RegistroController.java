@@ -95,6 +95,7 @@ public class RegistroController {
 				
 				request.getSession().setAttribute("username", resultado.getNombre());
 				request.getSession().setAttribute("imagen", resultado.getImagen());
+				request.getSession().setAttribute("email", resultado.getEmail());
 				
 				if(resultado.getBanda() != null){
 					request.getSession().setAttribute("banda", resultado.getBanda().getId());
@@ -122,6 +123,7 @@ public class RegistroController {
 		request.getSession().removeAttribute("username");
 		request.getSession().removeAttribute("imagen");
 		request.getSession().removeAttribute("banda");
+		request.getSession().removeAttribute("email");
 		
 		return new ModelAndView("redirect:/login");
 	}

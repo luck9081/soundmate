@@ -34,15 +34,15 @@ public class PerfilServiceImpl implements PerfilService{
 	}
 	
 	@Override
-	public Usuario editarPerfil (Usuario usuarioEditado,String nombreUsuario){
+	public String editarPerfil (Usuario usuarioEditado,String nombreUsuarioActual,String emailActual){
 		
 		usuarioEditado.setNombre(usuarioEditado.getNombre().toLowerCase());
 		usuarioEditado.setEmail(usuarioEditado.getEmail().toLowerCase());
 		usuarioEditado.setInstrumento(usuarioEditado.getInstrumento().toLowerCase());
 				
-		Usuario usuario = perfilDAO.editarPerfil(usuarioEditado,nombreUsuario);
+		String resultado = perfilDAO.editarPerfil(usuarioEditado,nombreUsuarioActual, emailActual);
 		
-		return usuario;
+		return resultado;
 		
 	}
 

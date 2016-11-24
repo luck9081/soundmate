@@ -165,12 +165,13 @@ public class PerfilController {
 		usuario.setNombre(usuario.getNombre().toLowerCase());
 		usuario.setInstrumento(usuario.getInstrumento().toLowerCase());
 		
-		Usuario usuarioEditado = perfilService.editarPerfil(usuario,(String)request.getSession().getAttribute("username"));
+		String flag = perfilService.editarPerfil(usuario,(String)request.getSession().getAttribute("username"),(String)request.getSession().getAttribute("email"));
 		
 		ModelMap resultado = new ModelMap();
 		
-		if(usuarioEditado.getNombre().equals(usuario.getNombre())){
-			request.getSession().setAttribute("username", usuarioEditado.getNombre());
+		if(flag == "success"){
+			request.getSession().setAttribute("username", usuario.getNombre());
+			request.getSession().setAttribute("email", usuario.getEmail());
 			
 			resultado.addAttribute("title","Perfil");
 			resultado.addAttribute("titulo","Se ha modificado tu perfil");

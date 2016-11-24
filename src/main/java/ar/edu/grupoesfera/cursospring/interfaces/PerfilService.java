@@ -8,5 +8,5 @@ public interface PerfilService {
 	
 	public Banda buscarPerfilBanda (String nombreBanda);
 	
-	public Usuario editarPerfil (Usuario usuario,String nombreUsuario);
+	public String editarPerfil (Usuario usuario,String nombreUsuarioActual, String emailActual);
 }
