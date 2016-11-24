@@ -66,15 +66,22 @@
 	                			</a>
                 			</div>
                 		</c:forEach>
+                		<c:choose>
+               				<c:when test="${sessionScope.banda != null}">
+               					<a href="eliminar-user/${sessionScope.username}" data-toggle="tooltip" data-placement="top" title="Eliminarme de Banda" data-container="body" class="btn btn-primary btn-raised">
+								 	<i class="material-icons">delete</i>Eliminarme de Banda
+							  	</a>
+							</c:when>
+						</c:choose>
                   	</div>
                   	<!-- fin info de la banda -->
 				  	<div class="col-md-9">
-				  		<h4>Escribinos!</h4>
-               			<hr style="margin:0; padding:0;">
-               			
                			<c:choose>
 							<c:when test="${sessionScope.username != null}">
-               			
+							
+							
+               				<h4>Escribinos!</h4>
+               				<hr style="margin:0; padding:0;">
 	               			<!-- form para publicar comments en el muro -->
 		
 							<div class="card card-nav-tabs">

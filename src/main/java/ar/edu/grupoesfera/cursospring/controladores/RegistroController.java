@@ -120,9 +120,8 @@ public class RegistroController {
 	public ModelAndView destruirSesion(HttpServletRequest request){
 		
 		request.getSession().removeAttribute("username");
-		request.getSession().removeAttribute("localidad");
-		request.getSession().removeAttribute("partido");
-		request.getSession().removeAttribute("provincia");
+		request.getSession().removeAttribute("imagen");
+		request.getSession().removeAttribute("banda");
 		
 		return new ModelAndView("redirect:/login");
 	}

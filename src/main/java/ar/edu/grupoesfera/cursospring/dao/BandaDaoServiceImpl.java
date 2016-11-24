@@ -64,7 +64,7 @@ public class BandaDaoServiceImpl implements BandaDaoService {
 	public List<Usuario> consultarMiembros (Banda banda){
 		
 		
-		List<Usuario> miembros = sessionFactory.getCurrentSession()
+		List<Usuario> miembros = (List<Usuario>)sessionFactory.getCurrentSession()
 				.createCriteria(Usuario.class)
 				.add(Restrictions.eq("banda", banda))
 				.list();

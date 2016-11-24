@@ -50,7 +50,11 @@
 							<a href="banda/${banda.getNombre()}">
 			               		<img data-toggle="tooltip" data-placement="right" title=" ir a banda" data-container="body" style="margin:10% 10% 0 0" src="img/default.gif" class="img-raised" />
 			               	</a>
-			               <h3 style="margin-left:5%">${banda.getNombre()}</h3>
+			               	<a href="banda/eliminar-user/${sessionScope.username}" style="margin:-15%; margin-top:-40%" data-toggle="tooltip" data-placement="top" title="Eliminarme de Banda" data-container="body" class="btn btn-fab btn-fab-mini btn-round">
+								<i class="material-icons">delete</i>
+							</a>
+			                <h3 style="margin-left:5%">${banda.getNombre()}</h3>
+			                
 			            </div>
 					</c:otherwise>
 				</c:choose>					

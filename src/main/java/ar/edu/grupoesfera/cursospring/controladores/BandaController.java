@@ -154,5 +154,25 @@ public class BandaController {
 		return new ModelAndView("landing",resultado2);
 
 	}
+			
 }
+	@RequestMapping("banda/eliminar-user/{username}")
+	public ModelAndView emliminarUserDeBanda(@PathVariable("username") String username, HttpServletRequest request){
+		
+		request.getSession().removeAttribute("banda");
+		
+		bandaService.eliminarUsuarioDeBanda(username);
+		
+		
+		ModelMap resultado3 = new ModelMap();
+		resultado3.addAttribute("title","Eliminarne de banda");
+		resultado3.addAttribute("titulo","Listo, te has eliminado tu banda :( ");
+		resultado3.addAttribute("subtitulo","Ahora crea tu nueva banda o sumate a otras!");
+		resultado3.addAttribute("inputValue","Ir a mis bandas");
+		resultado3.addAttribute("inputHref","../../mis-bandas");
+		resultado3.addAttribute("iconClass","fa fa-chevron-left");
+		resultado3.addAttribute("reubicacion","../../");
+		
+		return new ModelAndView("landing",resultado3);
+	}
 }
