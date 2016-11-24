@@ -82,7 +82,10 @@ public class PerfilController {
 	
 	@RequestMapping("/perfil/{username}")
 	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario,HttpServletRequest request){
-
+		
+		Usuario miUsuarioLogueadoGlobal = new Usuario();
+		miUsuarioLogueadoGlobal=perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+		
 		ModelMap perfil = new ModelMap();
 		
 		if(nombreUsuario.equals("editar")){
@@ -124,17 +127,21 @@ public class PerfilController {
 				perfil.addAttribute("publicaciones", publicacionesUser);
 				perfil.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
 				
-				if (request.getSession().getAttribute("banda") != null && usuarioEncontrado.getBanda() != null){
-					if(usuarioEncontrado.getBanda().getId() == (Integer)request.getSession().getAttribute("banda")){
+				if (miUsuarioLogueadoGlobal.getBanda() != null && usuarioEncontrado.getBanda() != null){
+					if(usuarioEncontrado.getBanda().getId() == miUsuarioLogueadoGlobal.getBanda().getId()){
 						
 						perfil.addAttribute("mismaBanda",true);
 						
 					}
 					else{
 						
-						perfil.addAttribute("mismaBanda",false);
+						perfil.addAttribute("mismaBanda",true);
 						
 					}
+				}else if(miUsuarioLogueadoGlobal.getBanda() != null && usuarioEncontrado.getBanda()==null){
+					
+					perfil.addAttribute("mismaBanda", false);
+					
 				}
 				
 				return new ModelAndView("profile",perfil);

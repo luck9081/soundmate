@@ -51,22 +51,26 @@ public class BandaController {
 	public ModelAndView perfilUser(@PathVariable("nombreBanda") String nombreBanda, HttpServletRequest request){
 		
 		Banda miBanda = perfilService.buscarPerfilBanda(nombreBanda); // A la busqueda de banda le paso el atributo de session (casteado a string).
-		
+		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+
 		ModelMap perfilBanda = new ModelMap();
 
 		Publicacion publicacion = new Publicacion();
 		
+	
 		
 		perfilBanda.addAttribute(miBanda);
 		perfilBanda.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
 		List<Publicacion> publicaciones = publicacionService.mostrarPublicaciones(nombreBanda);
 		perfilBanda.addAttribute("publicaciones", publicaciones);
 		perfilBanda.addAttribute("publicar", publicacion);
+		perfilBanda.addAttribute("usuario", miUsuario);
 		
 		List<Usuario> miembros = bandaService.consultarMiembros(miBanda);
 		perfilBanda.addAttribute("miembros", miembros);
 		
 		return new ModelAndView("banda",perfilBanda);
+		
 	}
 	
 	@RequestMapping(path="/mis-bandas")
@@ -89,7 +93,7 @@ public class BandaController {
 			String nombreUsuario = miUsuario.getNombre();
 			
 			bandaService.registrarBanda(banda,nombreUsuario);
-			
+						
 			
 			ModelMap modelCrearBanda = new ModelMap();
 			modelCrearBanda.addAttribute("titulo","Banda registrada");
@@ -175,4 +179,34 @@ public class BandaController {
 		
 		return new ModelAndView("landing",resultado3);
 	}
+	
+	@RequestMapping("/banda/{nombreBanda}/agregarseABanda")
+	public ModelAndView usuarioSeAgregaABanda(@PathVariable("nombreBanda") String nombreBanda,HttpServletRequest request){
+		
+		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+		Banda banda = perfilService.buscarPerfilBanda(nombreBanda);
+		
+		String nombreUsuario = miUsuario.getNombre();
+		
+		bandaService.aniadirABanda(nombreUsuario, banda);
+		
+		request.getSession().setAttribute("banda", miUsuario.getBanda());
+			
+		ModelMap resultado = new ModelMap();
+		resultado.addAttribute("title","Agregarse a banda ");
+		resultado.addAttribute("titulo","Genial, te  has agregado a una nueva  banda ");
+		resultado.addAttribute("subtitulo","Sigue navegando en Soundmate");
+		resultado.addAttribute("inputValue","Ir a perfil");
+		resultado.addAttribute("inputHref","../../perfil");
+		resultado.addAttribute("iconClass","fa fa-chevron-left");
+		resultado.addAttribute("reubicacion","../../");
+		
+		request.getSession().setAttribute("banda", miUsuario.getBanda());
+
+		
+		return new ModelAndView("landing",resultado);
+	
+	}
+
+
 }

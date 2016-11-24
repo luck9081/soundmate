@@ -67,11 +67,14 @@
                 			</div>
                 		</c:forEach>
                 		<c:choose>
-               				<c:when test="${sessionScope.banda != null}">
+               				<c:when test="${usuario.getBanda() != null}">
                					<a href="eliminar-user/${sessionScope.username}" data-toggle="tooltip" data-placement="top" title="Eliminarme de Banda" data-container="body" class="btn btn-primary btn-raised">
 								 	<i class="material-icons">delete</i>Eliminarme de Banda
 							  	</a>
 							</c:when>
+							<c:otherwise>
+							<div class="col-md-12" style="float:left; margin-left:-20px; margin-top:50px;"><a data-toggle="tooltip" data-placement="top" title="Agregarme a banda" data-container="body" class="btn btn-primary btn-raised" href="${banda.getNombre()}/agregarseABanda"><i class="material-icons">add</i>Agregarse a esta banda</a></div>
+							</c:otherwise>
 						</c:choose>
                   	</div>
                   	<!-- fin info de la banda -->
