@@ -53,7 +53,7 @@
                     <span class="input-group-addon">
                       <i class="material-icons">music_video</i>
                     </span>
-                    <form:input path="instrumento" id="instrumento" class="form-control" placeholder="Instrumento/Rol"></form:input>
+                    <form:input path="instrumento" id="instrumento" class="form-control" placeholder="Instrumento"></form:input>
                   </div>
                   
                   <div class="input-group">

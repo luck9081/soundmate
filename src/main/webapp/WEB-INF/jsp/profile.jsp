@@ -60,11 +60,6 @@
 	                  		<h6><i class="material-icons" style="font-size:18px;">email</i> ${usuario.getEmail()}</h6>
 	                  		<h6><i class="material-icons" style="font-size:18px;">music_note</i> ${usuario.getInstrumento()}</h6>
 	                  		<c:choose>
-	                  			<c:when test="${usuario.getFechaNacimiento() != null}">
-	                  				<h6><i class="material-icons" style="font-size:18px;">date_range</i> ${usuario.getFechaNacimiento().getDate()} / ${usuario.getFechaNacimiento().getMonth()}</h6>
-	                  			</c:when>
-	                  		</c:choose>
-	                  		<c:choose>
 	                  			<c:when test="${usuario.getBanda() != null}">
 			                  		<a href="${reubicacion}banda/${usuario.getBanda().getNombre()}">
 			                  			<h6> <i class="material-icons" style="font-size:18px;">people</i> ${usuario.getBanda().getNombre()}</h6>

@@ -90,15 +90,7 @@
 			                      <i class="material-icons" style="font-size:25px;">music_note</i>
 			                    </span>
 	                  			<form:input path="instrumento" class="form-control" value="${usuario.getInstrumento().toUpperCase()}" />
-	                  		</div>
-	                  		
-	                  		<div class="input-group">
-			                    <span class="input-group-addon">
-			                      <i class="material-icons" style="font-size:25px;">date_range</i>
-			                    </span>
-			                    <input class="datepicker form-control" value="${usuario.getFechaNacimiento()}" placeholder="Ingresa tu fecha de nacimiento" />
-			                </div>
-	                  		
+	                  		</div>	                  		
 	                  	</div>
                   	</div>
                   	

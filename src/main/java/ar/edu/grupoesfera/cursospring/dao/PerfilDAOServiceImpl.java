@@ -70,7 +70,7 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 			usuario.setProvincia(usuarioEditado.getProvincia());
 			usuario.setInfluencias(usuarioEditado.getInfluencias());
 			usuario.setImagen(usuario.getImagen());
-			usuario.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
+
 			
 			sessionFactory.getCurrentSession().update("Usuario", usuario);
 			
@@ -111,7 +111,6 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 				usuario.setProvincia(usuarioEditado.getProvincia());
 				usuario.setInfluencias(usuarioEditado.getInfluencias());
 				usuario.setImagen(usuario.getImagen());
-				usuario.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
 				
 				sessionFactory.getCurrentSession().update("Usuario", usuario);
 				
@@ -156,7 +155,6 @@ public class PerfilDAOServiceImpl implements PerfilDAOService {
 				usuario.setProvincia(usuarioEditado.getProvincia());
 				usuario.setInfluencias(usuarioEditado.getInfluencias());
 				usuario.setImagen(usuario.getImagen());
-				usuario.setFechaNacimiento(usuarioEditado.getFechaNacimiento());
 				
 				sessionFactory.getCurrentSession().update("Usuario", usuario);
 				

@@ -1,7 +1,6 @@
 package ar.edu.grupoesfera.cursospring.dao;
 
-import java.util.Arrays;
-import java.util.List;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.inject.Inject;
 
@@ -12,14 +11,13 @@ import org.springframework.transaction.annotation.Transactional;
 import ar.edu.grupoesfera.cursospring.modelo.Banda;
 import ar.edu.grupoesfera.cursospring.modelo.SpringTest;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
-import static org.assertj.core.api.Assertions.*;
 
 public class PerfilDaoTest extends SpringTest {
 	
 	@Inject
 	PerfilDAOService perfilDaoService;
 	
-	//@Test
+	@Test
 	@Rollback @Transactional
 	public void testEditarPerfil(){
 		
@@ -35,7 +33,7 @@ public class PerfilDaoTest extends SpringTest {
 		usuario.setProvincia("Buenos Aires");
 		usuario.setInfluencias("banda");
 		usuario.setImagen("img");
-		usuario.setFechaNacimiento(null);
+
 		
 		
 		getSession().save(usuario);
@@ -46,6 +44,63 @@ public class PerfilDaoTest extends SpringTest {
 		usuarioEditado.setNombre("username");
 		usuarioEditado.setPass("holaasd");
 		usuarioEditado.setEmail("mailasdasd@user.com");
+		usuarioEditado.setInstrumento("bajo");
+		usuarioEditado.setLocalidad("San Justo5");
+		usuarioEditado.setPartido("La Matanza4");
+		usuarioEditado.setProvincia("Buenos Airesa");
+		usuarioEditado.setInfluencias("banda2");
+		
+		
+		String flag =perfilDaoService.editarPerfil(usuarioEditado, usuario.getNombre(), usuario.getEmail());
+		
+		assertThat(flag).isEqualTo("success");
+		
+		
+		
+	}
+	
+	@Test
+	@Rollback @Transactional
+	public void testEditarNombredePerfilAUnoYaExistenteDaError(){
+		
+		Usuario usuario = new Usuario();
+		
+		//usuario.setIdusuario(1);
+		usuario.setNombre("username");
+		usuario.setPass("hola");
+		usuario.setEmail("mail@user.com");
+		usuario.setInstrumento("bajo");
+		usuario.setLocalidad("San Justo");
+		usuario.setPartido("La Matanza");
+		usuario.setProvincia("Buenos Aires");
+		usuario.setInfluencias("banda");
+		usuario.setImagen("img");
+
+		
+		Usuario usuario2 = new Usuario();
+		
+		//usuario.setIdusuario(1);
+		usuario2.setNombre("pepe");
+		usuario2.setPass("hola");
+		usuario2.setEmail("pepe@user.com");
+		usuario2.setInstrumento("bajo");
+		usuario2.setLocalidad("San Justo");
+		usuario2.setPartido("La Matanza");
+		usuario2.setProvincia("Buenos Aires");
+		usuario2.setInfluencias("banda");
+		usuario2.setImagen("img");
+
+		
+		
+		getSession().save(usuario);
+		getSession().save(usuario2);
+		
+		Usuario usuarioEditado = new Usuario();
+		
+	
+		usuarioEditado.setNombre("pepe");
+		usuarioEditado.setPass("holaasd");
+		usuarioEditado.setEmail("mailasdasd@user.com");
 		usuarioEditado.setInstrumento("bajista");
 		usuarioEditado.setLocalidad("San Justo5");
 		usuarioEditado.setPartido("La Matanza4");
@@ -53,13 +108,20 @@ public class PerfilDaoTest extends SpringTest {
 		usuarioEditado.setInfluencias("banda2");
 		
 		
-		Usuario usuarioActualizado=perfilDaoService.editarPerfil(usuarioEditado, usuario.getNombre());
+		String flag1 =perfilDaoService.editarPerfil(usuarioEditado, usuario.getNombre(), usuario.getEmail());
 		
-		assertThat(usuarioEditado).isEqualTo(usuarioActualizado);
+		
+		
+		assertThat(flag1).isEqualTo("fail");
 		
 		
 		
 	}
+	
+	
+	
+	
+	
 	
 	@Test
 	@Rollback @Transactional
@@ -89,7 +151,7 @@ public class PerfilDaoTest extends SpringTest {
 		usuario.setProvincia("Buenos Aires");
 		usuario.setInfluencias("banda");
 		usuario.setImagen("img");
-		usuario.setFechaNacimiento(null);
+
 		
 		getSession().save(usuario);
 		

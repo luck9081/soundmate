@@ -51,8 +51,6 @@ public class Usuario {
 	@Column
 	private String imagen;
 	
-	@Column
-	private Date fechaNacimiento;
 	
 	@ManyToOne
 	@JoinColumn(name="bandaFK")
@@ -60,12 +58,7 @@ public class Usuario {
 	private Banda banda;
 	
 	
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
+
 	public String getImagen() {
 		return imagen;
 	}

@@ -44,7 +44,7 @@
 		                    <span class="input-group-addon">
 		                      <i class="material-icons">face</i>
 		                    </span>
-							<form:input id="instrumento" path="instrumento" class="form-control" placeholder="Rol/Instrumento" />
+							<form:input id="instrumento" path="instrumento" class="form-control" placeholder="Instrumento" />
 							<form:hidden id="localidad" path="localidad" value="${sessionScope.localidad}"/>
 		                    <form:hidden id="partido" path="partido" value="${sessionScope.partido}"/>
 		                    <form:hidden id="provincia" path="provincia" value="${sessionScope.provincia}"/>
