@@ -8,37 +8,48 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-              <img src="${reubicacion}img/logo-sm.png" style="width:150px; margin:0px; padding-top:0px" />
+              <img src="${reubicacion}img/logo-sm.png" style="width:150px; margin:0px; padding-left:20px" />
           </div>
 
           <c:choose>
 	   		<c:when test="${not empty sessionScope.username}">
 	   			<div class="collapse navbar-collapse" id="navigation-example">
-		            <ul class="nav navbar-nav navbar-right">              
-		                <li>
-		                  <a href="http://www.twitter.com/share?url=" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-		                    <i class="fa fa-twitter"></i>
-		                  </a>
-		                </li>
-		                <li>
-		                  <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="btn btn-simple btn-white btn-just-icon">
-		                    <i class="fa fa-facebook-square"></i>
-		                  </a>
-		                </li>
-		                <li class="dropdown-toggle">
-		                	<img src="${reubicacion}img/${sessionScope.imagen}" class="img-circle img-responsive" style="width:30px;height:30px;margin-top:10px; margin-left:10px;" />
-		                </li>
+		            <ul class="nav navbar-nav navbar-right">
+		            	<li class="dropdown">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="material-icons">share</i>
+							</a>
+			            	<ul class="dropdown-menu dropdown-menu-right">              
+				                <li>
+				                  <a href="http://www.twitter.com/share?url=" target="_blank" class="btn-simple">
+				                    <i class="fa fa-twitter"></i> Twitter
+				                  </a>
+				                </li>
+				                <li>
+				                  <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="btn-simple">
+				                    <i class="fa fa-facebook-square"></i> Facebook
+				                  </a>
+				                </li>
+				                <li>
+				                  <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="btn-simple">
+				                    <i class="fa fa-soundcloud"></i> Soundcloud
+				                  </a>
+				                </li>
+				                <li>
+				                  <a href="https://www.facebook.com/sharer/sharer.php?u=" target="_blank" class="btn-simple">
+				                    <i class="fa fa-bandcamp"></i> Bandcamp
+				                  </a>
+				                </li>
+				            </ul>
+				        </li>
 		                <li class="dropdown">
-		                  <a href="" class="dropdown-toggle" data-toggle="dropdown">
-		                  	<p>
-		                  		
-			                    <b>${sessionScope.username.toUpperCase()}</b>
-			                    <b class="caret"></b>
-			                    
-		                    </p>
-		                  </a>
+		                	
+							<a href="" class="dropdown-toggle" data-toggle="dropdown">
+							   	<img src="${reubicacion}img/${sessionScope.imagen}" class="img-circle" style="width:30px; margin-top:-5px" />
+							   	<b style="margin-left:5px">${sessionScope.username.toUpperCase()}</b>
+							   	<span class="caret"></span>
+							</a>
 		                    <ul class="dropdown-menu dropdown-menu-right">
-		                        <li class="dropdown-header">Configuraci&oacute;n</li>
 
 		                        <li><a href="${reubicacion}perfil">Mi Perfil</a></li>
 		                        <li><a href="${reubicacion}mis-bandas">Mis Bandas</a></li>

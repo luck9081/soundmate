@@ -146,13 +146,18 @@
                				<c:forEach var="item" items="${publicaciones}">
 								<div class="col-md-12" style="padding:1%; margin:1%; background-color:#f9f9f9;">
 									<div class="col-md-1">
-		      								<img src="${reubicacion}img/<c:out value="${item.usuario.getImagen()}"/>" class="img-circle img-responsive">
+		      							<img src="${reubicacion}img/<c:out value="${item.usuario.getImagen()}"/>" class="img-circle" style="width:50px" />
 									</div>
 									<div class="col-md-11">
-										<p>Publicado por <a href="${reubicacion}perfil/${item.usuario.getNombre()}"><span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span></a> el <c:out value="${item.fechaPublicacion}"/></p>
+										<p>Publicado por 
+											<a href="${reubicacion}perfil/${item.usuario.getNombre()}">
+												<span style="text-transform:uppercase"><c:out value="${item.usuario.getNombre()}"/></span>
+											</a> 
+											el <c:out value="${item.fechaPublicacion}"/>
+										</p>
 										<c:choose>
 											<c:when test="${item.descripcion == null}">
-												<iframe type="text/html" width="640" height="360" src="https://www.youtube.com/embed/<c:out value="${item.video}"/>" frameborder="0" allowfullscreen></iframe>
+												<iframe type="text/html" width="100%" height="250" src="https://www.youtube.com/embed/<c:out value="${item.video}"/>" frameborder="0" allowfullscreen></iframe>
 											</c:when>
 											<c:otherwise>
 												<p><c:out value="${item.descripcion}"/></p>
