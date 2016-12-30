@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import ar.edu.grupoesfera.cursospring.interfaces.AmigoService;
 import ar.edu.grupoesfera.cursospring.interfaces.BandaService;
 import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
 
+@Transactional
 @Controller
 @Scope("session")
 public class PerfilController {
@@ -32,6 +35,9 @@ public class PerfilController {
 	
 	@Inject
 	public BandaService bandaservice;
+	
+	@Inject
+	public AmigoService amigoService;
 	
 	//Setters para mockear en testeos
 	public void setPerfilServiceMock(PerfilService perfilServiceMock) {
@@ -122,7 +128,13 @@ public class PerfilController {
 			}
 			else{
 				List<PublicacionUsuario> publicacionesUser = publicacionService.mostrarPublicacionesUsuario(nombreUsuario);
+				//Envio al usuario logueado y el id del usuario encontrado para buscar en la lista del usuario
+				//logueado un posible amigo
+				Integer resultadoAmigo=amigoService.buscarAmigo(miUsuarioLogueadoGlobal, usuarioEncontrado.getIdusuario());
 				
+				perfil.addAttribute("resultadoAmigo",resultadoAmigo);
+				perfil.addAttribute("usuarioLogueado",miUsuarioLogueadoGlobal);
+				perfil.addAttribute("listaDeAmigos", miUsuarioLogueadoGlobal.getUsuario_amigos());
 				perfil.addAttribute("usuario",usuarioEncontrado);
 				perfil.addAttribute("publicaciones", publicacionesUser);
 				perfil.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)

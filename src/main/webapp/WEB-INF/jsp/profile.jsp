@@ -75,7 +75,16 @@
 							</c:when>
 							
 							<c:otherwise>
-						        
+								
+							<c:choose>
+									<c:when test="${resultadoAmigo == 1}">
+							        <a href="../cancelarSolicitud/${usuario.getNombre()}" style="float:left" class="btn btn-primary btn-raised"><i class="material-icons">accessibility</i> Cancelar solicitud</a>
+							        </c:when>
+							        <c:otherwise>
+							       <a href="../agregarAAmigos/${usuario.getNombre()}" style="float:left" class="btn btn-primary btn-raised"><i class="material-icons">accessibility</i> Agregar a mis amigos</a>
+							        
+							        </c:otherwise>
+							 </c:choose>       
 						        <c:choose>
 									<c:when test="${mismaBanda == false}">
 										<a href="sumarABanda/${usuario.getNombre()}" style="float:left" data-toggle="tooltip" data-placement="top" title="Agregar a banda" data-container="body" class="btn btn-primary btn-raised"><i class="material-icons">add</i>Agregar a Banda</a>

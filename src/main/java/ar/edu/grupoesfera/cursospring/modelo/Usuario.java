@@ -1,15 +1,23 @@
 package ar.edu.grupoesfera.cursospring.modelo;
 
 
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
@@ -17,7 +25,7 @@ import org.springframework.context.annotation.Scope;
 
 @Entity
 @Scope("session")
-public class Usuario {
+public class Usuario{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -58,6 +66,25 @@ public class Usuario {
 	private Banda banda;
 	
 	
+	@OneToMany(fetch = FetchType.LAZY,mappedBy = "id.usuario")
+	@Cascade(value = CascadeType.REMOVE)
+	private Set<UsuarioEsAmigo> usuario_amigos = new HashSet<UsuarioEsAmigo>();
+	
+
+	
+	
+
+	public Set<UsuarioEsAmigo> getUsuario_amigos() {
+		return usuario_amigos;
+	}
+	
+	
+	
+	public void setUsuario_amigos(Set<UsuarioEsAmigo> usuario_amigos) {
+		this.usuario_amigos = usuario_amigos;
+	}
+
+
 
 	public String getImagen() {
 		return imagen;
@@ -126,4 +153,8 @@ public class Usuario {
 		this.instrumento = instrumento;
 	}
 
+
+
+
+	
 }

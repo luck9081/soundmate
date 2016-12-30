@@ -93,6 +93,7 @@ public class RegistroController {
 			
 			if(resultado != null){
 				
+				request.getSession().setAttribute("id", resultado.getIdusuario());
 				request.getSession().setAttribute("username", resultado.getNombre());
 				request.getSession().setAttribute("imagen", resultado.getImagen());
 				request.getSession().setAttribute("email", resultado.getEmail());
