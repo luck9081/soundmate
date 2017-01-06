@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <nav class="navbar navbar-transparent navbar-fixed-top navbar-color-on-scroll">
       <div class="container">
           <!-- Brand and toggle get grouped for better mobile display -->
@@ -20,7 +21,7 @@
 								<i class="material-icons">share</i>
 							</a>
 			            	<ul class="dropdown-menu dropdown-menu-right">              
-				                <li>
+				      		 <li>
 				                  <a href="http://www.twitter.com/share?url=" target="_blank" class="btn-simple">
 				                    <i class="fa fa-twitter"></i> Twitter
 				                  </a>
@@ -42,6 +43,24 @@
 				                </li>
 				            </ul>
 				        </li>
+		            	<li class="dropdown">
+							<a href="" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="material-icons">supervisor_account</i>
+							</a>
+			            	<ul class="dropdown-menu dropdown-menu-right">
+			            	<c:forEach var="item" items="${listaDeSolicitudDeAmistad}">
+				            	<c:choose>
+				            	
+					            	<c:when test="${item.getEstado()==-1}">
+					            		<li><a href="${reubicacion}perfil/${item.getAmigo().getNombre()}"><c:out value="${item.getAmigo().getNombre()}"></c:out></a><a href="./aceptarSolicitudDeAmistad/${item.getAmigo().getNombre()}"><button>Aceptar</button></a><a href="./eliminarSolicitudDeAmistad/${item.getAmigo().getNombre()}"><button>Rechazar</button></a></li>
+					            	</c:when>
+				            	
+				            	</c:choose>
+			            	</c:forEach>
+				              <li><a href="">Ver mis amigos</a></li>
+				            </ul>
+				        </li>		            	
+
 		                <li class="dropdown">
 		                	
 							<a href="" class="dropdown-toggle" data-toggle="dropdown">

@@ -21,7 +21,7 @@ public class UsuarioEsAmigo {
 	private UsuarioAmigoPk id = new UsuarioAmigoPk();
 	
 	@Column
-	private String estado;
+	private Integer estado;
 	
 
 	public UsuarioAmigoPk getId() {
@@ -48,11 +48,11 @@ public class UsuarioEsAmigo {
 		id.setAmigo(amigo);
 	}
 	
-	public String getEstado() {
+	public Integer getEstado() {
 		return estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
 

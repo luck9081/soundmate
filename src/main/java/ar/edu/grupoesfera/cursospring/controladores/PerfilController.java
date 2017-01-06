@@ -1,5 +1,6 @@
 package ar.edu.grupoesfera.cursospring.controladores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -21,6 +22,7 @@ import ar.edu.grupoesfera.cursospring.interfaces.PerfilService;
 import ar.edu.grupoesfera.cursospring.interfaces.PublicacionService;
 import ar.edu.grupoesfera.cursospring.modelo.PublicacionUsuario;
 import ar.edu.grupoesfera.cursospring.modelo.Usuario;
+import ar.edu.grupoesfera.cursospring.modelo.UsuarioEsAmigo;
 
 @Transactional
 @Controller
@@ -54,18 +56,21 @@ public class PerfilController {
 	
 	/* ------ MOSTRAR PERFIL PROPIO ------ */
 
-
+	
 	@RequestMapping("/perfil")
 	public ModelAndView perfil(HttpServletRequest request) {
 		
-		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
 		
+		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
+		List<UsuarioEsAmigo> listaDeSolicitudDeAmistad =amigoService.buscarSolicitudesDeAmistad(miUsuario);
+
 		PublicacionUsuario publicacion = new PublicacionUsuario();
 		
 		List<PublicacionUsuario> publicacionesUser = publicacionService.mostrarPublicacionesUsuario((String)request.getSession().getAttribute("username"));
 		
 		ModelMap perfil = new ModelMap();
 		perfil.addAttribute("usuario",miUsuario);
+		perfil.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 		perfil.addAttribute("publicar", publicacion);
 		perfil.addAttribute("publicaciones", publicacionesUser);
 		
@@ -89,14 +94,16 @@ public class PerfilController {
 	@RequestMapping("/perfil/{username}")
 	public ModelAndView perfilUser(@PathVariable("username") String nombreUsuario,HttpServletRequest request){
 		
-		Usuario miUsuarioLogueadoGlobal = new Usuario();
-		miUsuarioLogueadoGlobal=perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
-		
+	//	Usuario miUsuarioLogueadoGlobal = new Usuario();
+		Usuario miUsuarioLogueadoGlobal=perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
+		List<UsuarioEsAmigo> listaDeSolicitudDeAmistad =amigoService.buscarSolicitudesDeAmistad(miUsuarioLogueadoGlobal);
+
 		ModelMap perfil = new ModelMap();
 		
 		if(nombreUsuario.equals("editar")){
 			Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username"));
 			
+			perfil.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 			perfil.addAttribute("usuario",miUsuario);
 			perfil.addAttribute("reubicacion","../");
 			
@@ -116,6 +123,7 @@ public class PerfilController {
 			if(usuarioEncontrado == null){
 				ModelMap resultado = new ModelMap();
 				
+				resultado.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 				resultado.addAttribute("title","Perfil");
 				resultado.addAttribute("titulo","Ups. No hemos encontrado este usuario.");
 				resultado.addAttribute("subtitulo","Probablemente haya dado de baja su cuenta. Proba buscar otro");
@@ -131,10 +139,10 @@ public class PerfilController {
 				//Envio al usuario logueado y el id del usuario encontrado para buscar en la lista del usuario
 				//logueado un posible amigo
 				Integer resultadoAmigo=amigoService.buscarAmigo(miUsuarioLogueadoGlobal, usuarioEncontrado.getIdusuario());
+
 				
 				perfil.addAttribute("resultadoAmigo",resultadoAmigo);
-				perfil.addAttribute("usuarioLogueado",miUsuarioLogueadoGlobal);
-				perfil.addAttribute("listaDeAmigos", miUsuarioLogueadoGlobal.getUsuario_amigos());
+				perfil.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 				perfil.addAttribute("usuario",usuarioEncontrado);
 				perfil.addAttribute("publicaciones", publicacionesUser);
 				perfil.addAttribute("reubicacion","../");	// String necesario para que todos los recursos css, js, imagenes y backgrounds tengan su "src" correctamente (a causa del PathVariable)
@@ -173,6 +181,8 @@ public class PerfilController {
 	
 	@RequestMapping("/editarPerfil")
 	public ModelAndView modificarPerfil(@ModelAttribute("usuario") Usuario usuario,HttpServletRequest request){
+		Usuario miUsuario = perfilService.buscarPerfilUsuario((String)request.getSession().getAttribute("username")); // A la busqueda de perfil de usuario le paso el atributo de session (casteado a string).
+		List<UsuarioEsAmigo> listaDeSolicitudDeAmistad =amigoService.buscarSolicitudesDeAmistad(miUsuario);
 		
 		usuario.setNombre(usuario.getNombre().toLowerCase());
 		usuario.setInstrumento(usuario.getInstrumento().toLowerCase());
@@ -185,6 +195,7 @@ public class PerfilController {
 			request.getSession().setAttribute("username", usuario.getNombre());
 			request.getSession().setAttribute("email", usuario.getEmail());
 			
+			resultado.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 			resultado.addAttribute("title","Perfil");
 			resultado.addAttribute("titulo","Se ha modificado tu perfil");
 			resultado.addAttribute("subtitulo","Todos tus datos se guardaron satisfactoriamente");
@@ -192,9 +203,11 @@ public class PerfilController {
 			resultado.addAttribute("inputHref","perfil");
 			resultado.addAttribute("iconClass","fa fa-chevron-right");
 			
+			
 			return new ModelAndView("landing",resultado);
 		}
 		else{
+			resultado.addAttribute("listaDeSolicitudDeAmistad",listaDeSolicitudDeAmistad);
 			resultado.addAttribute("title","Editar Perfil");
 			resultado.addAttribute("titulo","Ups. No ha salido bien");
 			resultado.addAttribute("subtitulo","Parece que existe un usuario con mismo nombre/email. No te preocupes, volve a intentarlo.");
